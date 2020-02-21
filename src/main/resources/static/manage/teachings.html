@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Matrix Admin</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="../css/uniform.css" />
+<link rel="stylesheet" href="../css/select2.css" />
+<link rel="stylesheet" href="../css/matrix-style2.css" />
+<link rel="stylesheet" href="../css/matrix-media.css" />
+<link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div id="content">
+  <div id="content-header">
+    <h1>专业教师基本情况</h1>
+  </div>
+
+  <div class="container-fluid">
+    <div>
+      <form class="form-horizontal" style="display: inline-block; ">
+        <div class="control-group" style="display: inline-block;">
+          <span class="control-label">姓名：</span>
+          <div class="controls">
+            <input type="text" placeholder="Company name" />
+          </div>
+        </div>
+        <div class="control-group" style="display: inline-block; ">
+          <span class="control-label">身份证号：</span>
+          <div class="controls">
+            <input type="text" placeholder="Company name" />
+          </div>
+        </div>
+        <div class="control-group" style="display: inline-block; ">
+          <span class="control-label">专业技术职务：</span>
+          <div class="controls">
+            <input type="text" placeholder="Company name" />
+          </div>
+        </div>
+      </form>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button class="btn btn-warning" style="display: inline-block; ">搜索</button>
+    </div>
+    <hr>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon">
+            <input type="checkbox" id="title-checkbox" name="title-checkbox" />
+           </span>
+            <h5>专业教师基本情况</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table id="t1"  style="text-align: center">
+              <thead>
+              <tr >
+                <th><i class="icon-resize-vertical" ></i></th>
+                <th>教师姓名</th>
+                <th>主讲课程</th>
+                <th>任课学年</th>
+                <th>任课学期</th>
+                <th>本人承担实际学时</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>王飞飞</td>
+                <td>.NET高级开发技术</td>
+                <td>2015-2016</td>
+                <td>第1学期</td>
+                <td>72</td>
+                <td><a href="#"><i class="icon-trash">删除</i></a></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>王飞飞</td>
+                <td>.NET高级开发技术</td>
+                <td>2015-2016</td>
+                <td>第1学期</td>
+                <td>72</td>
+                <td><a href="#"><i class="icon-trash">删除</i></a></td>
+              </tr><tr>
+                <td><input type="checkbox" /></td>
+                <td>王飞飞</td>
+                <td>.NET高级开发技术</td>
+                <td>2015-2016</td>
+                <td>第1学期</td>
+                <td>72</td>
+                <td><a href="#"><i class="icon-trash">删除</i></a></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>王飞飞</td>
+                <td>.NET高级开发技术</td>
+                <td>2015-2016</td>
+                <td>第1学期</td>
+                <td>72</td>
+                <td><a href="#"><i class="icon-trash">删除</i></a></td>
+              </tr><tr>
+                <td><input type="checkbox" /></td>
+                <td>王飞飞</td>
+                <td>.NET高级开发技术</td>
+                <td>2015-2016</td>
+                <td>第1学期</td>
+                <td>72</td>
+                <td><a href="#"><i class="icon-trash">删除</i></a></td>
+              </tr>
+
+
+              </tbody>
+            </table>
+            <div class="pagination" style="margin-left: 70%">
+              <ul>
+                <li><a id="first">第一页</a></li>
+                <li><a id="previous">上一页</a></li>
+                <li class="active"><a pageNum="1">1</a> </li>
+                <li><a pageNum="2">2</a></li>
+                <li><a pageNum="3">3</a></li>
+                <li><a pageNum="4">4</a></li>
+                <li><a pageNum="5">5</a></li>
+                <li><a id="next">下一页</a></li>
+                <li><a id="last">最后一页</a></li>
+
+                <li><a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  共有<span>5</span>条记录
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 全局js -->
+<script src="../js/jquery.min.js?v=2.1.4"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- Bootstrap table -->
+<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+
+<!--导出插件-->
+<script src="../js/plugins/bootstrap-table/locale/tableExport.js"></script>
+<script src="../js/plugins/bootstrap-table/bootstrap-table-export.js"></script>
+
+<script type="text/javascript">
+  $(function () {
+    $('#t1').bootstrapTable({
+      striped: true,	//有条纹
+      pagination: true,	//页码信息
+      search: false,		//搜索
+      showColumns: true,	//列隐藏
+      showRefresh: false,	//刷新
+      showExport: true,	//导出
+      exportTypes: ['excel','txt','xml'],		//导出格式
+    })
+  })
+</script>
+</body>
+</html>

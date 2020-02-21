@@ -32,7 +32,7 @@ class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("生成代码测试")
+                .title("教师信息管理系统")
                 .description("restful 风格接口")
                 .version("1.0")
                 .build();

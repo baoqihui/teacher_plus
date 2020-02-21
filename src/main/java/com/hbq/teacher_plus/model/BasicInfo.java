@@ -1,15 +1,11 @@
 package com.hbq.teacher_plus.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import com.hbq.teacher_plus.common.model.SuperEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -22,11 +18,10 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("basic_info")
-public class BasicInfo  {
+public class BasicInfo extends SuperEntity {
     private static final long serialVersionUID=1L;
 
-        @TableId(type = IdType.AUTO)
-        private Long id;
+
         @ApiModelProperty(value = "姓名")
         private String name;
 
@@ -38,7 +33,6 @@ public class BasicInfo  {
 
         @ApiModelProperty(value = "民族")
         private String nation;
-
 
         @ApiModelProperty(value = "出生年月")
         private Date birthday;
@@ -70,5 +64,8 @@ public class BasicInfo  {
         @ApiModelProperty(value = "是否创新创业导师")
         private Boolean isInnovate;
 
+        @TableLogic
+        @ApiModelProperty(value = "删除标志",hidden = true)
+        private Boolean isDel;
 
 }

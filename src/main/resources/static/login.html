@@ -1,61 +1,116 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
+    
 <head>
+    <title>教师信息管理平台主页</title><meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/matrix-login.css" />
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <title> - 登录</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-
-    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css?v=4.1.0" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <meta http-equiv="refresh" content="0;ie.html" />
-    <![endif]-->
-    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+    <style type="text/css">
+        input{
+            font-family: "Microsoft Yahei";
+        }
+        .control-label{
+            color: #B2DFEE;
+            padding-left: 4px;
+        }
+    </style>
 </head>
-
-<body class="gray-bg">
-
-    <div class="middle-box text-center loginscreen  animated fadeInDown">
-        <div>
-            <div>
-
-                <h1 class="logo-name">h</h1>
-
+<body onkeydown="keydown()">
+    <div id="loginbox">  
+        <div class="control-group normal_text"> 
+            <h2 style="color:#B2DFEE;font-size:28px;">信息管理系统平台</h2>
+            <span style="font-size:14px;color:gray;">版权所有 &copy; IDSE——菜鸟小回</span>
+        </div>          
+        <form id="loginform" class="form-vertical" action="http://themedesigner.in/demo/matrix-admin/index.html">
+            <div class="control-group">
+                <label class="control-label">登陆账号</label>
+                <div class="controls">
+                    <div class="main_input_box">
+                        <span class="add-on bg_lg"><i class="icon-user" style="font-size:16px;"></i></span><input type="text" placeholder="手机号" />
+                    </div>
+                </div>
             </div>
-            <h3>欢迎使用 hAdmin</h3>
-
-            <form class="m-t" role="form" action="index.html">
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="用户名" required="">
+            <div class="control-group2">
+                <label class="control-label">登陆密码</label>
+                <div class="controls">
+                    <div class="main_input_box">
+                        <span class="add-on bg_ly"><i class="icon-lock" style="font-size:16px;"></i></span><input type="password" placeholder="密码"/>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="密码" required="">
+            </div>
+            <div  class="control-group3">
+                <img src="BufferImage" onclick="this.src='BufferImage?'+new Date().getTime()">看不清换一张
+                <br>
+                <br>
+                验证码： <input type="text" id="verify" class="input-medium" placeholder="验证码" style="width: 380px ;height: 30px">
+            </div>
+
+            <div class="form-actions">
+                <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">&nbsp;&nbsp;&nbsp;&nbsp;注&nbsp;&nbsp;&nbsp;册&nbsp;&nbsp;&nbsp;&nbsp;</a></span>
+                <span class="pull-right"><input type="button" id="checkBtn"  class="btn btn-success" style="width:335px;" value=" 登&nbsp;&nbsp;&nbsp;&nbsp;录"/></span>
+            </div>
+            <div class="control-group normal_text">
+                <div style="font-size:14px;color:gray;">推荐使用webkit内核浏览器，如chrome等</div>
+            </div>
+        </form>
+        
+
+        <form id="recoverform" action="#" class="form-vertical" style="padding-top:10px;">
+            <label class="control-label">手机号</label>
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="icon-user" style="font-size:16px;"></i></span><input type="text" name="re_username" />
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+            </div>
+            <br>
+            <div >
+                <span class="pull-right"><a class="btn btn-info" style="width:420px;">获取验证码</a></span>
+            </div>
+            <div class="control-group">
+                <label class="control-label">验证码</label>
+                <div class="controls">
+                    <div class="main_input_box">
+                        <span class="add-on bg_ly"><i class="icon-lock" style="font-size:16px;"></i></span><input type="text" name="re_password"/>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group" style="padding-top:0px;">
+                <label class="control-label">确认密码</label>
+                <div class="controls">
+                    <div class="main_input_box">
+                        <span class="add-on bg_ly"><i class="icon-lock" style="font-size:16px;"></i></span><input type="password" name="re_confirmpassword" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login">&laquo; 返回登录</a></span>
+                <span class="pull-right"><a id="changePwd" class="btn btn-info" style="width:310px;">注册</a></span>
+            </div>
+            <div class="control-group normal_text">
+                <div style="font-size:14px;color:gray;">推荐使用webkit内核浏览器，如chrome等</div>
+            </div>
+        </form>
 
-
-                <p class="text-muted text-center"> <a href="login.html#"><small>忘记密码了？</small></a> | <a href="register.html">注册一个新账号</a>
-                </p>
-
-            </form>
-        </div>
     </div>
 
-    <!-- 全局js -->
-    <script src="js/jquery.min.js?v=2.1.4"></script>
-    <script src="js/bootstrap.min.js?v=3.3.6"></script>
 
-    
-    
+    <script src="http://www.jq22.com/jquery/jquery-1.7.1.js"></script>
+    <script src="js/matrix.login.js"></script>
+<script>
+    $(function () {
+        $("#checkBtn").bind("click",function () {
+            location.href="index/index.html"
+        })
+        $("#changePwd").bind("click",function () {
+            location.href="login.html"
+        })
+    })
+</script>
 
 </body>
 

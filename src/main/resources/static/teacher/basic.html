@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Matrix Admin</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="../css/colorpicker.css" />
+<link rel="stylesheet" href="../css/datepicker.css" />
+<link rel="stylesheet" href="../css/uniform.css" />
+<link rel="stylesheet" href="../css/select2.css" />
+<link rel="stylesheet" href="../css/matrix-style2.css" />
+<link rel="stylesheet" href="../css/matrix-media.css" />
+<link rel="stylesheet" href="../css/bootstrap-wysihtml5.css" />
+<link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+<style>
+	.control-group .controls label{
+		display:inline-block;
+	}
+</style>
+</head>
+<body>
+
+<div id="content">
+  <div id="content-header">
+      <h1>基本情况</h1>
+  </div>
+  <div class="container-fluid">
+  <div class="row-fluid">
+    <div id="form_1" class="span6">
+    <div class="widget-box">
+      <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+        <h5>基本情况</h5>
+      </div>
+      <div class="widget-content nopadding">
+        <form action="#" method="get" class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label">姓名：</label>
+            <div class="controls">
+              <input type="text" class="span11" placeholder="First name" />
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">照片：</label>
+            <div class="controls">
+              <input type="file" size="29.8" style="opacity: 0;">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">预览：</label>
+            <div class="controls">
+              <img src="http://120.27.244.176/group1/M00/00/00/rBDsh13KLROAcQyyAADov1g7iTM072.png" style="width: 120px;height: 150px" alt="等待上传">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">工号：</label>
+            <div class="controls">
+              <input type="text" class="span11" placeholder="Last name" />
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">性别：</label>
+            <div class="controls">
+              <input type="radio" name="sex" class="span11" value="男" checked> 男
+              <input type="radio" name="sex" class="span11" value="女"> 女
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">民族：</label>
+            <div class="controls">
+              <input type="text" class="span11" placeholder="Company name" />
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">出生年月：</label>
+            <div class="controls">
+              <input type="date" class="span11" />
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">政治面貌：</label>
+            <div class="controls">
+              <select style="display: none;">
+                <option>群众</option>
+                <option>共青团员</option>
+                <option>中共预备党员</option>
+                <option>中共党员</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">证件类型：</label>
+            <div class="controls">
+              <select style="display: none;">
+                <option>身份证</option>
+                <option>护照</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">证件号：</label>
+            <div class="controls">
+              <input type="text" class="span11" placeholder="Company name" />
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">专业技术职务：</label>
+            <div class="controls">
+              <input type="text" class="span11" placeholder="Company name" />
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">行政职务：</label>
+            <div class="controls">
+              <input type="text" class="span11" placeholder="Company name" />
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">是否外聘：</label>
+            <div class="controls">
+              <input type="radio" name="wp" class="span11" value="是"> 是
+              <input type="radio" name="wp" class="span11" value="否" checked> 否
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">是否青年骨干教师：</label>
+            <div class="controls">
+              <input type="radio" name="gg" class="span11" value="是" > 是
+              <input type="radio" name="gg" class="span11" value="否" checked> 否
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">是否双师教师：</label>
+            <div class="controls">
+              <input type="radio" name="ss" class="span11" value="是" > 是
+              <input type="radio" name="ss" class="span11" value="否" checked> 否
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">是否创新创业教师：</label>
+            <div class="controls">
+              <input type="radio" name="cx" class="span11" value="是" > 是
+              <input type="radio" name="cx" class="span11" value="否" checked> 否
+            </div>
+          </div>
+
+        </form>
+
+        <center>
+          <button id="ex1" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+          <button id="exr1" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px">保存为Excel</button><br>
+          <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
+        </center>
+
+      </div>
+    </div>
+  </div>
+    <div id="form_2" class="span6">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>教育情况</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <table id="t1" class="table table-bordered table-striped" frame="box">
+            <thead>
+            <tr><th colspan="6" >已添学历信息(重新添加可修改)</th></tr>
+              <tr>
+                <th>学历</th>
+                <th>毕业学校</th>
+                <th>专业</th>
+                <th>获得学位时间</th>
+                <th>学位</th>
+                <th>性质</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd gradeX">
+                <td>本科</td>
+                <td>郑州大学</td>
+                <td>计算机科学与技术</td>
+                <td>1999.9-2003.7</td>
+                <td>学士</td>
+                <td>全日制</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <form action="#" method="get" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">学历：</label>
+              <div class="controls">
+                <select style="display: none;" id="xl">
+                  <option value="本科">本科</option>
+                  <option value="硕士">硕士</option>
+                  <option value="博士">博士</option>
+                  <option value="最终学位">最终学位</option>
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">就读学校：</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="Last name" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">所学专业 ：</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="Company name" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">就读时间：</label>
+              <div class="controls">
+                <input type="date" class="span11" placeholder="Company name" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">毕业时间：</label>
+              <div class="controls">
+                <input type="date" class="span11" placeholder="Company name" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">学位 ：</label>
+              <div class="controls">
+                <input type="text" class="span11" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">性质 ：</label>
+              <div class="controls">
+                <select style="display: none;">
+                  <option>全日制</option>
+                  <option>在职</option>
+                </select>
+              </div>
+            </div>
+          </form>
+          <center>
+            <button id="ex2" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+            <button id="exr2" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px">保存为Excel</button>
+            <center><button id="btn2" class="btn btn-success btn-large" style="margin-bottom: 20px; border-radius: 5px">保存教育情况</button></center>
+          </center>
+
+        </div>
+      </div>
+    </div>
+    <div id="form_3" class="span6">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>工作经历</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="#" method="get" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">非学历进修 ：</label>
+              <div class="controls">
+               <input type="text" class="span11">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">参加工作时间 ：</label>
+              <div class="controls">
+                <input type="date" class="span11" placeholder="Last name" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">任教时间 ：</label>
+              <div class="controls">
+                <input type="date" class="span11" placeholder="Company name" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">到本专业任教时间 ：</label>
+              <div class="controls">
+                <input type="date" class="span11" placeholder="Company name" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">中青年教师实践能力培训 ：</label>
+              <div class="controls">
+                <input type="text" class="span11" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">研究生导师 ：</label>
+              <div class="controls">
+                  <input type="text" class="span11">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">人才入选情况 ：</label>
+              <div class="controls">
+                <input type="text" class="span11">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">行业经历 ：</label>
+              <div class="controls">
+                <textarea class="span11" placeholder="Company name" style="height: 42px"></textarea>
+              </div>
+            </div>
+          </form>
+          <center>
+            <button id="ex3" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+            <button id="exr3" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px">保存为Excel</button>
+            <center><button id="btn3" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存工作经历</button></center>
+          </center>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="http://www.jq22.com/jquery/jquery-1.7.1.js"></script>
+<script src="../js/jquery.ui.custom.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-colorpicker.js"></script>
+<script src="../js/bootstrap-datepicker.js"></script>
+
+<script src="../js/masked.js"></script>
+<script src="../js/jquery.uniform.js"></script>
+<script src="../js/select2.min.js"></script>
+<script src="../js/matrix.js"></script>
+<script src="../js/matrix.form_common.js"></script>
+<script src="../js/wysihtml5-0.3.0.js"></script>
+<script src="../js/jquery.peity.min.js"></script>
+<script src="../js/bootstrap-wysihtml5.js"></script>
+
+<!-- Bootstrap table -->
+
+<script src="/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+
+<!--导出插件-->
+<script src="/bootstrap-table/locale/tableExport.js"></script>
+<script src="/bootstrap-table/bootstrap-table-export.js"></script>
+<script>
+    $(function () {
+      $("#btn1").click(function () {
+        var r = confirm("* 专业教师指从事专业课（含专业基础课）教学工作的专任教师（含实验教师）、外聘教师。\n" +
+              "* 外聘教师指外聘的国内及外籍非本校教师，本校教师填写身份证号，外籍教师填写护照号。\n" +
+              "* 需提供资料：身份证，聘任证书，专业技术资格证书，教师资格证书。\n\n" +
+              "\t\t\t\t\t\t\t您是否确定保存？")
+        if (r == true) {
+          alert("保存成功")
+        } else {
+
+        }
+      })
+      $("#btn2").click(function () {
+        var xl=$("#xl").val();
+        var r = confirm("* 你当前添加学历为\t"+xl+"\n"+
+                "* 需提供资料：毕业证书、学位证书\n\n" +
+                "\t\t您是否确定保存？")
+        if (r == true) {
+          alert("保存成功")
+        } else {
+
+        }
+      })
+      $("#btn3").click(function () {
+        var xl=$("#xl").val();
+        var r = confirm("注意事项：\n" +
+                "1. 专业教师指从事专业课（含专业基础课）教学工作的专任教师（含实验教师）、外聘教师。外聘教师指外聘的国内及外籍非本校教师，本校教师填写身份证号，外籍教师填写护照号；\n" +
+                "需提供资料：身份证，聘任证书，专业技术资格证书，教师资格证书，毕业证，学位证\n" +
+                "2. 非学历进修经历指国内外访问学者及三个月以上的海外进修经历，进修类别填写国内（国外）访问学者，境外进修等；\n" +
+                "需提供资料：进修证书\n" +
+                "3. 行业经历指在校的专业教师在相关行业连续工作6个月以上；\n" +
+                "需提供资料：进修证书\n" +
+                "4. 参加中青年教师实践教学能力培训指以下两种情况之一：①曾接受相关行业培训并取得相应证书；②曾与相关行业合作开展过科研项目；\n" +
+                "需提供资料：培训证书、科研项目相关文件\n" +
+                "5. 中青年教师指45周岁以下（含45周岁）教师；\n" +
+                "6. 人才入选情况包括院士、教育部“长江学者奖励支持计划”人选、国家杰出青年基金获得者、国务院及省级学科评议组成员、973首席科学家、海外高层次人才引进计划（千人计划）、国家高层次人才特殊支持计划、新世纪百千万人才工程国家级人选、教育部新世纪优秀人才支持计划人选、省百千万人才工程计划（百人层次）、中科院“百人计划”人选、国家及省级教学名师、国务院政府特殊津贴获得者、全国及省优秀教师、省优秀专家、省教学标兵、省“五一劳动奖章”获得者、河南“高等学校重点学科领军人才海内外引进计划”人选、河南“高等学校攀登学者支持计划”人选、河南“特聘教授支持计划”人选、河南省高校优秀人才支持计划；\n" +
+                "需提供资料：证书，文件\n" +
+                "7. 属于多个类型的人才入选情况须全部填写。\n\n"+
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t您是否确定保存？")
+        if (r == true) {
+          alert("保存成功")
+        } else {
+
+        }
+      })
+
+    })
+</script>
+</body>
+</html>
