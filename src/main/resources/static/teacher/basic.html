@@ -20,7 +20,24 @@
 	.control-group .controls label{
 		display:inline-block;
 	}
+    body {
+      padding-bottom: 40px;
+    }
+    .sidebar-nav {
+      padding: 9px 0;
+    }
+
+    @media (max-width: 980px) {
+      /* Enable use of floated navbar text */
+      .navbar-text.pull-right {
+        float: none;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    }
+
 </style>
+
 </head>
 <body>
 
@@ -36,29 +53,29 @@
         <h5>基本情况</h5>
       </div>
       <div class="widget-content nopadding">
-        <form action="#" method="get" class="form-horizontal">
+        <form id="basic" action="#" method="get" class="form-horizontal">
           <div class="control-group">
             <label class="control-label">姓名：</label>
             <div class="controls">
-              <input type="text" class="span11" placeholder="First name" />
+              <input id="name" type="text" class="span11" placeholder="First name" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">照片：</label>
             <div class="controls">
-              <input type="file" size="29.8" style="opacity: 0;">
+              <input id="m_image_addr" type="file" size="29.8" style="opacity: 0;">
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">预览：</label>
             <div class="controls">
-              <img src="http://120.27.244.176/group1/M00/00/00/rBDsh13KLROAcQyyAADov1g7iTM072.png" style="width: 120px;height: 150px" alt="等待上传">
+              <img id="yulan" src="" style="width: 120px;height: 150px" alt="等待上传">
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">工号：</label>
             <div class="controls">
-              <input type="text" class="span11" placeholder="Last name" />
+              <input id="jobNum" type="text" class="span11" placeholder="Last name" />
             </div>
           </div>
           <div class="control-group">
@@ -71,19 +88,19 @@
           <div class="control-group">
             <label class="control-label">民族：</label>
             <div class="controls">
-              <input type="text" class="span11" placeholder="Company name" />
+              <input id="nation" type="text" class="span11" placeholder="Company name" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">出生年月：</label>
             <div class="controls">
-              <input type="date" class="span11" />
+              <input id="birthday" type="date" class="span11" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">政治面貌：</label>
             <div class="controls">
-              <select style="display: none;">
+              <select id="politicsStatus" style="display: none;">
                 <option>群众</option>
                 <option>共青团员</option>
                 <option>中共预备党员</option>
@@ -94,7 +111,7 @@
           <div class="control-group">
             <label class="control-label">证件类型：</label>
             <div class="controls">
-              <select style="display: none;">
+              <select id="certType" style="display: none;">
                 <option>身份证</option>
                 <option>护照</option>
               </select>
@@ -103,47 +120,47 @@
           <div class="control-group">
             <label class="control-label">证件号：</label>
             <div class="controls">
-              <input type="text" class="span11" placeholder="Company name" />
+              <input id="certNum" type="text" class="span11" placeholder="Company name" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">专业技术职务：</label>
             <div class="controls">
-              <input type="text" class="span11" placeholder="Company name" />
+              <input id="skillJob" type="text" class="span11" placeholder="Company name" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">行政职务：</label>
             <div class="controls">
-              <input type="text" class="span11" placeholder="Company name" />
+              <input id="adminJob" type="text" class="span11" placeholder="Company name" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">是否外聘：</label>
             <div class="controls">
-              <input type="radio" name="wp" class="span11" value="是"> 是
-              <input type="radio" name="wp" class="span11" value="否" checked> 否
+              <input type="radio" name="isExternal" class="span11" value="是"> 是
+              <input type="radio" name="isExternal" class="span11" value="否" checked> 否
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">是否青年骨干教师：</label>
             <div class="controls">
-              <input type="radio" name="gg" class="span11" value="是" > 是
-              <input type="radio" name="gg" class="span11" value="否" checked> 否
+              <input type="radio" name="isBackbone" class="span11" value="是" > 是
+              <input type="radio" name="isBackbone" class="span11" value="否" checked> 否
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">是否双师教师：</label>
             <div class="controls">
-              <input type="radio" name="ss" class="span11" value="是" > 是
-              <input type="radio" name="ss" class="span11" value="否" checked> 否
+              <input type="radio" name="isDouble" class="span11" value="是" > 是
+              <input type="radio" name="isDouble" class="span11" value="否" checked> 否
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">是否创新创业教师：</label>
             <div class="controls">
-              <input type="radio" name="cx" class="span11" value="是" > 是
-              <input type="radio" name="cx" class="span11" value="否" checked> 否
+              <input type="radio" name="isInnovate" class="span11" value="是" > 是
+              <input type="radio" name="isInnovate" class="span11" value="否" checked> 否
             </div>
           </div>
 
@@ -332,30 +349,51 @@
 <script src="../js/wysihtml5-0.3.0.js"></script>
 <script src="../js/jquery.peity.min.js"></script>
 <script src="../js/bootstrap-wysihtml5.js"></script>
-
-<!-- Bootstrap table -->
-
-<script src="/bootstrap-table/bootstrap-table.min.js"></script>
-<script src="/bootstrap-table/bootstrap-table-mobile.min.js"></script>
-<script src="/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-
-<!--导出插件-->
-<script src="/bootstrap-table/locale/tableExport.js"></script>
-<script src="/bootstrap-table/bootstrap-table-export.js"></script>
 <script>
-    $(function () {
-      $("#btn1").click(function () {
+  $(function () {
+    //退出
+    $('#backid').click(function(){
+      window.location.href="index.html";
+    });
+    //上传图片
+    $("#m_image_addr").live("change",function(){
+        //注意这里不能写错。。。
+        var file=$("#m_image_addr")[0].files[0];
+        var formData = new FormData();
+        formData.append("m_image_addr",file);
+        //对文件类型进行判断
+        var index=file.name.lastIndexOf(".");
+        var type=file.name.substring(index);
+        if(type!=".jpg"&&type!=".png"){
+          alert("只能上传jpg和png格式的图片！！");
+          return;
+        }
+        $.ajax({
+          url:"../upload.do",
+          data:formData,
+          dataType:"text",
+          type:"post",
+          //这两个属性必须设置！！！！
+          contentType: false,
+          processData: false, //设置为true时，ajax提交的时候不会序列化data，而是直接使用data
+          success:function (path) {
+            $("#yulan").attr("src",path);
+          }
+        })
+      })
+
+    $("#btn1").click(function () {
         var r = confirm("* 专业教师指从事专业课（含专业基础课）教学工作的专任教师（含实验教师）、外聘教师。\n" +
               "* 外聘教师指外聘的国内及外籍非本校教师，本校教师填写身份证号，外籍教师填写护照号。\n" +
               "* 需提供资料：身份证，聘任证书，专业技术资格证书，教师资格证书。\n\n" +
               "\t\t\t\t\t\t\t您是否确定保存？")
         if (r == true) {
-          alert("保存成功")
+          addMassage();
         } else {
 
         }
       })
-      $("#btn2").click(function () {
+    $("#btn2").click(function () {
         var xl=$("#xl").val();
         var r = confirm("* 你当前添加学历为\t"+xl+"\n"+
                 "* 需提供资料：毕业证书、学位证书\n\n" +
@@ -366,7 +404,7 @@
 
         }
       })
-      $("#btn3").click(function () {
+    $("#btn3").click(function () {
         var xl=$("#xl").val();
         var r = confirm("注意事项：\n" +
                 "1. 专业教师指从事专业课（含专业基础课）教学工作的专任教师（含实验教师）、外聘教师。外聘教师指外聘的国内及外籍非本校教师，本校教师填写身份证号，外籍教师填写护照号；\n" +
@@ -389,7 +427,55 @@
         }
       })
 
-    })
+  })
+  //上传接口
+  function addMassage() {
+
+    var name=$("#name").val();
+    var imgUrl=$("#yulan").attr("src");
+    var jobNum=$("#jobNum").val();
+    var sex=$("input[name='sex']:checked").val();
+
+    var nation=$("#nation").val();
+    var birthday=$("#birthday").val();
+    var politicsStatus=$("#politicsStatus").val();
+
+    var certType=$("#certType").val();
+    var certNum=$("#certNum").val();
+    var skillJob=$("#skillJob").val();
+    var adminJob=$("#adminJob").val();
+
+    var isExternal=$("input[name='isExternal']:checked").val();
+    var isBackbone=$("input[name='isBackbone']:checked").val();
+    var isDouble=$("input[name='isDouble']:checked").val();
+    var isInnovate=$("input[name='isInnovate']:checked").val();
+
+    $.post("../basicInfo",{
+      name:name,imgUrl:imgUrl,jobNum:jobNum,sex:sex,nation:nation,
+      birthday:birthday,politicsStatus:politicsStatus,certType:certType,certNum:certNum,skillJob:skillJob,
+      adminJob:adminJob,isExternal:isExternal,isBackbone:isBackbone,isDouble:isDouble,isInnovate:isInnovate
+    },function(result){
+      alert(result.resp_msg);
+      if(result.resp_code){
+        window.location.href="basic.html";
+      }else{
+        $("#span1").text(result.resp_msg);
+      }
+    },"json")
+
+  }
+  //两个时间相差天数
+  function datedifference(sDate1, sDate2) {    //sDate1和sDate2是2006-12-18格式
+    var dateSpan,
+            tempDate,
+            iDays;
+    sDate1 = Date.parse(sDate1);
+    sDate2 = Date.parse(sDate2);
+    dateSpan = sDate2 - sDate1;
+    dateSpan = Math.abs(dateSpan);
+    iDays = Math.floor(dateSpan / (24 * 3600 * 1000));
+    return iDays
+  };
 </script>
 </body>
 </html>

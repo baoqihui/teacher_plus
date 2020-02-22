@@ -1,6 +1,8 @@
 package com.hbq.teacher_plus.controller;
 
 import java.util.Map;
+
+import com.hbq.teacher_plus.util.UploadImg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
@@ -13,6 +15,7 @@ import com.hbq.teacher_plus.model.BasicInfo;
 import com.hbq.teacher_plus.service.IBasicInfoService;
 import com.hbq.teacher_plus.common.model.PageResult;
 import com.hbq.teacher_plus.common.model.Result;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 基本信息
@@ -26,6 +29,12 @@ import com.hbq.teacher_plus.common.model.Result;
 public class BasicInfoController {
     @Autowired
     private IBasicInfoService basicInfoService;
+
+    @RequestMapping(value="/upload.do",method={RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public String upload(MultipartFile m_image_addr) throws Exception{
+        return UploadImg.imgUpload(m_image_addr);
+    }
 
     /**
      * 列表
@@ -55,7 +64,7 @@ public class BasicInfoController {
      */
     @ApiOperation(value = "保存")
     @PostMapping("/basicInfo")
-    public Result save(@RequestBody BasicInfo basicInfo) {
+    public Result save( BasicInfo basicInfo) {
         basicInfoService.saveOrUpdate(basicInfo);
         return Result.succeed("保存成功");
     }

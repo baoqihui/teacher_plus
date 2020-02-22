@@ -2,6 +2,7 @@ package com.hbq.teacher_plus.model;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import com.hbq.teacher_plus.common.model.SuperEntity;
 import lombok.Data;
@@ -25,11 +26,14 @@ public class BasicInfo extends SuperEntity {
         @ApiModelProperty(value = "姓名")
         private String name;
 
+        @ApiModelProperty(value = "照片")
+        private String imgUrl;
+
         @ApiModelProperty(value = "工号")
-        private Integer jobNum;
+        private String jobNum;
 
         @ApiModelProperty(value = "性别")
-        private Boolean sex;
+        private String sex;
 
         @ApiModelProperty(value = "民族")
         private String nation;
@@ -44,7 +48,7 @@ public class BasicInfo extends SuperEntity {
         private String certType;
 
         @ApiModelProperty(value = "证件号码")
-        private Integer certNum;
+        private String certNum;
 
         @ApiModelProperty(value = "专业技术职务")
         private String skillJob;
@@ -53,16 +57,16 @@ public class BasicInfo extends SuperEntity {
         private String adminJob;
 
         @ApiModelProperty(value = "是否外聘")
-        private Boolean isExternal;
+        private String isExternal;
 
         @ApiModelProperty(value = "是否青年骨干教师")
-        private Boolean isBackbone;
+        private String isBackbone;
 
         @ApiModelProperty(value = "是否双师教师")
-        private Boolean isDouble;
+        private String isDouble;
 
         @ApiModelProperty(value = "是否创新创业导师")
-        private Boolean isInnovate;
+        private String isInnovate;
 
         @TableLogic
         @ApiModelProperty(value = "删除标志",hidden = true)
