@@ -2,6 +2,7 @@ package com.hbq.teacher_plus.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import java.util.Date;
  * @author hbq
  * @date 2018/12/11
  */
+@Component
 public class DateMetaObjectHandler implements MetaObjectHandler {
     private final static String UPDATE_TIME = "updateTime";
     private final static String CREATE_TIME = "createTime";

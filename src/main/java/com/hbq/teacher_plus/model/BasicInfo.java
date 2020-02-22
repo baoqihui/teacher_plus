@@ -1,5 +1,7 @@
 package com.hbq.teacher_plus.model;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -7,6 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import com.hbq.teacher_plus.common.model.SuperEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -72,4 +75,6 @@ public class BasicInfo extends SuperEntity {
         @ApiModelProperty(value = "删除标志",hidden = true)
         private Boolean isDel;
 
+    @TableField(fill = FieldFill.INSERT)
+    private Date createTime;
 }

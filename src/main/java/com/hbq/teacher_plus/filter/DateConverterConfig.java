@@ -1,3 +1,4 @@
+/*
 package com.hbq.teacher_plus.filter;
 
 import org.springframework.core.convert.converter.Converter;
@@ -9,11 +10,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+*/
 /**
  * 全局handler前日期统一处理
  * @author
  * @date
- */
+ *//*
+
 @Component
 public class DateConverterConfig implements Converter<String, Date> {
 
@@ -44,12 +47,14 @@ public class DateConverterConfig implements Converter<String, Date> {
         }
     }
 
-    /**
+    */
+/**
      * 格式化日期
      * @param dateStr String 字符型日期
      * @param format String 格式
      * @return Date 日期
-     */
+     *//*
+
     public  Date parseDate(String dateStr, String format) {
         Date date=null;
         try {
@@ -61,4 +66,4 @@ public class DateConverterConfig implements Converter<String, Date> {
         return date;
     }
 
-}
+}*/

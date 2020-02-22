@@ -64,7 +64,7 @@ public class BasicInfoController {
      */
     @ApiOperation(value = "保存")
     @PostMapping("/basicInfo")
-    public Result save( BasicInfo basicInfo) {
+    public Result save(@RequestBody BasicInfo basicInfo) {
         basicInfoService.saveOrUpdate(basicInfo);
         return Result.succeed("保存成功");
     }

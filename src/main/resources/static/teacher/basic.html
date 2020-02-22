@@ -57,50 +57,52 @@
           <div class="control-group">
             <label class="control-label">姓名：</label>
             <div class="controls">
-              <input id="name" type="text" class="span11" placeholder="First name" />
+              <input name="name" type="text" class="span11" placeholder="First name" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">照片：</label>
             <div class="controls">
-              <input id="m_image_addr" type="file" size="29.8" style="opacity: 0;">
+              <input id="m_image_addr"  type="file" size="29.8" style="opacity: 0;">
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">预览：</label>
             <div class="controls">
               <img id="yulan" src="" style="width: 120px;height: 150px" alt="等待上传">
+              <input name="imgUrl" value="" type="hidden">
             </div>
           </div>
+
           <div class="control-group">
             <label class="control-label">工号：</label>
             <div class="controls">
-              <input id="jobNum" type="text" class="span11" placeholder="Last name" />
+              <input name="jobNum" type="text" class="span11" placeholder="Last name" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">性别：</label>
             <div class="controls">
-              <input type="radio" name="sex" class="span11" value="男" checked> 男
-              <input type="radio" name="sex" class="span11" value="女"> 女
+              <input type="radio" name="sex" class="span11" value="ture" checked> 男
+              <input type="radio" name="sex" class="span11" value="false"> 女
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">民族：</label>
             <div class="controls">
-              <input id="nation" type="text" class="span11" placeholder="Company name" />
+              <input name="nation" type="text" class="span11" placeholder="Company name" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">出生年月：</label>
             <div class="controls">
-              <input id="birthday" type="date" class="span11" />
+              <input name="birthday" type="date" class="span11" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">政治面貌：</label>
             <div class="controls">
-              <select id="politicsStatus" style="display: none;">
+              <select name="politicsStatus" style="display: none;">
                 <option>群众</option>
                 <option>共青团员</option>
                 <option>中共预备党员</option>
@@ -111,7 +113,7 @@
           <div class="control-group">
             <label class="control-label">证件类型：</label>
             <div class="controls">
-              <select id="certType" style="display: none;">
+              <select name="certType" style="display: none;">
                 <option>身份证</option>
                 <option>护照</option>
               </select>
@@ -120,19 +122,19 @@
           <div class="control-group">
             <label class="control-label">证件号：</label>
             <div class="controls">
-              <input id="certNum" type="text" class="span11" placeholder="Company name" />
+              <input name="certNum" type="text" class="span11" placeholder="Company name" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">专业技术职务：</label>
             <div class="controls">
-              <input id="skillJob" type="text" class="span11" placeholder="Company name" />
+              <input name="skillJob" type="text" class="span11" placeholder="Company name" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">行政职务：</label>
             <div class="controls">
-              <input id="adminJob" type="text" class="span11" placeholder="Company name" />
+              <input name="adminJob" type="text" class="span11" placeholder="Company name" />
             </div>
           </div>
           <div class="control-group">
@@ -331,6 +333,10 @@
         </div>
       </div>
     </div>
+    <form id="a">
+      <input name="birthday" type="date">
+    </form>
+    <button id="c">1</button>
   </div>
 </div>
 </div>
@@ -378,6 +384,7 @@
           processData: false, //设置为true时，ajax提交的时候不会序列化data，而是直接使用data
           success:function (path) {
             $("#yulan").attr("src",path);
+            $("input[name='imgUrl']").attr("value",path);
           }
         })
       })
@@ -388,7 +395,7 @@
               "* 需提供资料：身份证，聘任证书，专业技术资格证书，教师资格证书。\n\n" +
               "\t\t\t\t\t\t\t您是否确定保存？")
         if (r == true) {
-          addMassage();
+          addBasic();
         } else {
 
         }
@@ -399,7 +406,7 @@
                 "* 需提供资料：毕业证书、学位证书\n\n" +
                 "\t\t您是否确定保存？")
         if (r == true) {
-          alert("保存成功")
+          aee();
         } else {
 
         }
@@ -428,54 +435,49 @@
       })
 
   })
+
+
   //上传接口
-  function addMassage() {
-
-    var name=$("#name").val();
-    var imgUrl=$("#yulan").attr("src");
-    var jobNum=$("#jobNum").val();
-    var sex=$("input[name='sex']:checked").val();
-
-    var nation=$("#nation").val();
-    var birthday=$("#birthday").val();
-    var politicsStatus=$("#politicsStatus").val();
-
-    var certType=$("#certType").val();
-    var certNum=$("#certNum").val();
-    var skillJob=$("#skillJob").val();
-    var adminJob=$("#adminJob").val();
-
-    var isExternal=$("input[name='isExternal']:checked").val();
-    var isBackbone=$("input[name='isBackbone']:checked").val();
-    var isDouble=$("input[name='isDouble']:checked").val();
-    var isInnovate=$("input[name='isInnovate']:checked").val();
-
-    $.post("../basicInfo",{
-      name:name,imgUrl:imgUrl,jobNum:jobNum,sex:sex,nation:nation,
-      birthday:birthday,politicsStatus:politicsStatus,certType:certType,certNum:certNum,skillJob:skillJob,
-      adminJob:adminJob,isExternal:isExternal,isBackbone:isBackbone,isDouble:isDouble,isInnovate:isInnovate
-    },function(result){
-      alert(result.resp_msg);
-      if(result.resp_code){
-        window.location.href="basic.html";
-      }else{
-        $("#span1").text(result.resp_msg);
+  function addBasic() {
+    console.log($('#basic').serializeJson())
+    $.ajax({
+      type: "POST",
+      dataType: "json",
+      url: '../basicInfo',
+      contentType: "application/json",
+      data:JSON.stringify($('#basic').serializeJson()),
+      success: function (result) {
+        console.log("data is :" + result)
+        if (result.code == 200) {
+          alert("登陆成功");
+          window.location.href = "../home/home_page.html";
+        }else {
+          alert(result.message)
+        }
       }
-    },"json")
-
+    });
   }
-  //两个时间相差天数
-  function datedifference(sDate1, sDate2) {    //sDate1和sDate2是2006-12-18格式
-    var dateSpan,
-            tempDate,
-            iDays;
-    sDate1 = Date.parse(sDate1);
-    sDate2 = Date.parse(sDate2);
-    dateSpan = sDate2 - sDate1;
-    dateSpan = Math.abs(dateSpan);
-    iDays = Math.floor(dateSpan / (24 * 3600 * 1000));
-    return iDays
-  };
+  //form->json
+  (function (window, $) {
+    $.fn.serializeJson = function () {//form serialize to json
+      var serializeObj = {};
+      var array = this.serializeArray();
+      $(array).each(
+              function () {
+                if (serializeObj[this.name]) {
+                  if ($.isArray(serializeObj[this.name])) {
+                    serializeObj[this.name].push(this.value);
+                  } else {
+                    serializeObj[this.name] = [
+                      serializeObj[this.name], this.value];
+                  }
+                } else {
+                  serializeObj[this.name] = this.value;
+                }
+              });
+      return serializeObj;
+    };
+  })(window, jQuery);
 </script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+/*
 package com.hbq.teacher_plus.filter;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,11 @@ public class Config {
     private UserInterceptor userInterceptor;
     @Autowired
     private UserFilter userFilter;
-    /**
+    */
+/**
      * 拦截器
-     * */
+     * *//*
+
     @Bean
     public WebMvcConfigurer WebMvcConfigurer() {
         return new WebMvcConfigurer() {
@@ -33,9 +36,11 @@ public class Config {
             }
         };
     }
-    /**
+    */
+/**
      * 过滤器
-     * */
+     * *//*
+
     @Bean
     public FilterRegistrationBean testFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean(userFilter);
@@ -52,4 +57,4 @@ public class Config {
         registration.setName("userFilter");
         return registration;
     }
-}
+}*/
