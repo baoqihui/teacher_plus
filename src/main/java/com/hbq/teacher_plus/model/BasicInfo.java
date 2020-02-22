@@ -75,6 +75,4 @@ public class BasicInfo extends SuperEntity {
         @ApiModelProperty(value = "删除标志",hidden = true)
         private Boolean isDel;
 
-    @TableField(fill = FieldFill.INSERT)
-    private Date createTime;
 }
