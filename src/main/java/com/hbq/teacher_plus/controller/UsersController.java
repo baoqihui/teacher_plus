@@ -7,6 +7,7 @@ import com.hbq.teacher_plus.common.model.Result;
 import com.hbq.teacher_plus.model.Users;
 import com.hbq.teacher_plus.service.IUsersService;
 import com.hbq.teacher_plus.util.JedisConnect;
+import com.hbq.teacher_plus.util.ToolNote;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -96,7 +97,7 @@ public class UsersController {
             }else{
                 users.setUsername("tch"+users.getTel());
                 users.setIsDel(false);
-                users.setType("0");
+                users.setType("t");
                 usersService.saveOrUpdate(users);
                 return Result.succeed("注册成功");
             }
@@ -128,7 +129,7 @@ public class UsersController {
         if(tel.equals(ytel)){
             return  Result.failed( "60s内重复发送");
         }
-        String code= "000000";//ToolNote.getNote(tel);
+        String code= ToolNote.getNote(tel);
         if(code!=null){
             session.setAttribute("tel", tel);
             session.setMaxInactiveInterval(60);

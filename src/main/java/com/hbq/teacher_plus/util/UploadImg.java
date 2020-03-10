@@ -13,7 +13,7 @@ import java.io.IOException;
 public class UploadImg {
 	public static String imgUpload(MultipartFile imgFile) throws FileNotFoundException, IOException, Exception{
 		//1.加载配置文件ip端口
-		ClientGlobal.init("D:/config/fastdfs.properties");
+		ClientGlobal.init("/D:/config/fastdfs.properties");
 		//2.创建管理端对象
 		TrackerClient trackerClient=new TrackerClient();
 		//3.获取连接
