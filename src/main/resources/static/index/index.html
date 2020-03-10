@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/matrix-style.css" />
     <link rel="stylesheet" href="../css/matrix-media.css" />
     <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
+
 </head>
 <body>
     <!--Header-part-->
@@ -23,7 +24,7 @@
             <li  class="dropdown" id="profile-messages" >
                 <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle">
                     <i class="icon icon-user"></i>&nbsp;
-                    <span class="text">欢迎你，admin</span>
+                    <span id="span1" class="text"></span>
                 </a>
             </li>
             <li class="dropdown" id="menu-messages">
@@ -61,7 +62,7 @@
                     <li><a class="menu_a" link="../teacher/research.html"><i class="icon icon-caret-right"></i>科研成果</a></li>
                 </ul>
             </li>
-            <li class="submenu">
+            <li id="manage" class="submenu">
 				<a href="#">
                     <i class="icon icon-th"></i> 
                     <span>管理端</span>
@@ -95,6 +96,41 @@
     <script src="../js/nicescroll/jquery.nicescroll.min.js"></script>
     <script src="../js/matrix.js"></script>
 
+    <script type="text/javascript">
+        $(function() {
+            var args = getQueryStringArgs();
+            var username=args["username"];
+            var type=args["type"];
+            $("#span1").text("欢迎您："+username);
+            if(type!="m"){
+                $("#manage").hide();
+            }
+        })
+        function getQueryStringArgs(){ //获取url参数函数
+            //取得查询字符串并去掉开头的问号
+            var qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+                //保存数据的对象
+                args = {},
+                //取得每一项
+                items = qs.length ? qs.split("&") : [],//split(separator,howmany) 方法用于把一个字符串分割成字符串数组
+                item = null,
+                name = null,
+                value = null,
+                //在 for 循环中使用
+                i = 0,
+                len = items.length;
+            //逐个将每一项添加到 args 对象中
+            for (i=0; i < len; i++){
+                item = items[i].split("=");
+                name = decodeURIComponent(item[0]);
+                value = decodeURIComponent(item[1]);
+                if (name.length) {
+                    args[name] = value;
+                }
+            }
+            return args;
+        }
+    </script>
 
     <script type="text/javascript">
 

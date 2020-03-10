@@ -1,3 +1,141 @@
+$(function () {
+    /***************************注册********************************/
+    $("#btn1").attr("disabled",true);
+
+    $("#regis_tel").blur(function () {
+        $("#btn1").attr("disabled",true);
+        var len= $(this).val().length;
+        if(len==11){
+            $("#btn1").removeAttr("disabled");
+        }
+    })
+    //获取验证码
+    $("#btn1").bind("click",function(){
+        var tel=$("#regis_tel").val();
+        $.post("sendMessage.do",{tel:tel},function(result){
+            alert(result.resp_msg);
+        },"json")
+
+        $("#btn1").attr("disabled",true);
+        $("#mes").attr("hidden",true);
+        var i=60;
+        $("#btn1").html("获取验证码("+i+")");
+        var time=setInterval(function () {
+            if(i>0){
+                i=i-1;
+                $("#btn1").html("请("+i+")秒后再试...");
+                $("#mes").removeAttr("hidden");
+            }else{
+                $("#btn1").removeAttr("disabled");
+                $("#btn1").html("获取验证码");
+                $("#mes").attr("hidden",true);
+                clearInterval(time);
+            }
+        },1000)
+    })
+    //注册
+    $("#regis").bind("click",function(){
+        var regis_tel=$("#regis_tel").val();
+        var regis_password=$("#regis_password").val();
+        var regis_codes=$("#regis_codes").val();
+        $.post("/users",{tel:regis_tel,password:regis_password,codes:regis_codes},function(result){
+            if (result.resp_code=="0"){
+                alert(result.resp_msg);
+                location.href="/login.html";
+            }else{
+                $("#msg").text(result.resp_msg);
+            }
+        },"json")    })
+
+    /***************************修改密码********************************/
+    $("#btn2").attr("disabled",true);
+
+    $("#change_tel").blur(function () {
+        $("#btn2").attr("disabled",true);
+        var len= $(this).val().length;
+        if(len==11){
+            $("#btn2").removeAttr("disabled");
+        }
+    })
+    //获取验证码
+    $("#btn2").bind("click",function(){
+        var tel=$("#change_tel").val();
+        $.post("sendMessage.do",{tel:tel},function(result){
+            alert(result.resp_msg);
+        },"json")
+
+        $("#btn2").attr("disabled",true);
+        var i=60;
+        $("#btn2").html("获取验证码("+i+")");
+        var time=setInterval(function () {
+            if(i>0){
+                i=i-1;
+                $("#btn2").html("请("+i+")秒后再试...");
+            }else{
+                $("#btn2").removeAttr("disabled");
+                $("#btn2").html("获取验证码");
+                clearInterval(time);
+            }
+        },1000)
+    })
+    //修改密码
+    $("#change").bind("click",function(){
+        var change_tel=$("#change_tel").val();
+        var change_password=$("#change_password").val();
+        var change_codes=$("#change_codes").val();
+        $.post("/users",{tel:change_tel,password:change_password,codes:change_codes},function(result){
+            if (result.resp_code=="0"){
+                alert(result.resp_msg);
+                location.href="/login.html";
+            }else{
+                $("#msg2").text(result.resp_msg);
+            }
+        },"json")    })
+
+    /***************************登录********************************/
+    $("#login").bind("click",function(){
+        var login_tel=$("#login_tel").val();
+        var login_password=$("#login_password").val();
+        var code=$("#verify").val();
+        $.post("userLogin.do",{tel:login_tel,password:login_password,code:code},function(result){
+            if(result.resp_code=="0"){
+                location.href="/index/index.html?type="+result.datas.type+"&username="+result.datas.username;
+            }else{
+                $("#span1").text(result.resp_msg);
+            }
+        },"json")
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function showDialog(title,msg) {
 	$("#myModal").find(".modal-header h3").html(title);
     $("#myModal").attr('class','modal');
@@ -69,12 +207,18 @@ $(document).ready(function(){
 		$("#loginform").slideUp();
 		$("#recoverform").fadeIn();
 	});
-
+    $('#to_respwd').click(function(){
+        $("#loginform").slideUp();
+        $("#recoverform2").fadeIn();
+    });
 	$('#to-login').click(function(){
 		$("#recoverform").hide();
 		$("#loginform").fadeIn();
 	});
-
+    $('#to-login2').click(function(){
+        $("#recoverform2").hide();
+        $("#loginform").fadeIn();
+    });
     $("#changePwd").click(function(){
 
         var username = $("input[name=re_username]").val();

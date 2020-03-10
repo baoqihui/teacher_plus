@@ -20,7 +20,7 @@ public class ToolNote {
         	int j=(int)(Math.random()*10);
         	code+=codees[j];
         }
-        
+
         CommonRequest request = new CommonRequest();
         request.setMethod(MethodType.POST);
         request.setDomain("dysmsapi.aliyuncs.com");
@@ -35,6 +35,7 @@ public class ToolNote {
             CommonResponse response = client.getCommonResponse(request);
             System.out.println(response.getData());
             if(response.getData()!=null){
+                System.out.println(code);
             	return code;
             }
         } catch (ServerException e) {
