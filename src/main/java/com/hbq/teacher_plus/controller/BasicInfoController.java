@@ -1,21 +1,20 @@
 package com.hbq.teacher_plus.controller;
 
-import java.util.Map;
-
+import com.hbq.teacher_plus.common.model.PageResult;
+import com.hbq.teacher_plus.common.model.Result;
+import com.hbq.teacher_plus.model.BasicInfo;
+import com.hbq.teacher_plus.service.IBasicInfoService;
 import com.hbq.teacher_plus.util.UploadImg;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-
-import com.hbq.teacher_plus.model.BasicInfo;
-import com.hbq.teacher_plus.service.IBasicInfoService;
-import com.hbq.teacher_plus.common.model.PageResult;
-import com.hbq.teacher_plus.common.model.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
 
 /**
  * 基本信息
@@ -53,8 +52,9 @@ public class BasicInfoController {
      * 查询
      */
     @ApiOperation(value = "查询")
-    @GetMapping("/basicInfo/{id}")
-    public Result findUserById(@PathVariable Long id) {
+    @GetMapping("/basicInfo/get")
+    @ResponseBody
+    public Result findUserById(Long id) {
         BasicInfo model = basicInfoService.getById(id);
         return Result.succeed(model, "查询成功");
     }

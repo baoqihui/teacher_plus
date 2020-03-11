@@ -47,7 +47,7 @@
   </div>
   <div class="container-fluid">
   <div class="row-fluid">
-    <div id="form_1" class="span6">
+    <div id="form_1" class="span12">
     <div class="widget-box">
       <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
         <h5>基本情况</h5>
@@ -69,7 +69,7 @@
           <div class="control-group">
             <label class="control-label">预览：</label>
             <div class="controls">
-              <img id="yulan" src="" style="width: 120px;height: 150px" alt="等待上传">
+              <img id="yulan" name="imgUrl" src="" style="width: 120px;height: 150px" alt="等待上传">
               <input name="imgUrl" value="" type="hidden">
             </div>
           </div>
@@ -83,7 +83,7 @@
           <div class="control-group">
             <label class="control-label">性别：</label>
             <div class="controls">
-              <input type="radio" name="sex" class="span11" value="男" checked> 男
+              <input type="radio" name="sex" class="span11" value="男"> 男
               <input type="radio" name="sex" class="span11" value="女"> 女
             </div>
           </div>
@@ -177,162 +177,6 @@
       </div>
     </div>
   </div>
-    <div id="form_2" class="span6">
-      <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>教育情况</h5>
-        </div>
-        <div class="widget-content nopadding">
-          <table id="t1" class="table table-bordered table-striped" frame="box">
-            <thead>
-            <tr><th colspan="6" >已添学历信息(重新添加可修改)</th></tr>
-              <tr>
-                <th>学历</th>
-                <th>毕业学校</th>
-                <th>专业</th>
-                <th>获得学位时间</th>
-                <th>学位</th>
-                <th>性质</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="odd gradeX">
-                <td>本科</td>
-                <td>郑州大学</td>
-                <td>计算机科学与技术</td>
-                <td>1999.9-2003.7</td>
-                <td>学士</td>
-                <td>全日制</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <form action="#" method="get" class="form-horizontal">
-            <div class="control-group">
-              <label class="control-label">学历：</label>
-              <div class="controls">
-                <select style="display: none;" id="xl">
-                  <option value="本科">本科</option>
-                  <option value="硕士">硕士</option>
-                  <option value="博士">博士</option>
-                  <option value="最终学位">最终学位</option>
-                </select>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">就读学校：</label>
-              <div class="controls">
-                <input type="text" class="span11" placeholder="Last name" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">所学专业 ：</label>
-              <div class="controls">
-                <input type="text" class="span11" placeholder="Company name" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">就读时间：</label>
-              <div class="controls">
-                <input type="date" class="span11" placeholder="Company name" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">毕业时间：</label>
-              <div class="controls">
-                <input type="date" class="span11" placeholder="Company name" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">学位 ：</label>
-              <div class="controls">
-                <input type="text" class="span11" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">性质 ：</label>
-              <div class="controls">
-                <select style="display: none;">
-                  <option>全日制</option>
-                  <option>在职</option>
-                </select>
-              </div>
-            </div>
-          </form>
-          <center>
-            <button id="ex2" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
-            <button id="exr2" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px">保存为Excel</button>
-            <center><button id="btn2" class="btn btn-success btn-large" style="margin-bottom: 20px; border-radius: 5px">保存教育情况</button></center>
-          </center>
-
-        </div>
-      </div>
-    </div>
-    <div id="form_3" class="span6">
-      <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>工作经历</h5>
-        </div>
-        <div class="widget-content nopadding">
-          <form action="#" method="get" class="form-horizontal">
-            <div class="control-group">
-              <label class="control-label">非学历进修 ：</label>
-              <div class="controls">
-               <input type="text" class="span11">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">参加工作时间 ：</label>
-              <div class="controls">
-                <input type="date" class="span11" placeholder="Last name" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">任教时间 ：</label>
-              <div class="controls">
-                <input type="date" class="span11" placeholder="Company name" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">到本专业任教时间 ：</label>
-              <div class="controls">
-                <input type="date" class="span11" placeholder="Company name" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">中青年教师实践能力培训 ：</label>
-              <div class="controls">
-                <input type="text" class="span11" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">研究生导师 ：</label>
-              <div class="controls">
-                  <input type="text" class="span11">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">人才入选情况 ：</label>
-              <div class="controls">
-                <input type="text" class="span11">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">行业经历 ：</label>
-              <div class="controls">
-                <textarea class="span11" placeholder="Company name" style="height: 42px"></textarea>
-              </div>
-            </div>
-          </form>
-          <center>
-            <button id="ex3" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
-            <button id="exr3" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px">保存为Excel</button>
-            <center><button id="btn3" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存工作经历</button></center>
-          </center>
-
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 </div>
@@ -351,8 +195,10 @@
 <script src="../js/wysihtml5-0.3.0.js"></script>
 <script src="../js/jquery.peity.min.js"></script>
 <script src="../js/bootstrap-wysihtml5.js"></script>
+<script type="text/javascript" src="../js/jquery.cookie.js"></script>
 <script>
   $(function () {
+
     //退出
     $('#backid').click(function(){
       window.location.href="index.html";
@@ -430,7 +276,66 @@
         }
       })
 
+    $.get("/basicInfo/get",{id:$.cookie('id')},function(result){
+      if (result.resp_code=="0"){
+        alert(result.resp_msg);
+        loadData(result.datas);
+      }else{
+        $("#msg2").text(result.resp_msg);
+      }
+    },"json")
   })
+
+
+
+  //加载前端数据到表单
+  function loadData(obj){
+    if($.type(obj)!="object"){
+      alert("页面初始化错误！");
+      return false;
+    }
+    var key,value,tagName,type,arr;
+    for(x in obj){
+      key = x;
+      value = obj[x];
+      $("[name='"+key+"'],[name='"+key+"[]']").each(function(index){
+        tagName = $(this)[0].tagName;
+        type = $(this).attr('type');
+        if (tagName=='IMG'){
+          $(this).attr('src',value);
+        }
+        if(tagName=='INPUT'){
+          if(type=='radio'){                      //处理radio
+            $(this).attr('checked',$(this).val()==value);
+          }else if(type=='checkbox'){             //处理checkbox
+            for(var i =0;i<value.length;i++){
+              if($(this).val()==value[i]){
+                $(this).attr('checked',true);
+                break;
+              }
+            }
+          }else if(type=='date'){                  //处理日期型表单
+            if(parseInt(value)>1000000000000)      //毫秒时间戳
+              $(this)[0].valueAsNumber=parseInt(value);
+            else if(parseInt(value)>1000000000)    //秒时间戳
+              $(this)[0].valueAsNumber=parseInt(value)*1000;
+            else                                   //字符串时间
+              $(this)[0].valueAsDate=new Date(value);
+          }else{
+            if($.isArray(value))                    //表单组情形(多个同名表单)
+              $(this).val(value[index]);
+            else
+              $(this).val(value);
+          }
+          $(this).uniform();
+        }else if(tagName=='SELECT'){    //处理select和textarea
+          $(this).val(value);
+          alert($(".select2-choice span").text())
+          $(this).children("span").text(value[index]);
+        }
+      });
+    }
+  }
 
 
   //上传接口

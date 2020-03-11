@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Matrix Admin</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="../css/colorpicker.css" />
+    <link rel="stylesheet" href="../css/datepicker.css" />
+    <link rel="stylesheet" href="../css/uniform.css" />
+    <link rel="stylesheet" href="../css/select2.css" />
+    <link rel="stylesheet" href="../css/matrix-style2.css" />
+    <link rel="stylesheet" href="../css/matrix-media.css" />
+    <link rel="stylesheet" href="../css/bootstrap-wysihtml5.css" />
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+    <style>
+        .control-group .controls label{
+            display:inline-block;
+        }
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div id="content">
+    <div id="content-header">
+        <h1>基本情况</h1>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div id="form_2" class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>教育情况</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table id="t1" class="table table-bordered table-striped" frame="box">
+                            <thead>
+                            <tr><th colspan="6" >已添学历信息(重新添加可修改)</th></tr>
+                            <tr>
+                                <th>学历</th>
+                                <th>毕业学校</th>
+                                <th>专业</th>
+                                <th>获得学位时间</th>
+                                <th>学位</th>
+                                <th>性质</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="odd gradeX">
+                                <td>本科</td>
+                                <td>郑州大学</td>
+                                <td>计算机科学与技术</td>
+                                <td>1999.9-2003.7</td>
+                                <td>学士</td>
+                                <td>全日制</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <form action="#" method="get" class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label">学历：</label>
+                                <div class="controls">
+                                    <select style="display: none;" id="xl">
+                                        <option value="本科">本科</option>
+                                        <option value="硕士">硕士</option>
+                                        <option value="博士">博士</option>
+                                        <option value="最终学位">最终学位</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">就读学校：</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="Last name" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">所学专业 ：</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="Company name" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">就读时间：</label>
+                                <div class="controls">
+                                    <input type="date" class="span11" placeholder="Company name" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">毕业时间：</label>
+                                <div class="controls">
+                                    <input type="date" class="span11" placeholder="Company name" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">学位 ：</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">性质 ：</label>
+                                <div class="controls">
+                                    <select style="display: none;">
+                                        <option>全日制</option>
+                                        <option>在职</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <center>
+                            <button id="ex2" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+                            <button id="exr2" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px">保存为Excel</button>
+                            <center><button id="btn2" class="btn btn-success btn-large" style="margin-bottom: 20px; border-radius: 5px">保存教育情况</button></center>
+                        </center>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="http://www.jq22.com/jquery/jquery-1.7.1.js"></script>
+<script src="../js/jquery.ui.custom.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-colorpicker.js"></script>
+<script src="../js/bootstrap-datepicker.js"></script>
+
+<script src="../js/masked.js"></script>
+<script src="../js/jquery.uniform.js"></script>
+<script src="../js/select2.min.js"></script>
+<script src="../js/matrix.js"></script>
+<script src="../js/matrix.form_common.js"></script>
+<script src="../js/wysihtml5-0.3.0.js"></script>
+<script src="../js/jquery.peity.min.js"></script>
+<script src="../js/bootstrap-wysihtml5.js"></script>
+<script>
+    $(function () {
+        //退出
+        $('#backid').click(function(){
+            window.location.href="index.html";
+        });
+        //上传图片
+        $("#m_image_addr").live("change",function(){
+            //注意这里不能写错。。。
+            var file=$("#m_image_addr")[0].files[0];
+            var formData = new FormData();
+            formData.append("m_image_addr",file);
+            //对文件类型进行判断
+            var index=file.name.lastIndexOf(".");
+            var type=file.name.substring(index);
+            if(type!=".jpg"&&type!=".png"){
+                alert("只能上传jpg和png格式的图片！！");
+                return;
+            }
+            $.ajax({
+                url:"../upload.do",
+                data:formData,
+                dataType:"text",
+                type:"post",
+                //这两个属性必须设置！！！！
+                contentType: false,
+                processData: false, //设置为true时，ajax提交的时候不会序列化data，而是直接使用data
+                success:function (path) {
+                    $("#yulan").attr("src",path);
+                    $("input[name='imgUrl']").attr("value",path);
+                }
+            })
+        })
+
+        $("#btn1").click(function () {
+            var r = confirm("* 专业教师指从事专业课（含专业基础课）教学工作的专任教师（含实验教师）、外聘教师。\n" +
+                "* 外聘教师指外聘的国内及外籍非本校教师，本校教师填写身份证号，外籍教师填写护照号。\n" +
+                "* 需提供资料：身份证，聘任证书，专业技术资格证书，教师资格证书。\n\n" +
+                "\t\t\t\t\t\t\t您是否确定保存？")
+            if (r == true) {
+                addBasic();
+            } else {
+
+            }
+        })
+        $("#btn2").click(function () {
+            var xl=$("#xl").val();
+            var r = confirm("* 你当前添加学历为\t"+xl+"\n"+
+                "* 需提供资料：毕业证书、学位证书\n\n" +
+                "\t\t您是否确定保存？")
+            if (r == true) {
+                aee();
+            } else {
+
+            }
+        })
+        $("#btn3").click(function () {
+            var xl=$("#xl").val();
+            var r = confirm("注意事项：\n" +
+                "1. 专业教师指从事专业课（含专业基础课）教学工作的专任教师（含实验教师）、外聘教师。外聘教师指外聘的国内及外籍非本校教师，本校教师填写身份证号，外籍教师填写护照号；\n" +
+                "需提供资料：身份证，聘任证书，专业技术资格证书，教师资格证书，毕业证，学位证\n" +
+                "2. 非学历进修经历指国内外访问学者及三个月以上的海外进修经历，进修类别填写国内（国外）访问学者，境外进修等；\n" +
+                "需提供资料：进修证书\n" +
+                "3. 行业经历指在校的专业教师在相关行业连续工作6个月以上；\n" +
+                "需提供资料：进修证书\n" +
+                "4. 参加中青年教师实践教学能力培训指以下两种情况之一：①曾接受相关行业培训并取得相应证书；②曾与相关行业合作开展过科研项目；\n" +
+                "需提供资料：培训证书、科研项目相关文件\n" +
+                "5. 中青年教师指45周岁以下（含45周岁）教师；\n" +
+                "6. 人才入选情况包括院士、教育部“长江学者奖励支持计划”人选、国家杰出青年基金获得者、国务院及省级学科评议组成员、973首席科学家、海外高层次人才引进计划（千人计划）、国家高层次人才特殊支持计划、新世纪百千万人才工程国家级人选、教育部新世纪优秀人才支持计划人选、省百千万人才工程计划（百人层次）、中科院“百人计划”人选、国家及省级教学名师、国务院政府特殊津贴获得者、全国及省优秀教师、省优秀专家、省教学标兵、省“五一劳动奖章”获得者、河南“高等学校重点学科领军人才海内外引进计划”人选、河南“高等学校攀登学者支持计划”人选、河南“特聘教授支持计划”人选、河南省高校优秀人才支持计划；\n" +
+                "需提供资料：证书，文件\n" +
+                "7. 属于多个类型的人才入选情况须全部填写。\n\n"+
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t您是否确定保存？")
+            if (r == true) {
+                alert("保存成功")
+            } else {
+
+            }
+        })
+
+    })
+
+
+    //上传接口
+    function addBasic() {
+        console.log($('#basic').serializeJson())
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: '../basicInfo',
+            contentType: "application/json",
+            data:JSON.stringify($('#basic').serializeJson()),
+            success: function (result) {
+                console.log("data is :" + result)
+                if (result.code == 200) {
+                    alert("登陆成功");
+                    window.location.href = "../home/home_page.html";
+                }else {
+                    alert(result.message)
+                }
+            }
+        });
+    }
+    //form->json
+    (function (window, $) {
+        $.fn.serializeJson = function () {//form serialize to json
+            var serializeObj = {};
+            var array = this.serializeArray();
+            $(array).each(
+                function () {
+                    if (serializeObj[this.name]) {
+                        if ($.isArray(serializeObj[this.name])) {
+                            serializeObj[this.name].push(this.value);
+                        } else {
+                            serializeObj[this.name] = [
+                                serializeObj[this.name], this.value];
+                        }
+                    } else {
+                        serializeObj[this.name] = this.value;
+                    }
+                });
+            return serializeObj;
+        };
+    })(window, jQuery);
+</script>
+</body>
+</html>
