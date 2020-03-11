@@ -99,10 +99,10 @@
               <input name="birthday" type="date" class="span11" />
             </div>
           </div>
-          <div class="control-group">
+          <div >
             <label class="control-label">政治面貌：</label>
             <div class="controls">
-              <select name="politicsStatus" style="display: none;">
+              <select name="politicsStatus">
                 <option>群众</option>
                 <option>共青团员</option>
                 <option>中共预备党员</option>
@@ -110,10 +110,10 @@
               </select>
             </div>
           </div>
-          <div class="control-group">
+          <div  >
             <label class="control-label">证件类型：</label>
-            <div class="controls">
-              <select name="certType" style="display: none;">
+            <div  class="controls">
+              <select name="certType">
                 <option>身份证</option>
                 <option>护照</option>
               </select>
@@ -280,6 +280,7 @@
       if (result.resp_code=="0"){
         alert(result.resp_msg);
         loadData(result.datas);
+        $("#jjj").load(location.href + " #jjj");
       }else{
         $("#msg2").text(result.resp_msg);
       }
@@ -330,8 +331,6 @@
           $(this).uniform();
         }else if(tagName=='SELECT'){    //处理select和textarea
           $(this).val(value);
-          alert($(".select2-choice span").text())
-          $(this).children("span").text(value[index]);
         }
       });
     }
