@@ -349,10 +349,10 @@ body {
 #content {
 	margin-left: 0px;
 }
-#sidebar {
+/*#sidebar {
 	display:none;
-}
-#user-nav{ 
+}*/
+#user-nav{
 	display:none;
 }
 
