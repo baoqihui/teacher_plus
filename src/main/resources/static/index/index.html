@@ -131,10 +131,12 @@
                 var isON=$(this).attr("isON");
                 if(isON!="1"){//关闭状态
                     $("#content ").css({'margin-left':'220px'});
+                    $("#sidebar").children("ul").css({'display': 'block'});
                     $("#sidebar").show();
                     isON=1;
                 }else{//开启状态
                     $("#content ").css({'margin-left':'0px'});
+                    $("#sidebar").children("ul").css({'display': 'none'});
                     $("#sidebar").hide();
                     isON=0;
                 }
