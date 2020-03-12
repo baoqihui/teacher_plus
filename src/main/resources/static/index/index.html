@@ -71,7 +71,7 @@
 <div id="sidebar" style="OVERFLOW-Y: auto; OVERFLOW-X:hidden;">
     <ul>
         <li class="submenu active">
-            <a class="menu_a" link="welcome.html"><i class="fa fa-home"></i> <span class="menu1_name">首页</span></a>
+            <a class="menu_a" link="welcome.html"><i class="fa fa-home"></i> <span  class="menu1_name">首页</span></a>
         </li>
         <li class="submenu">
             <a href="#">
@@ -109,8 +109,7 @@
     <!--breadcrumbs-->
     <div id="content-header">
         <div id="breadcrumb">
-            <a id="daohang" href="#" title="回首页" class="tip-bottom"><i class="fa fa-home"></i> 系统</a>
-            <a id="daohang2" href="#" title="回首页" class="tip-bottom"><i class="fa fa-home"></i> 统</a>
+            <a id="daohang" href="#" title="回首页" class="tip-bottom"><i class="fa fa-home"></i> 导航开关</a>
             <a href="#" class="tip-bottom"> 首页</a>
         </div>
     </div>
@@ -127,14 +126,21 @@
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
 <script type="text/javascript">
     $(function() {
-       /* $("#daohang").hover(
+        $("#daohang").click(
             function () {
-                $("#sidebar").children('ul').show();
-                console.log(1)
-            },function () {
-                $("#sidebar").children('ul').hide();
+                var isON=$(this).attr("isON");
+                if(isON!="1"){//关闭状态
+                    $("#content ").css({'margin-left':'220px'});
+                    $("#sidebar").show();
+                    isON=1;
+                }else{//开启状态
+                    $("#content ").css({'margin-left':'0px'});
+                    $("#sidebar").hide();
+                    isON=0;
+                }
+                $(this).attr("isON",isON);
             }
-        )*/
+        )
         var u = navigator.userAgent;
         //var args = getQueryStringArgs();
         var id=$.cookie('id');
