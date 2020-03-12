@@ -1468,7 +1468,7 @@ form {
 		display: none;
 	}
 	#content {
-		margin-left: 43px;
+		margin-left: 0px;
 	}
 	#sidebar .content{ display:none;}
 }
