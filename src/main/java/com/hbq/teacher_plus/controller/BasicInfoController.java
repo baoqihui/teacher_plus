@@ -52,9 +52,8 @@ public class BasicInfoController {
      * 查询
      */
     @ApiOperation(value = "查询")
-    @GetMapping("/basicInfo/get")
-    @ResponseBody
-    public Result findUserById(Long id) {
+    @GetMapping("/basicInfo/{id}")
+    public Result findUserById(@PathVariable Long id) {
         BasicInfo model = basicInfoService.getById(id);
         return Result.succeed(model, "查询成功");
     }

@@ -54,6 +54,7 @@
       </div>
       <div class="widget-content nopadding">
         <form id="basic" action="#" method="get" class="form-horizontal">
+          <input id="id" name="id" type="text" style="display: none">
           <div class="control-group">
             <label class="control-label">姓名：</label>
             <div class="controls">
@@ -242,52 +243,15 @@
 
         }
       })
-    $("#btn2").click(function () {
-        var xl=$("#xl").val();
-        var r = confirm("* 你当前添加学历为\t"+xl+"\n"+
-                "* 需提供资料：毕业证书、学位证书\n\n" +
-                "\t\t您是否确定保存？")
-        if (r == true) {
-          aee();
-        } else {
 
-        }
-      })
-    $("#btn3").click(function () {
-        var xl=$("#xl").val();
-        var r = confirm("注意事项：\n" +
-                "1. 专业教师指从事专业课（含专业基础课）教学工作的专任教师（含实验教师）、外聘教师。外聘教师指外聘的国内及外籍非本校教师，本校教师填写身份证号，外籍教师填写护照号；\n" +
-                "需提供资料：身份证，聘任证书，专业技术资格证书，教师资格证书，毕业证，学位证\n" +
-                "2. 非学历进修经历指国内外访问学者及三个月以上的海外进修经历，进修类别填写国内（国外）访问学者，境外进修等；\n" +
-                "需提供资料：进修证书\n" +
-                "3. 行业经历指在校的专业教师在相关行业连续工作6个月以上；\n" +
-                "需提供资料：进修证书\n" +
-                "4. 参加中青年教师实践教学能力培训指以下两种情况之一：①曾接受相关行业培训并取得相应证书；②曾与相关行业合作开展过科研项目；\n" +
-                "需提供资料：培训证书、科研项目相关文件\n" +
-                "5. 中青年教师指45周岁以下（含45周岁）教师；\n" +
-                "6. 人才入选情况包括院士、教育部“长江学者奖励支持计划”人选、国家杰出青年基金获得者、国务院及省级学科评议组成员、973首席科学家、海外高层次人才引进计划（千人计划）、国家高层次人才特殊支持计划、新世纪百千万人才工程国家级人选、教育部新世纪优秀人才支持计划人选、省百千万人才工程计划（百人层次）、中科院“百人计划”人选、国家及省级教学名师、国务院政府特殊津贴获得者、全国及省优秀教师、省优秀专家、省教学标兵、省“五一劳动奖章”获得者、河南“高等学校重点学科领军人才海内外引进计划”人选、河南“高等学校攀登学者支持计划”人选、河南“特聘教授支持计划”人选、河南省高校优秀人才支持计划；\n" +
-                "需提供资料：证书，文件\n" +
-                "7. 属于多个类型的人才入选情况须全部填写。\n\n"+
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t您是否确定保存？")
-        if (r == true) {
-          alert("保存成功")
-        } else {
-
-        }
-      })
-
-    $.get("/basicInfo/get",{id:$.cookie('id')},function(result){
+    $.get("/basicInfo/"+$.cookie('id'),{},function(result){
       if (result.resp_code=="0"){
-        alert(result.resp_msg);
         loadData(result.datas);
-        $("#jjj").load(location.href + " #jjj");
       }else{
         $("#msg2").text(result.resp_msg);
       }
     },"json")
   })
-
-
 
   //加载前端数据到表单
   function loadData(obj){
@@ -328,15 +292,13 @@
             else
               $(this).val(value);
           }
-          $(this).uniform();
+          $(this).uniform(); //自用！
         }else if(tagName=='SELECT'){    //处理select和textarea
           $(this).val(value);
         }
       });
     }
   }
-
-
   //上传接口
   function addBasic() {
     console.log($('#basic').serializeJson())
@@ -348,11 +310,9 @@
       data:JSON.stringify($('#basic').serializeJson()),
       success: function (result) {
         console.log("data is :" + result)
-        if (result.code == 200) {
-          alert("登陆成功");
-          window.location.href = "../home/home_page.html";
-        }else {
-          alert(result.message)
+        if (result.resp_code == "0") {
+          alert(result.resp_msg);
+          window.location.href="basic.html";
         }
       }
     });

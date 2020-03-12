@@ -1,17 +1,17 @@
 
 $(document).ready(function(){
-	
-	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
-	
 
-    $('.colorpicker').colorpicker();
-    $('.datepicker').datepicker();
+	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
+
+
+	$('.colorpicker').colorpicker();
+	$('.datepicker').datepicker();
 });
 
-$(document).ready(function() { 	
+$(document).ready(function() {
 
 	//------------- Tags plugin  -------------//
-	
+
 	$("#tags").select2({
 		tags:["red", "green", "blue", "orange"]
 	});
@@ -48,7 +48,7 @@ $(document).ready(function() {
 	//------------- Colorpicker -------------//
 	if($('div').hasClass('picker')){
 		$('.picker').farbtastic('#color');
-	}	
+	}
 	//------------- Datepicker -------------//
 	if($('#datepicker').length) {
 		$("#datepicker").datepicker({
@@ -57,16 +57,16 @@ $(document).ready(function() {
 	}
 	if($('#datepicker-inline').length) {
 		$('#datepicker-inline').datepicker({
-	        inline: true,
+			inline: true,
 			showOtherMonths:true
-	    });
+		});
 	}
 
 	//------------- Combined picker -------------//
 	if($('#combined-picker').length) {
 		$('#combined-picker').datetimepicker();
 	}
-	
+
 
 	//------------- Select plugin -------------//
 	$("#select1").select2();
@@ -80,10 +80,10 @@ $(document).ready(function() {
 
 	//Boostrap modal
 	$('#myModal').modal({ show: false});
-	
+
 	//add event to modal after closed
 	$('#myModal').on('hidden', function () {
-	  	console.log('modal is closed');
+		console.log('modal is closed');
 	})
 
 });//End document ready functions

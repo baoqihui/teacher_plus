@@ -2,12 +2,16 @@ html, body {    width: 100%;    height: 88%;}
 /*Bootstrap-overlay*/
 
 body {
- overflow-x: hidden;
- margin-top: -10px;  font-family:  'Microsoft Yahei', sans-serif; font-size:12px; color:#666;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin-top: -10px;
+    font-family:  'Microsoft Yahei', sans-serif;
+    font-size:12px;
+    color:#666;
 }
 a{color:#666;}
 a:hover, a:focus {
- text-decoration: none; color:#28b779;
+    text-decoration: none; color:#28b779;
 }
 .dropdown-menu .divider{ margin:4px 0px;}
 .dropdown-menu{ min-width:180px;}
@@ -39,37 +43,61 @@ hr{ border-top-color:#dadada;}
 .bg_lv{ background:#603bbc; }
 .bg_lh{ background:#b6b3b3; }
 
-body {background-color:#2E363F; padding: 0; margin-top:10%;}
-#logo, #loginbox {width: 450px; margin-left: auto; margin-right: auto; position: relative;}
-#logo img {margin: 0 auto; display: block;}
-#loginbox {overflow: hidden !important; text-align: left; position: relative; }
-#loginbox form{ width:100%; background:#2E363F; position:relative; top:0; left:0; }
-#loginbox .form-actions { padding: 6px 4px 20px;}
+body {background-color:#2E363F; padding: 0; margin-top:6%; background:url(../img/loginbg.png);}
+#loginbox {width: 450px; margin-left: auto; margin-right: auto; position: relative; overflow: hidden !important; text-align: left; }
+#loginbox form{ width:100%; background:#2E363F; position:relative; top:0; left:0;background-color:rgba(0,0,0,0);}
+#loginbox .form-actions { padding: 15px 4px 15px; margin-top: 0px; margin-bottom: 0px; background:none; border-top: none; border-bottom: 1px solid #616161;}
 #loginbox .form-actions .pull-left { margin-top:0px;}
+#loginbox .form-actions .pull-left a{
+    height:30px;font-size:14px;color:#cccccc;line-height:30px;cursor: pointer;
+}
+
+#loginbox .form-actions .pull-right input{ height:40px;cursor: pointer;width: 160px;font-family: "Microsoft Yahei";}
+
 #loginbox form#loginform { z-index: 200; display:block;}
 #loginbox form#recoverform { z-index: 100; display:none;}
 #loginbox form#recoverform .form-actions { margin-top: 0px;}
 #loginbox form#recoverform2 { z-index: 100; display:none;}
 #loginbox form#recoverform2 .form-actions { margin-top: 0px;}
-#loginbox .main_input_box { margin:0 auto; text-align:center;}
-#loginbox .main_input_box .add-on{  padding:9px 9px; *line-height:31px; color:#fff; width:30px; display:inline-block;}
-#loginbox .main_input_box input{ height:30px; border:0px; display:inline-block; width:85%; line-height:28px;  margin-bottom:3px;}
-#loginbox .controls{ padding:0 0px;}
-#loginbox .control-group { padding:10px 0px; margin-bottom:0px;}
-#loginbox .control-group2 { padding:0px 0px 20px 0px; margin-bottom:0px;}
-.form-actions {margin-top: 0px; margin-bottom: 0px; background:none; border-top: none; border-bottom: 1px solid #616161;}
+#loginbox .main_input_box { margin:0 auto; text-align:center; }
+#loginbox .main_input_box .add-on{  padding:9px 9px; line-height:24px; color:#fff; width:30px; display:inline-block;}
+#loginbox .main_input_box i{  font-size: 16px;}
+#loginbox .main_input_box input{ font-family: "Microsoft Yahei";height:34px; border:0px; display:inline-block; width:85%; line-height:34px;  margin-bottom:3px;}
+#loginbox .main_input_box textarea{ height:100px;width:426px;}
+#loginbox .control-group { padding:8px 0px 0px; margin-bottom:0px;}
 .form-vertical{margin-top: 0px; margin-bottom: 0px; background:#616161; border-top: 1px solid #616161;}
-#loginbox .normal_text{ padding:10px 10px; text-align:center; font-size:14px; line-height:30px; background:#2E363F; color:#B2DFEE; }
+#loginbox .normal_text{ padding:10px 10px; text-align:center; font-size:14px; line-height:30px; background:#2E363F; color:gray; background-color:rgba(0,0,0,0);}
+#loginbox .normal_text h2{ font-size: 30px; color:#B2DFEE; background-color:rgba(0,0,0,0);}
 
-/*#loginform .control-group{background: #778899; }*/
-
-@media (max-width:800px){
-	#logo { width: 60%; }
-	#loginbox{ width:80%; }
+#loginbox .control-label{
+    color: #B2DFEE;
+    padding-left: 4px;
 }
 
-@media (max-width: 480px){
-	#logo { width: 40%; }
-	#loginbox{ width:90%; }
-	#loginbox .control-group{ padding:8px 0; margin-bottom:0px;}
+#particles-js{
+    width: 100%;
+    height: 100%;
+    background-image: url('');
+    z-index:-1;
+    position: absolute;
+    top: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.modal{
+    border-radius: 0px;
+}
+
+@media (max-width:800px){
+    #logo { width: 60%; }
+    #loginbox{ width:400px; }
+}
+
+@media (max-width:480px){
+    #logo { width: 60%; }
+    #loginbox{ width:340px; }
+    #loginbox .main_input_box input{ width:81%;}
+    #loginbox .main_input_box textarea{width:320px;}
 }

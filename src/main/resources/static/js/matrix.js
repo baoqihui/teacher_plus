@@ -1,8 +1,32 @@
 $(document).ready(function(){
+	// uniform使用示例：
+    // $.uniform.update($(this).attr("checked", true));
 	// === Sidebar navigation === //
+
+	//初始化相关元素高度
+	var init = function(){
+        $("#iframe-main").height($(window).height()-90);
+        $("#sidebar").height($(window).height()-50);
+    }
+
+    init();
 
 	$('.menu_a').click(function(e){
 		$("#iframe-main").attr("src", $(this).attr('link'));
+
+		var menu1_name = $(this).closest('.submenu').find('.menu1_name').text();
+		var menu2_name = $(this).text();
+
+		var breadcrumb = '<a href="?act=index.main" class="tip-bottom"><i class="fa fa-home"></i> 系统</a>';
+
+		if (menu1_name) {
+			breadcrumb += '<a href="#" title="'+menu1_name+'" class="tip-bottom"> '+menu1_name+'</a>';
+		}
+		if (menu2_name) {
+			breadcrumb += '<a href="#" title="'+menu2_name+'" class="current"> '+menu2_name+'</a>';
+		}
+
+		$("#breadcrumb").html(breadcrumb);
 
 		$(".menu_a").parent('li').removeClass('active');
 
@@ -24,7 +48,8 @@ $(document).ready(function(){
 				submenu.fadeOut(250);
 			}
 			li.removeClass('open');
-		} else 
+		} 
+		else 
 		{
 			if(($(window).width() > 768) || ($(window).width() < 479)) {
 				submenus.slideUp();			
@@ -58,6 +83,8 @@ $(document).ready(function(){
 	// === Resize window related === //
 	$(window).resize(function()
 	{
+		init();
+
 		if($(window).width() > 479)
 		{
 			ul.css({'display':'block'});	
@@ -122,8 +149,8 @@ $(document).ready(function(){
 			$(this).parent().animate({marginRight:'+=190'});
 			$(this).addClass('open');
 		}
-		$(this).toggleClass('icon-arrow-left');
-		$(this).toggleClass('icon-arrow-right');
+		$(this).toggleClass('fa fa-arrow-left');
+		$(this).toggleClass('fa fa-arrow-right');
 	});
 	
 	$('#style-switcher a').click(function()
@@ -142,7 +169,7 @@ $(document).ready(function(){
 		
 		if ($('#lightbox').length > 0) {
 			
-			$('#imgbox').html('<img src="' + image_href + '" /><p><i class="icon-remove icon-white"></i></p>');
+			$('#imgbox').html('<img src="' + image_href + '" /><p><i class="fa fa-remove fa-white"></i></p>');
 		   	
 			$('#lightbox').slideDown(500);
 		}
@@ -151,7 +178,7 @@ $(document).ready(function(){
 			var lightbox = 
 			'<div id="lightbox" style="display:none;">' +
 				'<div id="imgbox"><img src="' + image_href +'" />' + 
-					'<p><i class="icon-remove icon-white"></i></p>' +
+					'<p><i class="fa fa-remove fa-white"></i></p>' +
 				'</div>' +	
 			'</div>';
 				

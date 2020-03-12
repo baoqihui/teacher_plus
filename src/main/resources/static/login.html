@@ -1,29 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    
 <head>
-    <title>教师信息管理平台主页</title><meta charset="UTF-8" />
+    <title>GM管理工具</title><meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" href="css/matrix-login.css" />
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
-
-    <style type="text/css">
-        input{
-            font-family: "Microsoft Yahei";
-        }
-        .control-label{
-            color: #B2DFEE;
-            padding-left: 4px;
-        }
-    </style>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"  />
 
 </head>
 <body onkeydown="keydown()">
-    <div id="loginbox">  
-        <div class="control-group normal_text"> 
+	<!-- particles.js container -->
+
+    <div id="loginbox" >
+        <div class="control-group normal_text">
             <h2 style="color:#B2DFEE;font-size:28px;">信息管理系统平台</h2>
             <span style="font-size:14px;color:gray;">版权所有 &copy; IDSE——菜鸟小回</span>
         </div>
@@ -47,7 +37,8 @@
                 </div>
             </div>
             <div  class="control-group3">
-                <img src="BufferImage" onclick="this.src='BufferImage?'+new Date().getTime()">看不清换一张
+                <br>
+                &nbsp;<img src="BufferImage" onclick="this.src='BufferImage?'+new Date().getTime()">&nbsp;&nbsp;&nbsp;看不清换一张
                 <br>
                 <br>
                 验证码： <input type="text" id="verify" class="input-medium" placeholder="验证码" style="width: 380px ;height: 30px">
@@ -96,7 +87,7 @@
             </div>
             <div class="form-actions">
                 <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login">&laquo; 返回登录</a></span>
-                <span class="pull-right"><a id="regis" class="btn btn-info" style="width:310px;">注册</a></span>
+                <span class="pull-right"><input type="button" id="regis"  class="btn btn-info" style="width:335px;" value=" 注&nbsp;&nbsp;&nbsp;&nbsp;册"/></span>
             </div>
             <div class="control-group normal_text">
                 <div style="font-size:14px;color:gray;">推荐使用webkit内核浏览器，如chrome等</div>
@@ -133,19 +124,21 @@
             </div>
             <div class="form-actions">
                 <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login2">&laquo; 返回登录</a></span>
-                <span class="pull-right"><a id="change" class="btn btn-info" style="width:310px;">更改</a></span>
+                <span class="pull-right"><input type="button" id="change"  class="btn btn-info" style="width:335px;" value=" 确&nbsp;认&nbsp;更&nbsp;改"/></span>
             </div>
             <div class="control-group normal_text">
                 <div style="font-size:14px;color:gray;">推荐使用webkit内核浏览器，如chrome等</div>
             </div>
         </form>
     </div>
-
-
-    <script src="http://www.jq22.com/jquery/jquery-1.7.1.js"></script>
+    <div id="particles-js"></div>
+    <script src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script src="js/matrix.login.js"></script>
 
-</body>
+	<!-- scripts -->
+	<script src="js/particles.js"></script>
+	<script src="js/particlesapp.js"></script>
 
+</body>
 </html>

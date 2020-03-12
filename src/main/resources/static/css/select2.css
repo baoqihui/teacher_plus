@@ -9,10 +9,6 @@ Version: 3.2 Timestamp: Mon Sep 10 10:38:04 PDT 2012
     *display: inline;
     vertical-align: top; width:90%;
 }
-#t1 tr th{
-    text-align: center;
-    vertical-align:middle;
-}
 .dataTables_length .select2-container{ width:auto!important;}
 .select2-container,
 .select2-drop,
