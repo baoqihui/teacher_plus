@@ -20,7 +20,7 @@
 
 <!--top-Header-menu-->
 <!--top-Header-menu-->
-<div id="daohang" style="cursor: pointer">&nbsp;&nbsp;<i class="fa fa-dashboard "></i><span>展开</span></div>
+<div id="daohang" style="cursor: pointer"><center>&nbsp;&nbsp;<i class="fa fa-dashboard "></i><span id="zhankai">展开导航</span></center></div>
 
 <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav">
@@ -135,11 +135,13 @@
                     $("#content ").css({'margin-left':'220px'});
                     $("#sidebar").children("ul").css({'display': 'block'});
                     $("#sidebar").show();
+                    $("#zhankai").text("关闭导航");
                     isON=1;
                 }else{//开启状态
                     $("#content ").css({'margin-left':'0px'});
                     $("#sidebar").children("ul").css({'display': 'none'});
                     $("#sidebar").hide();
+                    $("#zhankai").text("展开导航");
                     isON=0;
                 }
                 $(this).attr("isON",isON);
