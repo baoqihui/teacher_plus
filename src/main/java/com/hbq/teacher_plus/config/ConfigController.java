@@ -1,6 +1,7 @@
 package com.hbq.teacher_plus.config;
 
 import com.hbq.teacher_plus.util.BufferImage;
+import io.swagger.annotations.Api;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 @RestController
+@Api(tags = "配置服务")
 public class ConfigController {
     /* **********************************直接访问首页************************************* */
     @Configuration

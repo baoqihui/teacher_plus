@@ -6,6 +6,7 @@ import com.hbq.teacher_plus.common.model.PageResult;
 import com.hbq.teacher_plus.common.model.Result;
 import com.hbq.teacher_plus.model.Users;
 import com.hbq.teacher_plus.service.IUsersService;
+import com.hbq.teacher_plus.util.ExcelUtil;
 import com.hbq.teacher_plus.util.JedisConnect;
 import com.hbq.teacher_plus.util.ToolNote;
 import io.swagger.annotations.Api;
@@ -15,9 +16,11 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -137,5 +140,19 @@ public class UsersController {
             return  Result.succeed(code,"发送成功");
         }
         return Result.failed("获取出错");
+    }
+    @PostMapping(value = "/users/import")
+    public Result importExcl(@RequestParam("file") MultipartFile excl) throws Exception {
+        int rowNum = 0;
+        if (!excl.isEmpty()) {
+            List<Users> list = ExcelUtil.importExcel(excl, 0, 1, Users.class);
+            rowNum = list.size();
+            if (rowNum > 0) {
+                list.forEach(u -> {
+                    usersService.save(u);
+                });
+            }
+        }
+        return Result.succeed("导入数据成功，一共【" + rowNum + "】行");
     }
 }
