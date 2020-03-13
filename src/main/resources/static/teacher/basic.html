@@ -53,8 +53,9 @@
         <h5>基本情况</h5>
       </div>
       <div class="widget-content nopadding">
+        <span id="span1" style="color: red;"></span>
         <form id="basic" action="#" method="get" class="form-horizontal">
-          <input id="id" name="id" type="text" style="display: none">
+          <input id="uId" name="uId" type="text" style="display: none">
           <div class="control-group">
             <label class="control-label">姓名：</label>
             <div class="controls">
@@ -170,8 +171,14 @@
         </form>
 
         <center>
-          <button id="ex1" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
-          <button id="exr1" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px">保存为Excel</button><br>
+          <div class="control-group">
+            <div class="controls">
+              <label class="control-label">Excel：</label>
+              <input id="excel"  type="file" size="15" style="opacity: 0;">
+              <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+            </div>
+          </div>
+          <button id="leadout" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px">保存为Excel</button>
           <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
         </center>
 
@@ -199,7 +206,7 @@
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
 <script>
   $(function () {
-
+    var uid=$.cookie("uid");
     //退出
     $('#backid').click(function(){
       window.location.href="index.html";
@@ -231,7 +238,7 @@
           }
         })
       })
-
+    //保存
     $("#btn1").click(function () {
         var r = confirm("* 专业教师指从事专业课（含专业基础课）教学工作的专任教师（含实验教师）、外聘教师。\n" +
               "* 外聘教师指外聘的国内及外籍非本校教师，本校教师填写身份证号，外籍教师填写护照号。\n" +
@@ -243,12 +250,47 @@
 
         }
       })
+    //导入
+    $("#leadIn").click(function () {
+      var excel=$("#excel")[0].files[0];
+      var formData = new FormData();
+      formData.append("excel",excel);
+      formData.append("uid",uid);
+      $.ajax({
+        url:'/basicInfo/leadIn',
+        dataType:'json',
+        type:'POST',
+        async: false,
+        data: formData,
+        processData : false, // 使数据不做处理
+        contentType : false, // 不要设置Content-Type请求头
+        success: function(result){
+          console.log(result);
+          if (result.resp_code == '0') {
+            alert(result.resp_msg);
+            window.location.href="basic.html";
+          }else {
+            $("#span1").text(result.resp_msg);
+          }
+        },
+        error:function(response){
+          console.log(response);
+        }
+      });
+    })
+    //导出
+    $("#leadout").click(function () {
+      $.post("/basicInfo/leadOut",{uid:uid},function(){
 
-    $.get("/basicInfo/"+$.cookie('id'),{},function(result){
+      })
+    })
+
+    //获取json数据
+    $.get("/basicInfo/"+$.cookie('uid'),{},function(result){
       if (result.resp_code=="0"){
         loadData(result.datas);
       }else{
-        $("#msg2").text(result.resp_msg);
+        $("#span1").text(result.resp_msg);
       }
     },"json")
   })

@@ -99,7 +99,7 @@ $(function () {
 		var code=$("#verify").val();
 		$.post("userLogin.do",{tel:login_tel,password:login_password,code:code},function(result){
 			if(result.resp_code=="0"){
-				$.cookie('id',result.datas.id,{expires:1});
+				$.cookie('uid',result.datas.id,{expires:1});
 				$.cookie('type',result.datas.type,{expires:1});
 				$.cookie('username',result.datas.username,{expires:1});
 				location.href="/index/index.html";

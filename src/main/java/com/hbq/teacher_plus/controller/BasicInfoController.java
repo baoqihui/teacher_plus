@@ -16,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -81,50 +84,43 @@ public class BasicInfoController {
         return Result.succeed("删除成功");
     }
 
-    /*@PostMapping("/users/export")
-    public void exportUser(@RequestParam Map<String, Object> params, HttpServletResponse response) throws IOException {
-        List<SysUserExcel> result = appUserService.findAllUsers(params);
-        //导出操作
-        ExcelUtil.exportExcel(result, null, "用户", SysUserExcel.class, "user", response);
-    }*/
-
-    /*@Override
-    public List<SysUserExcel> findAllUsers(Map<String, Object> params) {
-        List<SysUserExcel> sysUserExcels = new ArrayList<>();
-        List<SysUser> list = baseMapper.findList(new Page<>(1, -1), params);
-
-        for (SysUser sysUser : list) {
-            SysUserExcel sysUserExcel = new SysUserExcel();
-            BeanUtils.copyProperties(sysUser, sysUserExcel);
-            sysUserExcels.add(sysUserExcel);
-        }
-        return sysUserExcels;
-    }*/
-
     @ApiOperation(value = "基本信息导入")
     @PostMapping("/basicInfo/leadIn")
-    public  void leadIn(MultipartFile file,String uid) throws Exception {
+    public  Result leadIn(MultipartFile excel,Integer uid) throws Exception {
+        System.out.println(uid);
         int rowNum = 0;
-        if (!file.isEmpty()) {
-            List<BasicInfo> list = ExcelUtil.importExcel(file, 0, 1, BasicInfo.class);
+        if (!excel.isEmpty()) {
+            List<BasicInfo> list = ExcelUtil.importExcel(excel, 0, 1, BasicInfo.class);
             rowNum = list.size();
             if (rowNum > 0) {
-                list.forEach(u -> {
-                    basicInfoService.save(u);
-                });
+                BasicInfo existBasicInfo=basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("u_id",uid));
+                if (existBasicInfo==null){
+                    //无该用户信息
+                    list.forEach(u -> {
+                        u.setUId(uid);
+                        basicInfoService.save(u);
+                    });
+                    return Result.succeed("成功导入信息"+rowNum+"行数据");
+                }else {
+                    list.forEach(u -> {
+                        u.setId(existBasicInfo.getId());
+                        basicInfoService.updateById(u);
+                    });
+                    return Result.succeed("成功更新信息"+rowNum+"行数据");
+                }
             }
         }
-
-        BasicInfo existBasicInfo=basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("u_id",uid));
-        if (existBasicInfo==null){//无该用户信息
-
-
-        }else {
-
-        }
-
-
+        return Result.failed("导入失败");
     }
 
+    @ApiOperation(value = "基本信息导出")
+    @PostMapping("/basicInfo/leadOut")
+    public void leadOut(Integer uid, HttpServletResponse response) throws IOException {
+        List<BasicInfo> basicInfos =new ArrayList<>();
+        BasicInfo basicInfo=basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("u_id",uid));
+        if (basicInfo==null) {basicInfos.add(basicInfoService.getById(0));} else {basicInfos.add(basicInfo);}
+        //导出操作
+        ExcelUtil.exportExcel(basicInfos, null, "基本信息导出", BasicInfo.class, "basicInfo", response);
 
+    }
 }

@@ -22,6 +22,9 @@ import java.util.Date;
 public class BasicInfo extends SuperEntity {
     private static final long serialVersionUID=1L;
 
+        @ApiModelProperty(value = "用户id")
+        private Integer uId;
+
         @Excel(name = "姓名")
         @ApiModelProperty(value = "姓名")
         private String name;
@@ -41,7 +44,7 @@ public class BasicInfo extends SuperEntity {
         @ApiModelProperty(value = "民族")
         private String nation;
 
-        @Excel(name = "出生年月" ,databaseFormat="yyyy-MM-dd HH:mm:ss")
+        @Excel(name = "出生年月",format="yyyy-MM-dd HH:mm:ss")
         @ApiModelProperty(value = "出生年月")
         private Date birthday;
 
