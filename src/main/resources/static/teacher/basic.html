@@ -178,7 +178,9 @@
               <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
             </div>
           </div>
-          <button id="leadout" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px">保存为Excel</button>
+          <form action="/basicInfo/leadOut" method="post" style="display: inline-block;">
+            <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
+          </form>
           <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
         </center>
 
@@ -278,12 +280,7 @@
         }
       });
     })
-    //导出
-    $("#leadout").click(function () {
-      $.post("/basicInfo/leadOut",{uid:uid},function(){
 
-      })
-    })
 
     //获取json数据
     $.get("/basicInfo/"+$.cookie('uid'),{},function(result){
