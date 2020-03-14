@@ -55,7 +55,7 @@
       <div class="widget-content nopadding">
         <span id="span1" style="color: red;"></span>
         <form id="basic" action="#" method="get" class="form-horizontal">
-          <input id="uId" name="uId" type="text" style="display: none">
+          <input id="cuId" name="cuId" type="text" style="display: none">
           <div class="control-group">
             <label class="control-label">姓名：</label>
             <div class="controls">
@@ -85,7 +85,7 @@
           <div class="control-group">
             <label class="control-label">性别：</label>
             <div class="controls">
-              <input type="radio" name="sex" class="span11" value="男"> 男
+              <input type="radio" name="sex" class="span11" value="男" checked> 男
               <input type="radio" name="sex" class="span11" value="女"> 女
             </div>
           </div>
@@ -179,6 +179,7 @@
             </div>
           </div>
           <form action="/basicInfo/leadOut" method="post" style="display: inline-block;">
+            <input id="cuId2" name="cuId" type="text" style="display: none" >
             <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
           </form>
           <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
@@ -208,7 +209,9 @@
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
 <script>
   $(function () {
-    var uid=$.cookie("uid");
+    var cuId=$.cookie("cuId");
+    $("#cuId").val(cuId);
+    $("#cuId2").val(cuId);
     //退出
     $('#backid').click(function(){
       window.location.href="index.html";
@@ -257,7 +260,7 @@
       var excel=$("#excel")[0].files[0];
       var formData = new FormData();
       formData.append("excel",excel);
-      formData.append("uid",uid);
+      formData.append("cuId",cuId);
       $.ajax({
         url:'/basicInfo/leadIn',
         dataType:'json',
@@ -283,7 +286,7 @@
 
 
     //获取json数据
-    $.get("/basicInfo/"+$.cookie('uid'),{},function(result){
+    $.get("/basicInfo/"+$.cookie('cuId'),{},function(result){
       if (result.resp_code=="0"){
         loadData(result.datas);
       }else{

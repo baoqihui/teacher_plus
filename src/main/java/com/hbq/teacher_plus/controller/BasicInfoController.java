@@ -58,9 +58,9 @@ public class BasicInfoController {
      * 查询
      */
     @ApiOperation(value = "查询")
-    @GetMapping("/basicInfo/{uid}")
-    public Result findUserById(@PathVariable Long uid) {
-        BasicInfo model = basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("u_id",uid));
+    @GetMapping("/basicInfo/{cuId}")
+    public Result findUserById(@PathVariable String cuId) {
+        BasicInfo model = basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("cu_id",cuId));
         return Result.succeed(model, "查询成功");
     }
 
@@ -86,18 +86,17 @@ public class BasicInfoController {
 
     @ApiOperation(value = "基本信息导入")
     @PostMapping("/basicInfo/leadIn")
-    public  Result leadIn(MultipartFile excel,Integer uid) throws Exception {
-        System.out.println(uid);
+    public  Result leadIn(MultipartFile excel,String cuId) throws Exception {
         int rowNum = 0;
         if (!excel.isEmpty()) {
             List<BasicInfo> list = ExcelUtil.importExcel(excel, 0, 1, BasicInfo.class);
             rowNum = list.size();
             if (rowNum > 0) {
-                BasicInfo existBasicInfo=basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("u_id",uid));
+                BasicInfo existBasicInfo=basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("cu_id",cuId));
                 if (existBasicInfo==null){
                     //无该用户信息
                     list.forEach(u -> {
-                        u.setUId(uid);
+                        u.setCuId(cuId);
                         basicInfoService.save(u);
                     });
                     return Result.succeed("成功导入信息"+rowNum+"行数据");
@@ -115,12 +114,12 @@ public class BasicInfoController {
 
     @ApiOperation(value = "基本信息导出")
     @PostMapping("/basicInfo/leadOut")
-    public void leadOut(Integer uid, HttpServletResponse response) throws IOException {
+    public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<BasicInfo> basicInfos =new ArrayList<>();
-        BasicInfo basicInfo=basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("u_id",uid));
+        BasicInfo basicInfo=basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("cu_id",cuId));
         if (basicInfo==null) {basicInfos.add(basicInfoService.getById(0));} else {basicInfos.add(basicInfo);}
         //导出操作
-        ExcelUtil.exportExcel(basicInfos, null, "基本信息导出", BasicInfo.class, "basicInfo", response);
+        ExcelUtil.exportExcel(basicInfos, null, "基本信息导出", BasicInfo.class, "basicInfo.xls", response);
 
     }
 }

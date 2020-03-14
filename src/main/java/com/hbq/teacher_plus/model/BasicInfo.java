@@ -23,7 +23,7 @@ public class BasicInfo extends SuperEntity {
     private static final long serialVersionUID=1L;
 
         @ApiModelProperty(value = "用户id")
-        private Integer uId;
+        private String cuId;
 
         @Excel(name = "姓名")
         @ApiModelProperty(value = "姓名")
