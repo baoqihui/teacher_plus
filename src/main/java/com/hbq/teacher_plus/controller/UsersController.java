@@ -100,7 +100,7 @@ public class UsersController {
             }else{
                 users.setUsername("tch"+users.getTel());
                 users.setIsDel(false);
-                users.setType("t");
+                users.setType("0");
                 usersService.saveOrUpdate(users);
                 return Result.succeed("注册成功");
             }
