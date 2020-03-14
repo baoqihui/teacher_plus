@@ -70,8 +70,14 @@ public class BasicInfoController {
     @ApiOperation(value = "保存")
     @PostMapping("/basicInfo")
     public Result save(@RequestBody BasicInfo basicInfo) {
-        basicInfoService.saveOrUpdate(basicInfo);
+        BasicInfo existBasicInfo=basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("cu_id",basicInfo.getCuId()));
+        if (existBasicInfo==null){
+            basicInfoService.save(basicInfo);
+        }else {
+           basicInfoService.update(basicInfo,new QueryWrapper<BasicInfo>().eq("cu_id",basicInfo.getCuId()));
+        }
         return Result.succeed("保存成功");
+
     }
 
     /**
