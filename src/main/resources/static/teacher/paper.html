@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="../css/colorpicker.css" />
+    <link rel="stylesheet" href="../css/datepicker.css" />
     <link rel="stylesheet" href="../css/uniform.css" />
     <link rel="stylesheet" href="../css/select2.css" />
     <link rel="stylesheet" href="../css/matrix-style2.css" />
     <link rel="stylesheet" href="../css/matrix-media.css" />
+    <link rel="stylesheet" href="../css/bootstrap-wysihtml5.css" />
     <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
@@ -39,61 +42,56 @@
                                 <th>学生姓名</th>
                                 <th>第一作者</th>
                                 <th>学生名次</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr class="odd gradeX">
-                                <td>基于STC89C52的智能加湿器设计与实现</td>
-                                <td>科技视界</td>
-                                <td>20018年7月25日</td>
-                                <td>中文CN</td>
-                                <td>李欣妍</td>
-                            </tr>
+                            <tbody id="tbody">
+
                             </tbody>
                         </table>
 
-                        <form action="#" method="get" class="form-horizontal">
+                        <form id="paper" action="#" method="get" class="form-horizontal">
                             <input id="cuId" name="cuId" type="text" style="display: none">
                             <div class="control-group">
                                 <label class="control-label">论文名称：</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" placeholder="Company name" />
+                                    <input name="paperTitle" type="text" class="span11" placeholder="Company name" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">期刊：</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" placeholder="Company name" />
+                                    <input name="periodical" type="text" class="span11" placeholder="Company name" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">日期 ：</label>
                                 <div class="controls">
-                                    <input type="date" class="span11" placeholder="Company name" />
+                                    <input name="publishTime" type="date" class="span11" placeholder="Company name" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">级别：</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" placeholder="Company name" />
+                                    <input name="rank" type="text" class="span11" placeholder="Company name" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">学生姓名：</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" placeholder="Company name" />
+                                    <input name="stuName" type="text" class="span11" placeholder="Company name" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">第一作者 ：</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" />
+                                    <input name="firstAuthor" type="text" class="span11" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">学生名次：</label>
                                 <div class="controls">
-                                    <input type="text"  class="span11" />
+                                    <input name="stuRank" type="text"  class="span11" />
 
                                 </div>
                             </div>
@@ -107,7 +105,7 @@
                                     <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
                                 </div>
                             </div>
-                            <form action="/education/leadOut" method="post" style="display: inline-block;">
+                            <form action="/paper/leadOut" method="post" style="display: inline-block;">
                                 <input id="cuId2" name="cuId" type="text" style="display: none" >
                                 <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
                             </form>
@@ -124,10 +122,19 @@
 <script src="http://www.jq22.com/jquery/jquery-1.7.1.js"></script>
 <script src="../js/jquery.ui.custom.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-colorpicker.js"></script>
+<script src="../js/bootstrap-datepicker.js"></script>
+
+<script src="../js/masked.js"></script>
 <script src="../js/jquery.uniform.js"></script>
-<script src="../js/jquery.validate.js"></script>
+<script src="../js/select2.min.js"></script>
 <script src="../js/matrix.js"></script>
-<script src="../js/matrix.form_validation.js"></script>
+<script src="../js/matrix.form_common.js"></script>
+<script src="../js/wysihtml5-0.3.0.js"></script>
+<script src="../js/jquery.peity.min.js"></script>
+<script src="../js/bootstrap-wysihtml5.js"></script>
+<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+
 <script>
     $(function () {
         queryPage(1);
@@ -140,24 +147,54 @@
         });
         //保存
         $("#btn1").click(function () {
-            var certificate=$("#certificate").val();
-            var r = confirm("* 你当前添加学历为\t"+certificate+"\n"+
-                "* 需提供资料：毕业证书、学位证书\n\n" +
+            var r = confirm("* 需提供立项文件、过程文件、结项文件	\n"+
                 "\t\t您是否确定保存？")
             if (r == true) {
-                addEducation();
+                addPaper();
             } else {
 
             }
         })
         //导入
         $("#leadIn").click(function () {
-            var excel=$("#excel")[0].files[0];
+            var r = confirm("* 导入excel应确保格式正确	\n"+
+                "* 如不确定请先点击‘保存为Excel’查看模板格式 \n"+
+                "\t\t\t您是否确定保存？")
+            if (r == true) {
+                leadIn();
+            } else {
+
+            }
+        })
+        //删除
+        $("#remove").live("click",function() {
+            var eid = $(this).attr("eid");
+            $.ajax({
+                url:"../paper/"+ eid,
+                type:"delete",
+                data:{},
+                dataType:"json",
+                success:function (result) {
+                    if (result.resp_code == "0") {
+                        alert(result.resp_msg);
+                        window.location.href = "paper.html";
+                    }else {
+                        $("#span1").text(result.resp_msg);
+                    }
+                }
+            })
+        })
+    })
+    function leadIn() {
+        var excel=$("#excel")[0].files[0];
+        if ($("#excel").val()==""){
+            alert("请先选择文件!");
+        }else {
             var formData = new FormData();
             formData.append("excel",excel);
-            formData.append("cuId",cuId);
+            formData.append("cuId",$.cookie("cuId"));
             $.ajax({
-                url:'/education/leadIn',
+                url:'/paper/leadIn',
                 dataType:'json',
                 type:'POST',
                 async: false,
@@ -168,7 +205,7 @@
                     console.log(result);
                     if (result.resp_code == '0') {
                         alert(result.resp_msg);
-                        window.location.href="education.html";
+                        window.location.href="paper.html";
                     }else {
                         $("#span1").text(result.resp_msg);
                     }
@@ -177,48 +214,31 @@
                     console.log(response);
                 }
             });
-        })
-        //删除
-        $("#remove").live("click",function() {
-            var eid = $(this).attr("eid");
-            $.ajax({
-                url:"../education/"+ eid,
-                type:"delete",
-                data:{},
-                dataType:"json",
-                success:function (result) {
-                    if (result.resp_code == "0") {
-                        alert(result.resp_msg);
-                        window.location.href = "education.html";
-                    }else {
-                        $("#span1").text(result.resp_msg);
-                    }
-                }
-            })
-        })
-    })
+        }
+    }
     //表格填充
     function queryPage(pageNum){
         //当前页码
         pageNum= pageNum==undefined?1:pageNum;
 
         //页码的有效性判断
-        $.get("../education",{page:pageNum,limit:5,cuId:$.cookie("cuId")},function(result){
+        $.get("../paper",{page:pageNum,limit:5,cuId:$.cookie("cuId")},function(result){
             console.log(result.data)
             //填充数据到tbody
             $("#tbody").empty();//清除之前的内容
-            $(result.data).each(function(index,education){
-                console.log(education.certificate)
+            $(result.data).each(function(index,paper){
+                console.log(paper.certificate)
                 $("#tbody").append(
                     " <tr>"+
-                    "<td>"+education.certificate+"</td>"+
-                    "<td >"+education.school+"</td>"+
-                    "<td >"+education.major+"</td>"+
-                    "<td>"+education.studyingTime+"-"+education.graduaTime+"</td>"+
-                    "<td>"+education.degree+"</td>"+
-                    "<td>"+education.nature+"</td>"+
+                    "<td>"+paper.paperTitle+"</td>"+
+                    "<td >"+paper.periodical+"</td>"+
+                    "<td >"+paper.publishTime+"</td>"+
+                    "<td>"+paper.rank+"</td>"+
+                    "<td>"+paper.stuName+"</td>"+
+                    "<td>"+paper.firstAuthor+"</td>"+
+                    "<td>"+paper.stuRank+"</td>"+
                     "<td>"+
-                    "<a href='#' id='remove' class='icon-remove' eid="+education.id+" >删除</a></td>"+
+                    "<a href='#' id='remove' class='icon-remove' eid="+paper.id+" >删除</a></td>"+
                     "</tr>"
                 );
             })
@@ -226,19 +246,19 @@
         },"json");
     }
     //上传接口
-    function addEducation() {
-        console.log($('#education').serializeJson())
+    function addPaper() {
+        console.log($('#paper').serializeJson())
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: '../education',
+            url: '../paper',
             contentType: "application/json",
-            data:JSON.stringify($('#education').serializeJson()),
+            data:JSON.stringify($('#paper').serializeJson()),
             success: function (result) {
                 console.log("data is :" + result)
                 if (result.resp_code == "0") {
                     alert(result.resp_msg);
-                    window.location.href="education.html";
+                    window.location.href="paper.html";
                 }else {
                     $("#span1").val(result.resp_msg);
                 }

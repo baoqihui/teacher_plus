@@ -187,10 +187,44 @@
         })
         //导入
         $("#leadIn").click(function () {
+            var r = confirm("* 导入excel应确保格式正确	\n"+
+                "* 如不确定请先点击‘保存为Excel’查看模板格式 \n"+
+                "\t\t\t您是否确定保存？")
+            if (r == true) {
+                leadIn();
+            } else {
+
+            }
+        })
+
+        //删除
+        $("#remove").live("click",function() {
+            var eid = $(this).attr("eid");
+            $.ajax({
+                url:"../education/"+ eid,
+                type:"delete",
+                data:{},
+                dataType:"json",
+                success:function (result) {
+                    if (result.resp_code == "0") {
+                        alert(result.resp_msg);
+                        window.location.href = "education.html";
+                    }else {
+                        $("#span1").text(result.resp_msg);
+                    }
+                }
+            })
+        })
+    })
+
+    function leadIn() {
+        if ($("#excel").val()==""){
+            alert("请先选择文件!");
+        }else {
             var excel=$("#excel")[0].files[0];
             var formData = new FormData();
             formData.append("excel",excel);
-            formData.append("cuId",cuId);
+            formData.append("cuId",$.cookie("cuId"));
             $.ajax({
                 url:'/education/leadIn',
                 dataType:'json',
@@ -212,26 +246,8 @@
                     console.log(response);
                 }
             });
-        })
-        //删除
-        $("#remove").live("click",function() {
-            var eid = $(this).attr("eid");
-            $.ajax({
-                url:"../education/"+ eid,
-                type:"delete",
-                data:{},
-                dataType:"json",
-                success:function (result) {
-                    if (result.resp_code == "0") {
-                        alert(result.resp_msg);
-                        window.location.href = "education.html";
-                    }else {
-                        $("#span1").text(result.resp_msg);
-                    }
-                }
-            })
-        })
-    })
+        }
+    }
     //表格填充
     function queryPage(pageNum){
         //当前页码
