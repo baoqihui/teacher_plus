@@ -53,60 +53,78 @@
                         <h5>工作经历</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form action="#" method="get" class="form-horizontal">
+                        <span id="span1" style="color: red;"></span>
+                        <form id="work" action="#" method="get" class="form-horizontal">
+                            <input id="cuId" name="cuId" type="text" style="display: none">
                             <div class="control-group">
                                 <label class="control-label">非学历进修 ：</label>
                                 <div class="controls">
-                                    <input type="text" class="span11">
+                                    <input name="noStudy" type="text" class="span11">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">参加工作时间 ：</label>
                                 <div class="controls">
-                                    <input type="date" class="span11" placeholder="Last name" />
+                                    <input name="workTime" type="date" class="span11" placeholder="Last name" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">任教时间 ：</label>
                                 <div class="controls">
-                                    <input type="date" class="span11" placeholder="Company name" />
+                                    <input name="teachTime" type="date" class="span11" placeholder="Company name" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">到本专业任教时间 ：</label>
                                 <div class="controls">
-                                    <input type="date" class="span11" placeholder="Company name" />
+                                    <input name="atTime" type="date" class="span11" placeholder="Company name" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">是否有行业经历：</label>
+                                <div class="controls">
+                                    <input type="radio" name="isWork" class="span11" value="是" > 是
+                                    <input type="radio" name="isWork" class="span11" value="否" checked> 否
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">中青年教师实践能力培训 ：</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" />
+                                    <input name="train" type="text" class="span11" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">研究生导师 ：</label>
                                 <div class="controls">
-                                    <input type="text" class="span11">
+                                    <input name="supervisor" type="text" class="span11">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">人才入选情况 ：</label>
                                 <div class="controls">
-                                    <input type="text" class="span11">
+                                    <input name="talents" type="text" class="span11">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">行业经历 ：</label>
                                 <div class="controls">
-                                    <textarea class="span11" placeholder="Company name" style="height: 42px"></textarea>
+                                    <input name="experience" type="text" class="span11" >
                                 </div>
                             </div>
                         </form>
                         <center>
-                            <button id="ex3" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
-                            <button id="exr3" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px">保存为Excel</button>
-                            <center><button id="btn3" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存工作经历</button></center>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label class="control-label">Excel：</label>
+                                    <input id="excel"  type="file" size="15" style="opacity: 0;">
+                                    <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+                                </div>
+                            </div>
+                            <form action="/basicInfo/leadOut" method="post" style="display: inline-block;">
+                                <input id="cuId2" name="cuId" type="text" style="display: none" >
+                                <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
+                            </form>
+                            <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
                         </center>
 
                     </div>
@@ -130,64 +148,16 @@
 <script src="../js/wysihtml5-0.3.0.js"></script>
 <script src="../js/jquery.peity.min.js"></script>
 <script src="../js/bootstrap-wysihtml5.js"></script>
+<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+
 <script>
     $(function () {
         //退出
         $('#backid').click(function(){
             window.location.href="index.html";
         });
-        //上传图片
-        $("#m_image_addr").live("change",function(){
-            //注意这里不能写错。。。
-            var file=$("#m_image_addr")[0].files[0];
-            var formData = new FormData();
-            formData.append("m_image_addr",file);
-            //对文件类型进行判断
-            var index=file.name.lastIndexOf(".");
-            var type=file.name.substring(index);
-            if(type!=".jpg"&&type!=".png"){
-                alert("只能上传jpg和png格式的图片！！");
-                return;
-            }
-            $.ajax({
-                url:"../upload.do",
-                data:formData,
-                dataType:"text",
-                type:"post",
-                //这两个属性必须设置！！！！
-                contentType: false,
-                processData: false, //设置为true时，ajax提交的时候不会序列化data，而是直接使用data
-                success:function (path) {
-                    $("#yulan").attr("src",path);
-                    $("input[name='imgUrl']").attr("value",path);
-                }
-            })
-        })
-
+        //保存
         $("#btn1").click(function () {
-            var r = confirm("* 专业教师指从事专业课（含专业基础课）教学工作的专任教师（含实验教师）、外聘教师。\n" +
-                "* 外聘教师指外聘的国内及外籍非本校教师，本校教师填写身份证号，外籍教师填写护照号。\n" +
-                "* 需提供资料：身份证，聘任证书，专业技术资格证书，教师资格证书。\n\n" +
-                "\t\t\t\t\t\t\t您是否确定保存？")
-            if (r == true) {
-                addBasic();
-            } else {
-
-            }
-        })
-        $("#btn2").click(function () {
-            var xl=$("#xl").val();
-            var r = confirm("* 你当前添加学历为\t"+xl+"\n"+
-                "* 需提供资料：毕业证书、学位证书\n\n" +
-                "\t\t您是否确定保存？")
-            if (r == true) {
-                aee();
-            } else {
-
-            }
-        })
-        $("#btn3").click(function () {
-            var xl=$("#xl").val();
             var r = confirm("注意事项：\n" +
                 "1. 专业教师指从事专业课（含专业基础课）教学工作的专任教师（含实验教师）、外聘教师。外聘教师指外聘的国内及外籍非本校教师，本校教师填写身份证号，外籍教师填写护照号；\n" +
                 "需提供资料：身份证，聘任证书，专业技术资格证书，教师资格证书，毕业证，学位证\n" +
@@ -203,31 +173,113 @@
                 "7. 属于多个类型的人才入选情况须全部填写。\n\n"+
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t您是否确定保存？")
             if (r == true) {
-                alert("保存成功")
+                addWork();
             } else {
 
             }
         })
 
+        //导入
+        $("#leadIn").click(function () {
+            var excel=$("#excel")[0].files[0];
+            var formData = new FormData();
+            formData.append("excel",excel);
+            formData.append("cuId",cuId);
+            $.ajax({
+                url:'/work/leadIn',
+                dataType:'json',
+                type:'POST',
+                async: false,
+                data: formData,
+                processData : false, // 使数据不做处理
+                contentType : false, // 不要设置Content-Type请求头
+                success: function(result){
+                    console.log(result);
+                    if (result.resp_code == '0') {
+                        alert(result.resp_msg);
+                        window.location.href="work.html";
+                    }else {
+                        $("#span1").text(result.resp_msg);
+                    }
+                },
+                error:function(response){
+                    console.log(response);
+                }
+            });
+        })
+
+        //获取json数据
+        $.get("/work/"+$.cookie('cuId'),{},function(result){
+            if (result.resp_code=="0"){
+                loadData(result.datas);
+            }else{
+                $("#span1").text(result.resp_msg);
+            }
+        },"json")
     })
 
 
+    //加载前端数据到表单
+    function loadData(obj){
+        if($.type(obj)!="object"){
+            return false;
+        }
+        var key,value,tagName,type,arr;
+        for(x in obj){
+            key = x;
+            value = obj[x];
+            $("[name='"+key+"'],[name='"+key+"[]']").each(function(index){
+                tagName = $(this)[0].tagName;
+                type = $(this).attr('type');
+                if (tagName=='IMG'){
+                    $(this).attr('src',value);
+                }
+                if(tagName=='INPUT'){
+                    if(type=='radio'){                      //处理radio
+                        $(this).attr('checked',$(this).val()==value);
+                    }else if(type=='checkbox'){             //处理checkbox
+                        for(var i =0;i<value.length;i++){
+                            if($(this).val()==value[i]){
+                                $(this).attr('checked',true);
+                                break;
+                            }
+                        }
+                    }else if(type=='date'){                  //处理日期型表单
+                        if(parseInt(value)>1000000000000)      //毫秒时间戳
+                            $(this)[0].valueAsNumber=parseInt(value);
+                        else if(parseInt(value)>1000000000)    //秒时间戳
+                            $(this)[0].valueAsNumber=parseInt(value)*1000;
+                        else                                   //字符串时间
+                            $(this)[0].valueAsDate=new Date(value);
+                    }else{
+                        if($.isArray(value))                    //表单组情形(多个同名表单)
+                            $(this).val(value[index]);
+                        else
+                            $(this).val(value);
+                    }
+                    $(this).uniform(); //自用！
+                }else if(tagName=='SELECT'||tagName=='textarea'){    //处理select和textarea
+                    $(this).val(value);
+                }
+            });
+        }
+    }
     //上传接口
-    function addBasic() {
-        console.log($('#basic').serializeJson())
+    function addWork() {
+        console.log($('#work').serializeJson())
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: '../basicInfo',
+            url: '../work',
             contentType: "application/json",
-            data:JSON.stringify($('#basic').serializeJson()),
+            data:JSON.stringify($('#work').serializeJson()),
             success: function (result) {
                 console.log("data is :" + result)
-                if (result.code == 200) {
-                    alert("登陆成功");
-                    window.location.href = "../home/home_page.html";
+                if (result.resp_code == "0") {
+                    alert(result.resp_msg);
+                    window.location.href="work.html";
                 }else {
-                    alert(result.message)
+                    $("#span1").val(result.resp_msg);
                 }
             }
         });

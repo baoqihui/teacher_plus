@@ -29,7 +29,7 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
-@Api(tags = "")
+@Api(tags = "教育信息")
 public class EducationController {
     @Autowired
     private IEducationService educationService;
