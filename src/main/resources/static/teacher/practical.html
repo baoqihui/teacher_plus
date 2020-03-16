@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>教师信息管理系统</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="../css/uniform.css" />
+    <link rel="stylesheet" href="../css/select2.css" />
+    <link rel="stylesheet" href="../css/matrix-style2.css" />
+    <link rel="stylesheet" href="../css/matrix-media.css" />
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div id="content">
+    <div id="content-header">
+        <h1>教学情况</h1>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div id="form_2" class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>应用型课程建设情况</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <span id="span1" style="color: red;"></span>
+                        <table class="table table-bordered table-striped" frame="box">
+                            <thead>
+                            <tr><th colspan="9" >已添教学内容(重新添加可修改)</th></tr>
+                            <tr>
+                                <th>课程名称</th>
+                                <th>立项时间</th>
+                                <th>是否结项</th>
+                                <th>参与情况</th>
+                                <th>经费（万）</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="odd gradeX">
+                                <td>高级语言程序设计（实训）</td>
+                                <td>2018年</td>
+                                <td>否</td>
+                                <td>参与</td>
+                                <td>1</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <form action="#" method="get" class="form-horizontal">
+                            <input id="cuId" name="cuId" type="text" style="display: none">
+                            <div class="control-group">
+                                <label class="control-label">课程名称</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="Company name" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">立项时间：</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="Company name" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">是否结项 ：</label>
+                                <div class="controls">
+                                    <input type="radio" name="yz" class="span11" value="是" > 是
+                                    <input type="radio" name="yz" class="span11" value="否" checked> 否
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">参与情况 ：</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="Company name" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">经费（万） ：</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="Company name" />
+                                </div>
+                            </div>
+                        </form>
+                        <center>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label class="control-label">Excel：</label>
+                                    <input id="excel"  type="file" size="15" style="opacity: 0;">
+                                    <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+                                </div>
+                            </div>
+                            <form action="/education/leadOut" method="post" style="display: inline-block;">
+                                <input id="cuId2" name="cuId" type="text" style="display: none" >
+                                <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
+                            </form>
+                            <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
+                        </center>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="http://www.jq22.com/jquery/jquery-1.7.1.js"></script>
+<script src="../js/jquery.ui.custom.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.uniform.js"></script>
+<script src="../js/jquery.validate.js"></script>
+<script src="../js/matrix.js"></script>
+<script src="../js/matrix.form_validation.js"></script>
+<script>
+    $(function () {
+        queryPage(1);
+        var cuId=$.cookie("cuId");
+        $("#cuId").val(cuId);
+        $("#cuId2").val(cuId);
+        //退出
+        $('#backid').click(function(){
+            window.location.href="index.html";
+        });
+        //保存
+        $("#btn1").click(function () {
+            var certificate=$("#certificate").val();
+            var r = confirm("* 你当前添加学历为\t"+certificate+"\n"+
+                "* 需提供资料：毕业证书、学位证书\n\n" +
+                "\t\t您是否确定保存？")
+            if (r == true) {
+                addEducation();
+            } else {
+
+            }
+        })
+        //导入
+        $("#leadIn").click(function () {
+            var excel=$("#excel")[0].files[0];
+            var formData = new FormData();
+            formData.append("excel",excel);
+            formData.append("cuId",cuId);
+            $.ajax({
+                url:'/education/leadIn',
+                dataType:'json',
+                type:'POST',
+                async: false,
+                data: formData,
+                processData : false, // 使数据不做处理
+                contentType : false, // 不要设置Content-Type请求头
+                success: function(result){
+                    console.log(result);
+                    if (result.resp_code == '0') {
+                        alert(result.resp_msg);
+                        window.location.href="education.html";
+                    }else {
+                        $("#span1").text(result.resp_msg);
+                    }
+                },
+                error:function(response){
+                    console.log(response);
+                }
+            });
+        })
+        //删除
+        $("#remove").live("click",function() {
+            var eid = $(this).attr("eid");
+            $.ajax({
+                url:"../education/"+ eid,
+                type:"delete",
+                data:{},
+                dataType:"json",
+                success:function (result) {
+                    if (result.resp_code == "0") {
+                        alert(result.resp_msg);
+                        window.location.href = "education.html";
+                    }else {
+                        $("#span1").text(result.resp_msg);
+                    }
+                }
+            })
+        })
+    })
+    //表格填充
+    function queryPage(pageNum){
+        //当前页码
+        pageNum= pageNum==undefined?1:pageNum;
+
+        //页码的有效性判断
+        $.get("../education",{page:pageNum,limit:5,cuId:$.cookie("cuId")},function(result){
+            console.log(result.data)
+            //填充数据到tbody
+            $("#tbody").empty();//清除之前的内容
+            $(result.data).each(function(index,education){
+                console.log(education.certificate)
+                $("#tbody").append(
+                    " <tr>"+
+                    "<td>"+education.certificate+"</td>"+
+                    "<td >"+education.school+"</td>"+
+                    "<td >"+education.major+"</td>"+
+                    "<td>"+education.studyingTime+"-"+education.graduaTime+"</td>"+
+                    "<td>"+education.degree+"</td>"+
+                    "<td>"+education.nature+"</td>"+
+                    "<td>"+
+                    "<a href='#' id='remove' class='icon-remove' eid="+education.id+" >删除</a></td>"+
+                    "</tr>"
+                );
+            })
+
+        },"json");
+    }
+    //上传接口
+    function addEducation() {
+        console.log($('#education').serializeJson())
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: '../education',
+            contentType: "application/json",
+            data:JSON.stringify($('#education').serializeJson()),
+            success: function (result) {
+                console.log("data is :" + result)
+                if (result.resp_code == "0") {
+                    alert(result.resp_msg);
+                    window.location.href="education.html";
+                }else {
+                    $("#span1").val(result.resp_msg);
+                }
+            }
+        });
+    }
+    //form->json
+    (function (window, $) {
+        $.fn.serializeJson = function () {//form serialize to json
+            var serializeObj = {};
+            var array = this.serializeArray();
+            $(array).each(
+                function () {
+                    if (serializeObj[this.name]) {
+                        if ($.isArray(serializeObj[this.name])) {
+                            serializeObj[this.name].push(this.value);
+                        } else {
+                            serializeObj[this.name] = [
+                                serializeObj[this.name], this.value];
+                        }
+                    } else {
+                        serializeObj[this.name] = this.value;
+                    }
+                });
+            return serializeObj;
+        };
+    })(window, jQuery);
+</script>
+</body>
+</html>
