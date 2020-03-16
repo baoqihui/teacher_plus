@@ -56,7 +56,7 @@
                         <span id="span1" style="color: red;"></span>
                         <table id="t1" class="table table-bordered table-striped" frame="box">
                             <thead>
-                            <tr><th colspan="6" >已添学历信息</th></tr>
+                            <tr><th colspan="7" >已添学历信息</th></tr>
                             <tr>
                                 <th>学历</th>
                                 <th>毕业学校</th>
@@ -64,17 +64,11 @@
                                 <th>获得学位时间</th>
                                 <th>学位</th>
                                 <th>性质</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr class="odd gradeX">
-                                <td>本科</td>
-                                <td>郑州大学</td>
-                                <td>计算机科学与技术</td>
-                                <td>1999.9-2003.7</td>
-                                <td>学士</td>
-                                <td>全日制</td>
-                            </tr>
+                            <tbody id="tbody">
+
                             </tbody>
                         </table>
 
@@ -171,6 +165,7 @@
 
 <script>
     $(function () {
+        queryPage(1);
         var cuId=$.cookie("cuId");
         $("#cuId").val(cuId);
         $("#cuId2").val(cuId);
@@ -218,9 +213,51 @@
                 }
             });
         })
+        //删除
+        $("#remove").live("click",function() {
+            var eid = $(this).attr("eid");
+            $.ajax({
+                url:"../education/"+ eid,
+                type:"delete",
+                data:{},
+                dataType:"json",
+                success:function (result) {
+                    if (result.resp_code == "0") {
+                        alert(result.resp_msg);
+                        window.location.href = "education.html";
+                    }
+                }
+            })
+        })
     })
+    //表格填充
+    function queryPage(pageNum){
+        //当前页码
+        pageNum= pageNum==undefined?1:pageNum;
 
+        //页码的有效性判断
+        $.get("../education",{page:pageNum,limit:5,cuId:$.cookie("cuId")},function(result){
+            console.log(result.data)
+            //填充数据到tbody
+            $("#tbody").empty();//清除之前的内容
+            $(result.data).each(function(index,education){
+                console.log(education.certificate)
+                $("#tbody").append(
+                    " <tr>"+
+                    "<td>"+education.certificate+"</td>"+
+                    "<td >"+education.school+"</td>"+
+                    "<td >"+education.major+"</td>"+
+                    "<td>"+education.studyingTime+"-"+education.graduaTime+"</td>"+
+                    "<td>"+education.degree+"</td>"+
+                    "<td>"+education.nature+"</td>"+
+                    "<td>"+
+                    "<a href='#' id='remove' class='icon-remove' eid="+education.id+" >删除</a></td>"+
+                    "</tr>"
+                );
+            })
 
+        },"json");
+    }
     //上传接口
     function addEducation() {
         console.log($('#education').serializeJson())

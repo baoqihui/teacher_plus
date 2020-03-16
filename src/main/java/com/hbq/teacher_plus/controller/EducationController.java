@@ -40,7 +40,8 @@ public class EducationController {
     @ApiOperation(value = "查询列表(此接口请使用PostMan测试)")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "page", value = "页码数", required = false, dataType = "Integer"),
-            @ApiImplicitParam(name = "limit", value = "当前页数量", required = false, dataType = "Integer")
+            @ApiImplicitParam(name = "limit", value = "当前页数量", required = false, dataType = "Integer"),
+            @ApiImplicitParam(name = "cuId", value = "用户id", required = false, dataType = "Integer")
     })
     @GetMapping("/education")
     public PageResult list(@RequestParam(required = false) Map<String, Object> params) {
