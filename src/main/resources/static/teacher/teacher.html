@@ -4,14 +4,18 @@
 <title>教师信息管理系统</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="../css/bootstrap.min.css" />
-<link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
-<link rel="stylesheet" href="../css/uniform.css" />
-<link rel="stylesheet" href="../css/select2.css" />
-<link rel="stylesheet" href="../css/matrix-style2.css" />
-<link rel="stylesheet" href="../css/matrix-media.css" />
-<link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
+  <link rel="stylesheet" href="../css/colorpicker.css" />
+  <link rel="stylesheet" href="../css/datepicker.css" />
+  <link rel="stylesheet" href="../css/uniform.css" />
+  <link rel="stylesheet" href="../css/select2.css" />
+  <link rel="stylesheet" href="../css/matrix-style2.css" />
+  <link rel="stylesheet" href="../css/matrix-media.css" />
+  <link rel="stylesheet" href="../css/bootstrap-wysihtml5.css" />
+  <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
 
@@ -31,7 +35,7 @@
             <span id="span1" style="color: red;"></span>
             <table class="table table-bordered table-striped" frame="box">
               <thead>
-              <tr><th colspan="9" >已添教学内容</th></tr>
+              <tr><th colspan="10" >已添教学内容</th></tr>
               <tr>
                 <th>学期时间</th>
                 <th>课程编号</th>
@@ -42,6 +46,7 @@
                 <th>实训学时</th>
                 <th>是否优质课</th>
                 <th>本人承担实际学时</th>
+                <th>操作</th>
               </tr>
               </thead>
               <tbody id="tbody">
@@ -126,7 +131,7 @@
                   <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
                 </div>
               </div>
-              <form action="/teacher/leadOut" method="post" style="display: inline-block;">
+              <form action="../teacherInfo/leadOut" method="post" style="display: inline-block;">
                 <input id="cuId2" name="cuId" type="text" style="display: none" >
                 <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
               </form>
@@ -143,10 +148,18 @@
 <script src="http://www.jq22.com/jquery/jquery-1.7.1.js"></script>
 <script src="../js/jquery.ui.custom.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-colorpicker.js"></script>
+<script src="../js/bootstrap-datepicker.js"></script>
+
+<script src="../js/masked.js"></script>
 <script src="../js/jquery.uniform.js"></script>
-<script src="../js/jquery.validate.js"></script>
+<script src="../js/select2.min.js"></script>
 <script src="../js/matrix.js"></script>
-<script src="../js/matrix.form_validation.js"></script>
+<script src="../js/matrix.form_common.js"></script>
+<script src="../js/wysihtml5-0.3.0.js"></script>
+<script src="../js/jquery.peity.min.js"></script>
+<script src="../js/bootstrap-wysihtml5.js"></script>
+<script type="text/javascript" src="../js/jquery.cookie.js"></script>
 <script>
   $(function () {
     queryPage(1);
@@ -160,8 +173,7 @@
     //保存
     $("#btn1").click(function () {
       var certificate=$("#certificate").val();
-      var r = confirm("* 你当前添加学历为\t"+certificate+"\n"+
-              "* 需提供资料：毕业证书、学位证书\n\n" +
+      var r = confirm("* 需提供教案课件\n"+
               "\t\t您是否确定保存？")
       if (r == true) {
         addTeacher();
@@ -176,7 +188,7 @@
       formData.append("excel",excel);
       formData.append("cuId",cuId);
       $.ajax({
-        url:'/teacher/leadIn',
+        url:'/teacherInfo/leadIn',
         dataType:'json',
         type:'POST',
         async: false,
@@ -201,7 +213,7 @@
     $("#remove").live("click",function() {
       var eid = $(this).attr("eid");
       $.ajax({
-        url:"../teacher/"+ eid,
+        url:"../teacherInfo/"+ eid,
         type:"delete",
         data:{},
         dataType:"json",
@@ -222,7 +234,7 @@
     pageNum= pageNum==undefined?1:pageNum;
 
     //页码的有效性判断
-    $.get("../teacher",{page:pageNum,limit:5,cuId:$.cookie("cuId")},function(result){
+    $.get("../teacherInfo",{page:pageNum,limit:10,cuId:$.cookie("cuId")},function(result){
       console.log(result.data)
       //填充数据到tbody
       $("#tbody").empty();//清除之前的内容
@@ -230,12 +242,15 @@
         console.log(teacher.certificate)
         $("#tbody").append(
                 " <tr>"+
-                "<td>"+teacher.certificate+"</td>"+
-                "<td >"+teacher.school+"</td>"+
-                "<td >"+teacher.major+"</td>"+
-                "<td>"+teacher.studyingTime+"-"+teacher.graduaTime+"</td>"+
-                "<td>"+teacher.degree+"</td>"+
-                "<td>"+teacher.nature+"</td>"+
+                "<td>"+teacher.termTime+"</td>"+
+                "<td >"+teacher.courseNum+"</td>"+
+                "<td >"+teacher.courseName+"</td>"+
+                "<td>"+teacher.courseNature+"</td>"+
+                "<td>"+teacher.theory+"</td>"+
+                "<td>"+teacher.experimental+"</td>"+
+                "<td>"+teacher.training+"</td>"+
+                "<td>"+teacher.qualityClass+"</td>"+
+                "<td>"+teacher.persion+"</td>"+
                 "<td>"+
                 "<a href='#' id='remove' class='icon-remove' eid="+teacher.id+" >删除</a></td>"+
                 "</tr>"
@@ -250,7 +265,7 @@
     $.ajax({
       type: "POST",
       dataType: "json",
-      url: '../teacher',
+      url: '../teacherInfo',
       contentType: "application/json",
       data:JSON.stringify($('#teacher').serializeJson()),
       success: function (result) {

@@ -4,6 +4,10 @@
 <mapper namespace="com.hbq.teacher_plus.mapper.TeacherInfoMapper">
     <select id="findList" resultType="com.hbq.teacher_plus.model.TeacherInfo">
         select * from teacher_info t
+        where t.is_del=0
+        <if test="p.cuId != null and p.cuId != ''">
+            and t.cu_id=${p.cuId}
+        </if>
         order by t.id desc
     </select>
 </mapper>
