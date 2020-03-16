@@ -213,33 +213,7 @@
     var CLASS_NAME=$("#span1").attr("className");
     //加载表单
     tolLadData(CLASS_NAME);
-    //上传图片
-    $("#m_image_addr").live("change",function(){
-        //注意这里不能写错。。。
-        var file=$("#m_image_addr")[0].files[0];
-        var formData = new FormData();
-        formData.append("m_image_addr",file);
-        //对文件类型进行判断
-        var index=file.name.lastIndexOf(".");
-        var type=file.name.substring(index);
-        if(type!=".jpg"&&type!=".png"){
-          alert("只能上传jpg和png格式的图片！！");
-          return;
-        }
-        $.ajax({
-          url:"../upload.do",
-          data:formData,
-          dataType:"text",
-          type:"post",
-          //这两个属性必须设置！！！！
-          contentType: false,
-          processData: false, //设置为true时，ajax提交的时候不会序列化data，而是直接使用data
-          success:function (path) {
-            $("#yulan").attr("src",path);
-            $("input[name='imgUrl']").attr("value",path);
-          }
-        })
-      })
+    upLoadImg();
     //保存
     $("#btn1").click(function () {
         var r = confirm("* 专业教师指从事专业课（含专业基础课）教学工作的专任教师（含实验教师）、外聘教师。\n" +
@@ -248,8 +222,6 @@
               "\t\t\t\t\t\t\t您是否确定保存？")
         if (r == true) {
           add(CLASS_NAME);
-        } else {
-
         }
       })
 

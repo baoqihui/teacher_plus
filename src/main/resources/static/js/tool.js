@@ -164,6 +164,35 @@ function loadData(obj){
         });
     }
 }
+//上传图片
+function upLoadImg(){
+    $("#m_image_addr").live("change",function(){
+        //注意这里不能写错。。。
+        var file=$("#m_image_addr")[0].files[0];
+        var formData = new FormData();
+        formData.append("m_image_addr",file);
+        //对文件类型进行判断
+        var index=file.name.lastIndexOf(".");
+        var type=file.name.substring(index);
+        if(type!=".jpg"&&type!=".png"){
+            alert("只能上传jpg和png格式的图片！！");
+            return;
+        }
+        $.ajax({
+            url:"../upload.do",
+            data:formData,
+            dataType:"text",
+            type:"post",
+            //这两个属性必须设置！！！！
+            contentType: false,
+            processData: false, //设置为true时，ajax提交的时候不会序列化data，而是直接使用data
+            success:function (path) {
+                $("#yulan").attr("src",path);
+                $("input[name='imgUrl']").attr("value",path);
+            }
+        })
+    })
+}
 
 /**
  * 1. form表单 id="form1"
