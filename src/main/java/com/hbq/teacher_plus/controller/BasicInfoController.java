@@ -95,7 +95,7 @@ public class BasicInfoController {
     public  Result leadIn(MultipartFile excel,String cuId) throws Exception {
         int rowNum = 0;
         if (!excel.isEmpty()) {
-            List<BasicInfo> list = ExcelUtil.importExcel(excel, 0, 1, BasicInfo.class);
+            List<BasicInfo> list = ExcelUtil.importExcel(excel, 1, 1, BasicInfo.class);
             rowNum = list.size();
             if (rowNum > 0) {
                 BasicInfo existBasicInfo=basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("cu_id",cuId));
@@ -125,7 +125,7 @@ public class BasicInfoController {
         BasicInfo basicInfo=basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("cu_id",cuId));
         if (basicInfo==null) {basicInfos.add(basicInfoService.getById(0));} else {basicInfos.add(basicInfo);}
         //导出操作
-        ExcelUtil.exportExcel(basicInfos, null, "基本信息导出", BasicInfo.class, "basicInfo.xls", response);
+        ExcelUtil.exportExcel(basicInfos, "基本信息导出", "基本信息导出", BasicInfo.class, "basicInfo.xls", response);
 
     }
 }

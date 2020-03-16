@@ -76,12 +76,12 @@ public class EducationController {
         educationService.removeById(id);
         return Result.succeed("删除成功");
     }
-    @ApiOperation(value = "基本信息导入")
+    @ApiOperation(value = "教育信息导入")
     @PostMapping("/education/leadIn")
     public  Result leadIn(MultipartFile excel, String cuId) throws Exception {
         int rowNum = 0;
         if (!excel.isEmpty()) {
-            List<Education> list = ExcelUtil.importExcel(excel, 0, 1, Education.class);
+            List<Education> list = ExcelUtil.importExcel(excel, 1, 1, Education.class);
             rowNum = list.size();
             if (rowNum > 0) {
                 //无该用户信息
@@ -95,7 +95,7 @@ public class EducationController {
         }
         return Result.failed("导入失败");
     }
-    @ApiOperation(value = "基本信息导出")
+    @ApiOperation(value = "教育信息导出")
     @PostMapping("/education/leadOut")
     public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<Education> educations =new ArrayList<>();
@@ -106,7 +106,7 @@ public class EducationController {
             }
         }
         //导出操作
-        ExcelUtil.exportExcel(educations, null, "基本信息导出", Education.class, "education.xls", response);
+        ExcelUtil.exportExcel(educations, "教育信息导出", "教育信息导出", Education.class, "education.xls", response);
 
     }
 }

@@ -83,7 +83,7 @@
                             <div class="control-group">
                                 <label class="control-label">学历：</label>
                                 <div class="controls">
-                                    <select  name="certificate">
+                                    <select id="certificate"  name="certificate">
                                         <option value="本科">本科</option>
                                         <option value="硕士">硕士</option>
                                         <option value="博士">博士</option>
@@ -139,11 +139,11 @@
                                     <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
                                 </div>
                             </div>
-                            <form action="/basicInfo/leadOut" method="post" style="display: inline-block;">
+                            <form action="/education/leadOut" method="post" style="display: inline-block;">
                                 <input id="cuId2" name="cuId" type="text" style="display: none" >
                                 <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
                             </form>
-                            <button id="btn2" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
+                            <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
                         </center>
 
                     </div>
@@ -167,6 +167,8 @@
 <script src="../js/wysihtml5-0.3.0.js"></script>
 <script src="../js/jquery.peity.min.js"></script>
 <script src="../js/bootstrap-wysihtml5.js"></script>
+<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+
 <script>
     $(function () {
         var cuId=$.cookie("cuId");
@@ -176,8 +178,8 @@
         $('#backid').click(function(){
             window.location.href="index.html";
         });
-
-        $("#btn2").click(function () {
+        //保存
+        $("#btn1").click(function () {
             var certificate=$("#certificate").val();
             var r = confirm("* 你当前添加学历为\t"+certificate+"\n"+
                 "* 需提供资料：毕业证书、学位证书\n\n" +
@@ -188,7 +190,34 @@
 
             }
         })
-
+        //导入
+        $("#leadIn").click(function () {
+            var excel=$("#excel")[0].files[0];
+            var formData = new FormData();
+            formData.append("excel",excel);
+            formData.append("cuId",cuId);
+            $.ajax({
+                url:'/education/leadIn',
+                dataType:'json',
+                type:'POST',
+                async: false,
+                data: formData,
+                processData : false, // 使数据不做处理
+                contentType : false, // 不要设置Content-Type请求头
+                success: function(result){
+                    console.log(result);
+                    if (result.resp_code == '0') {
+                        alert(result.resp_msg);
+                        window.location.href="education.html";
+                    }else {
+                        $("#span1").text(result.resp_msg);
+                    }
+                },
+                error:function(response){
+                    console.log(response);
+                }
+            });
+        })
     })
 
 
