@@ -354,6 +354,8 @@
         if (result.resp_code == "0") {
           alert(result.resp_msg);
           window.location.href="basic.html";
+        }else {
+          $("#span1").val(result.resp_msg);
         }
       }
     });
