@@ -120,7 +120,7 @@
                                     <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
                                 </div>
                             </div>
-                            <form action="/basicInfo/leadOut" method="post" style="display: inline-block;">
+                            <form action="/work/leadOut" method="post" style="display: inline-block;">
                                 <input id="cuId2" name="cuId" type="text" style="display: none" >
                                 <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
                             </form>
@@ -152,6 +152,9 @@
 
 <script>
     $(function () {
+        var cuId=$.cookie("cuId");
+        $("#cuId").val(cuId);
+        $("#cuId2").val(cuId);
         //退出
         $('#backid').click(function(){
             window.location.href="index.html";
