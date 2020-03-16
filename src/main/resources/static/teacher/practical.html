@@ -30,7 +30,7 @@
                         <h5>应用型课程建设情况</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <span id="span1" style="color: red;"></span>
+                        <span id="span1" style="color: red;" className="practical"></span>
                         <table class="table table-bordered table-striped" frame="box">
                             <thead>
                             <tr><th colspan="9" >已添教学内容(重新添加可修改)</th></tr>
@@ -48,7 +48,7 @@
                             </tbody>
                         </table>
 
-                        <form id="practical" action="#" method="get" class="form-horizontal">
+                        <form id="form1" action="#" method="get" class="form-horizontal">
                             <input id="cuId" name="cuId" type="text" style="display: none">
                             <div class="control-group">
                                 <label class="control-label">课程名称：</label>
@@ -119,89 +119,23 @@
 <script src="../js/jquery.peity.min.js"></script>
 <script src="../js/bootstrap-wysihtml5.js"></script>
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
-
+<script src="../js/tool.js"></script>
 <script>
     $(function () {
+        var CLASS_NAME=$("#span1").attr("className");
         queryPage(1);
-        var cuId=$.cookie("cuId");
-        $("#cuId").val(cuId);
-        $("#cuId2").val(cuId);
-        //退出
-        $('#backid').click(function(){
-            window.location.href="index.html";
-        });
         //保存
         $("#btn1").click(function () {
             var certificate=$("#certificate").val();
             var r = confirm("* 需提供立项文件、过程文件、结项文件	\n"+
                 "\t\t您是否确定保存？")
             if (r == true) {
-                addPractical();
+                add(CLASS_NAME);
             } else {
 
             }
-        })
-        //导入
-        $("#leadIn").click(function () {
-            var r = confirm("* 导入excel应确保格式正确	\n"+
-                "* 如不确定请先点击‘保存为Excel’查看模板格式 \n"+
-                "\t\t\t您是否确定保存？")
-            if (r == true) {
-                leadIn();
-            } else {
-
-            }
-        })
-        //删除
-        $("#remove").live("click",function() {
-            var eid = $(this).attr("eid");
-            $.ajax({
-                url:"../practical/"+ eid,
-                type:"delete",
-                data:{},
-                dataType:"json",
-                success:function (result) {
-                    if (result.resp_code == "0") {
-                        alert(result.resp_msg);
-                        window.location.href = "practical.html";
-                    }else {
-                        $("#span1").text(result.resp_msg);
-                    }
-                }
-            })
         })
     })
-    function leadIn() {
-        if ($("#excel").val()==""){
-            alert("请先选择文件!");
-        }else {
-            var excel=$("#excel")[0].files[0];
-            var formData = new FormData();
-            formData.append("excel",excel);
-            formData.append("cuId",$.cookie("cuId"));
-            $.ajax({
-                url:'/practical/leadIn',
-                dataType:'json',
-                type:'POST',
-                async: false,
-                data: formData,
-                processData : false, // 使数据不做处理
-                contentType : false, // 不要设置Content-Type请求头
-                success: function(result){
-                    console.log(result);
-                    if (result.resp_code == '0') {
-                        alert(result.resp_msg);
-                        window.location.href="practical.html";
-                    }else {
-                        $("#span1").text(result.resp_msg);
-                    }
-                },
-                error:function(response){
-                    console.log(response);
-                }
-            });
-        }
-    }
     //表格填充
     function queryPage(pageNum){
         //当前页码
@@ -229,47 +163,6 @@
 
         },"json");
     }
-    //上传接口
-    function addPractical() {
-        console.log($('#practical').serializeJson())
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: '../practical',
-            contentType: "application/json",
-            data:JSON.stringify($('#practical').serializeJson()),
-            success: function (result) {
-                console.log("data is :" + result)
-                if (result.resp_code == "0") {
-                    alert(result.resp_msg);
-                    window.location.href="practical.html";
-                }else {
-                    $("#span1").val(result.resp_msg);
-                }
-            }
-        });
-    }
-    //form->json
-    (function (window, $) {
-        $.fn.serializeJson = function () {//form serialize to json
-            var serializeObj = {};
-            var array = this.serializeArray();
-            $(array).each(
-                function () {
-                    if (serializeObj[this.name]) {
-                        if ($.isArray(serializeObj[this.name])) {
-                            serializeObj[this.name].push(this.value);
-                        } else {
-                            serializeObj[this.name] = [
-                                serializeObj[this.name], this.value];
-                        }
-                    } else {
-                        serializeObj[this.name] = this.value;
-                    }
-                });
-            return serializeObj;
-        };
-    })(window, jQuery);
 </script>
 </body>
 </html>

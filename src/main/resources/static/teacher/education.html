@@ -53,7 +53,7 @@
                         <h5>教育情况</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <span id="span1" style="color: red;"></span>
+                        <span id="span1" style="color: red;" className="education"></span>
                         <table id="t1" class="table table-bordered table-striped" frame="box">
                             <thead>
                             <tr><th colspan="7" >已添学历信息</th></tr>
@@ -72,7 +72,7 @@
                             </tbody>
                         </table>
 
-                        <form id="education" action="#" method="get" class="form-horizontal">
+                        <form id="form1" action="#" method="get" class="form-horizontal">
                             <input id="cuId" name="cuId" type="text" style="display: none">
                             <div class="control-group">
                                 <label class="control-label">学历：</label>
@@ -162,17 +162,11 @@
 <script src="../js/jquery.peity.min.js"></script>
 <script src="../js/bootstrap-wysihtml5.js"></script>
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
-
+<script src="../js/tool.js"></script>
 <script>
     $(function () {
+        var CLASS_NAME=$("#span1").attr("className");
         queryPage(1);
-        var cuId=$.cookie("cuId");
-        $("#cuId").val(cuId);
-        $("#cuId2").val(cuId);
-        //退出
-        $('#backid').click(function(){
-            window.location.href="index.html";
-        });
         //保存
         $("#btn1").click(function () {
             var certificate=$("#certificate").val();
@@ -180,86 +174,24 @@
                 "* 需提供资料：毕业证书、学位证书\n\n" +
                 "\t\t您是否确定保存？")
             if (r == true) {
-                addEducation();
+                add(CLASS_NAME);
             } else {
 
             }
-        })
-        //导入
-        $("#leadIn").click(function () {
-            var r = confirm("* 导入excel应确保格式正确	\n"+
-                "* 如不确定请先点击‘保存为Excel’查看模板格式 \n"+
-                "\t\t\t您是否确定保存？")
-            if (r == true) {
-                leadIn();
-            } else {
-
-            }
-        })
-
-        //删除
-        $("#remove").live("click",function() {
-            var eid = $(this).attr("eid");
-            $.ajax({
-                url:"../education/"+ eid,
-                type:"delete",
-                data:{},
-                dataType:"json",
-                success:function (result) {
-                    if (result.resp_code == "0") {
-                        alert(result.resp_msg);
-                        window.location.href = "education.html";
-                    }else {
-                        $("#span1").text(result.resp_msg);
-                    }
-                }
-            })
         })
     })
-
-    function leadIn() {
-        if ($("#excel").val()==""){
-            alert("请先选择文件!");
-        }else {
-            var excel=$("#excel")[0].files[0];
-            var formData = new FormData();
-            formData.append("excel",excel);
-            formData.append("cuId",$.cookie("cuId"));
-            $.ajax({
-                url:'/education/leadIn',
-                dataType:'json',
-                type:'POST',
-                async: false,
-                data: formData,
-                processData : false, // 使数据不做处理
-                contentType : false, // 不要设置Content-Type请求头
-                success: function(result){
-                    console.log(result);
-                    if (result.resp_code == '0') {
-                        alert(result.resp_msg);
-                        window.location.href="education.html";
-                    }else {
-                        $("#span1").text(result.resp_msg);
-                    }
-                },
-                error:function(response){
-                    console.log(response);
-                }
-            });
-        }
-    }
-    //表格填充
+    //表格填充函数
     function queryPage(pageNum){
+        var CLASS_NAME=$("#span1").attr("className");
         //当前页码
         pageNum= pageNum==undefined?1:pageNum;
 
         //页码的有效性判断
-        $.get("../education",{page:pageNum,limit:5,cuId:$.cookie("cuId")},function(result){
+        $.get("../"+CLASS_NAME+"",{page:pageNum,limit:5,cuId:$.cookie("cuId")},function(result){
             console.log(result.data)
             //填充数据到tbody
             $("#tbody").empty();//清除之前的内容
             $(result.data).each(function(index,education){
-                console.log(education.certificate)
                 $("#tbody").append(
                     " <tr>"+
                     "<td>"+education.certificate+"</td>"+
@@ -276,47 +208,6 @@
 
         },"json");
     }
-    //上传接口
-    function addEducation() {
-        console.log($('#education').serializeJson())
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: '../education',
-            contentType: "application/json",
-            data:JSON.stringify($('#education').serializeJson()),
-            success: function (result) {
-                console.log("data is :" + result)
-                if (result.resp_code == "0") {
-                    alert(result.resp_msg);
-                    window.location.href="education.html";
-                }else {
-                    $("#span1").val(result.resp_msg);
-                }
-            }
-        });
-    }
-    //form->json
-    (function (window, $) {
-        $.fn.serializeJson = function () {//form serialize to json
-            var serializeObj = {};
-            var array = this.serializeArray();
-            $(array).each(
-                function () {
-                    if (serializeObj[this.name]) {
-                        if ($.isArray(serializeObj[this.name])) {
-                            serializeObj[this.name].push(this.value);
-                        } else {
-                            serializeObj[this.name] = [
-                                serializeObj[this.name], this.value];
-                        }
-                    } else {
-                        serializeObj[this.name] = this.value;
-                    }
-                });
-            return serializeObj;
-        };
-    })(window, jQuery);
 </script>
 </body>
 </html>
