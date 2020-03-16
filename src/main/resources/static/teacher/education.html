@@ -225,6 +225,8 @@
                     if (result.resp_code == "0") {
                         alert(result.resp_msg);
                         window.location.href = "education.html";
+                    }else {
+                        $("#span1").text(result.resp_msg);
                     }
                 }
             })
