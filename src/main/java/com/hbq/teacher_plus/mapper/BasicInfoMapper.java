@@ -24,4 +24,5 @@ public interface BasicInfoMapper extends SuperMapper<BasicInfo> {
      * @return
      */
     List<BasicInfo> findList(Page<BasicInfo> page, @Param("p") Map<String, Object> params);
+    List<BasicInfo> findList2(Page<BasicInfo> page, @Param("p") Map<String, Object> params);
 }

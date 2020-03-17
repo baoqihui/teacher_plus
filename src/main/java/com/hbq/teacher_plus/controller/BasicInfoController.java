@@ -128,4 +128,14 @@ public class BasicInfoController {
         ExcelUtil.exportExcel(basicInfos, "基本信息导出", "基本信息导出", BasicInfo.class, "basicInfo.xls", response);
 
     }
+
+    /**
+     * 查询用户信息（全）
+     * */
+    @ApiOperation(value = "查询")
+    @GetMapping("/basicInfo/findAllUsers")
+    public Result findAllUsers(@RequestParam(required = false) Map<String, Object> params) {
+        PageResult<BasicInfo> basicInfos = basicInfoService.findList2(params);
+        return Result.succeed(basicInfos, "查询成功");
+    }
 }

@@ -19,5 +19,6 @@ public interface IBasicInfoService extends IService<BasicInfo> {
      * @return
      */
     PageResult<BasicInfo> findList(Map<String, Object> params);
+    PageResult<BasicInfo> findList2(Map<String, Object> params);
 }
 

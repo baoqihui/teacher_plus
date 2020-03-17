@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 基本信息
@@ -88,4 +89,8 @@ public class BasicInfo extends SuperEntity {
         @ApiModelProperty(value = "删除标志",hidden = true)
         private Boolean isDel;
 
+        @ApiModelProperty(value = "教育信息",hidden = true)
+        private List<Education> educations;
+        @ApiModelProperty(value = "工作信息",hidden = true)
+        private Work work;
 }

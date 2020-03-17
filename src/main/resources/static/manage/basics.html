@@ -28,19 +28,20 @@
         <div class="control-group" style="display: inline-block;">
           <span class="control-label">姓名：</span>
           <div class="controls">
-            <input type="text" placeholder="Company name" />
+            <input id="name" type="text" placeholder="Company name" />
           </div>
         </div>
         <div class="control-group" style="display: inline-block; ">
           <span class="control-label">身份证号：</span>
           <div class="controls">
-            <input type="text" placeholder="Company name" />
+            <input id="cert_num" type="text" placeholder="Company name" />
           </div>
         </div>
         <div class="control-group" style="display: inline-block; ">
-          <span class="control-label">专业技术职务：</span>
+          <span class="control-label">参加工作时间：</span>
           <div class="controls">
-            <input type="text" placeholder="Company name" />
+            <input id="startTime" type="date" />-至-
+            <input id="endTime" type="date" />
           </div>
         </div>
       </form>
@@ -60,7 +61,6 @@
             <table id="t1"  style="text-align: center">
               <thead>
                 <tr >
-                  <th rowspan="2"><i class="icon-resize-vertical" ></i></th>
                   <th rowspan="2" >姓名</th>
                   <th rowspan="2" >证件类型</th>
                   <th rowspan="2">证件号码</th>
@@ -68,7 +68,6 @@
                   <th rowspan="2">出生年月</th>
 
                   <th rowspan="2">专业技术职务</th>
-                  <th rowspan="2">最终学位</th>
                   <th colspan="4">本科学历</th>
                   <th colspan="4">硕士学历</th>
                   <th rowspan="2">参加工作时间</th>
@@ -91,167 +90,8 @@
                   <th>毕业学校</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <td>常新峰</td>
-                  <td>身份证</td>
-                  <td>412702198203106936</td>
-                  <td>男</td>
-                  <td>1982/03</td>
+              <tbody id="tbody">
 
-                  <td>讲师</td>
-                  <td>硕士</td>
-                  <td>学士</td>
-                  <td>计算机科学与技术</td>
-                  <td>2007/06</td>
-
-                  <td>南阳师范学院</td>
-                  <td>硕士</td>
-                  <td>计算机软件与理论</td>
-                  <td>2010/07</td>
-                  <td>重庆邮电大学</td>
-
-                  <td>2010/07</td>
-                  <td>2010/07</td>
-                  <td>2010/07</td>
-                  <td>是</td>
-                  <td>已参加</td>
-
-                  <td>否</td>
-                  <td width="40px">
-                    <a href="#"><i class="icon-search"></i></a>
-                    <a href="#"><i class="icon-trash"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <td>常新峰</td>
-                  <td>身份证</td>
-                  <td>412702198203106936</td>
-                  <td>男</td>
-                  <td>1982/03</td>
-
-                  <td>讲师</td>
-                  <td>硕士</td>
-                  <td>学士</td>
-                  <td>计算机科学与技术</td>
-                  <td>2007/06</td>
-
-                  <td>南阳师范学院</td>
-                  <td>硕士</td>
-                  <td>计算机软件与理论</td>
-                  <td>2010/07</td>
-                  <td>重庆邮电大学</td>
-
-                  <td>2010/07</td>
-                  <td>2010/07</td>
-                  <td>2010/07</td>
-                  <td>是</td>
-                  <td>已参加</td>
-
-                  <td>否</td>
-                    <td width="40px">
-                        <a href="#"><i class="icon-search"></i></a>
-                        <a href="#"><i class="icon-trash"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <td>常新峰</td>
-                  <td>身份证</td>
-                  <td>412702198203106936</td>
-                  <td>男</td>
-                  <td>1982/03</td>
-
-                  <td>讲师</td>
-                  <td>硕士</td>
-                  <td>学士</td>
-                  <td>计算机科学与技术</td>
-                  <td>2007/06</td>
-
-                  <td>南阳师范学院</td>
-                  <td>硕士</td>
-                  <td>计算机软件与理论</td>
-                  <td>2010/07</td>
-                  <td>重庆邮电大学</td>
-
-                  <td>2010/07</td>
-                  <td>2010/07</td>
-                  <td>2010/07</td>
-                  <td>是</td>
-                  <td>已参加</td>
-
-                  <td>否</td>
-                    <td width="40px">
-                        <a href="#"><i class="icon-search"></i></a>
-                        <a href="#"><i class="icon-trash"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <td>常新峰</td>
-                  <td>身份证</td>
-                  <td>412702198203106936</td>
-                  <td>男</td>
-                  <td>1982/03</td>
-
-                  <td>讲师</td>
-                  <td>硕士</td>
-                  <td>学士</td>
-                  <td>计算机科学与技术</td>
-                  <td>2007/06</td>
-
-                  <td>南阳师范学院</td>
-                  <td>硕士</td>
-                  <td>计算机软件与理论</td>
-                  <td>2010/07</td>
-                  <td>重庆邮电大学</td>
-
-                  <td>2010/07</td>
-                  <td>2010/07</td>
-                  <td>2010/07</td>
-                  <td>是</td>
-                  <td>已参加</td>
-
-                  <td>否</td>
-                    <td width="40px">
-                        <a href="#"><i class="icon-search"></i></a>
-                        <a href="#"><i class="icon-trash"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <td>常新峰</td>
-                  <td>身份证</td>
-                  <td>412702198203106936</td>
-                  <td>男</td>
-                  <td>1982/03</td>
-
-                  <td>讲师</td>
-                  <td>硕士</td>
-                  <td>学士</td>
-                  <td>计算机科学与技术</td>
-                  <td>2007/06</td>
-
-                  <td>南阳师范学院</td>
-                  <td>硕士</td>
-                  <td>计算机软件与理论</td>
-                  <td>2010/07</td>
-                  <td>重庆邮电大学</td>
-
-                  <td>2010/07</td>
-                  <td>2010/07</td>
-                  <td>2010/07</td>
-                  <td>是</td>
-                  <td>已参加</td>
-
-                  <td>否</td>
-                    <td width="40px">
-                        <a href="#"><i class="icon-search"></i></a>
-                        <a href="#"><i class="icon-trash"></i></a>
-                    </td>
-                </tr>
               </tbody>
             </table>
         <div class="pagination" style="margin-left: 70%">
@@ -293,6 +133,7 @@
 
 <script type="text/javascript">
   $(function () {
+    queryPage(1);
     $('#t1').bootstrapTable({
       striped: true,	//有条纹
       pagination: false,	//页码信息
@@ -303,6 +144,50 @@
       exportTypes: ['excel','txt','xml'],		//导出格式
     })
   })
+
+  //表格填充函数
+  function queryPage(pageNum){
+    //当前页码
+    pageNum= pageNum==undefined?1:pageNum;
+    //页码的有效性判断
+    $.get("/basicInfo/findAllUsers",{page:pageNum,limit:5},function(result){
+      console.log(result.datas)
+      //填充数据到tbody
+      $("#tbody").empty();//清除之前的内容
+      $(result.datas.data).each(function(index,basicInfo){
+        $("#tbody").append(
+                " <tr>"+
+                "<td>"+basicInfo.name+"</td>"+
+                "<td >"+basicInfo.certType+"</td>"+
+                "<td >"+basicInfo.certNum+"</td>"+
+                "<td>"+basicInfo.sex+"</td>"+
+                "<td >"+basicInfo.birthday+"</td>"+
+                "<td >"+basicInfo.skillJob+"</td>"+
+
+                "<td>"+basicInfo.educations[0].degree+"</td>"+
+                "<td>"+basicInfo.educations[0].major+"</td>"+
+                "<td>"+basicInfo.educations[0].studyingTime+"-"+basicInfo.educations[0].graduaTime+"</td>"+
+                "<td>"+basicInfo.educations[0].school+"</td>"+
+
+                "<td>"+basicInfo.educations[1].degree+"</td>"+
+                "<td>"+basicInfo.educations[1].major+"</td>"+
+                "<td>"+basicInfo.educations[1].studyingTime+"-"+basicInfo.educations[0].graduaTime+"</td>"+
+                "<td>"+basicInfo.educations[1].school+"</td>"+
+
+                "<td>"+basicInfo.work.workTime+"</td>"+
+                "<td>"+basicInfo.work.teachTime+"</td>"+
+                "<td>"+basicInfo.work.atTime+"</td>"+
+                "<td>"+basicInfo.work.isWork+"</td>"+
+                "<td>"+basicInfo.work.train+"</td>"+
+                "<td>"+basicInfo.work.supervisor+"</td>"+
+                "<td>"+
+                "<a href='#' id='remove' class='icon-remove' eid="+basicInfo.cuId+" >删除</a></td>"+
+                "</tr>"
+        );
+      })
+
+    },"json");
+  }
 </script>
 
 </body>
