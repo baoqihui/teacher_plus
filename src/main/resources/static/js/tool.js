@@ -9,26 +9,29 @@ $(function () {
     $("#leadIn").click(function () {
         var r = confirm("* 导入excel应确保格式正确	\n"+
             "* 如不确定请先点击‘保存为Excel’查看模板格式 \n"+
-            "\t\t\t您是否确定保存？")
+            "\t\t\t您是否确定导入？")
         if (r == true) {leadIn(CLASS_NAME);}
     })
     //删除
     $("#remove").live("click",function() {
-        var eid = $(this).attr("eid");
-        $.ajax({
-            url:"../"+CLASS_NAME+"/"+ eid,
-            type:"delete",
-            data:{},
-            dataType:"json",
-            success:function (result) {
-                if (result.resp_code == "0") {
-                    alert(result.resp_msg);
-                    window.location.href = ""+CLASS_NAME+".html";
-                }else {
-                    $("#span1").text(result.resp_msg);
+        var r = confirm("\t确定删除？")
+        if (r == true) {
+            var eid = $(this).attr("eid");
+            $.ajax({
+                url:"../"+CLASS_NAME+"/"+ eid,
+                type:"delete",
+                data:{},
+                dataType:"json",
+                success:function (result) {
+                    if (result.resp_code == "0") {
+                        alert(result.resp_msg);
+                        window.location.href = ""+CLASS_NAME+".html";
+                    }else {
+                        $("#span1").text(result.resp_msg);
+                    }
                 }
-            }
-        })
+            })
+        }
     })
 })
 
