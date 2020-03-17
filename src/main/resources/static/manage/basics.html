@@ -46,7 +46,7 @@
         </div>
       </form>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button class="btn btn-warning" style="display: inline-block; ">搜索</button>
+      <button id="su" class="btn btn-warning" style="display: inline-block; ">搜索</button>
     </div>
     <hr>
     <div class="row-fluid">
@@ -133,6 +133,7 @@
 
 <script type="text/javascript">
   $(function () {
+
     queryPage(1);
     $('#t1').bootstrapTable({
       striped: true,	//有条纹
@@ -143,14 +144,21 @@
       showExport: true,	//导出
       exportTypes: ['excel','txt','xml'],		//导出格式
     })
+    $("#su").click(function () {
+      queryPage(1);
+    })
   })
 
   //表格填充函数
   function queryPage(pageNum){
+    var name=$("#name").val();
+    var cert_num=$("#cert_num").val();
+    var startTime=$("#startTime").val();
+    var endTime=$("#endTime").val();
     //当前页码
     pageNum= pageNum==undefined?1:pageNum;
     //页码的有效性判断
-    $.get("/basicInfo/findAllUsers",{page:pageNum,limit:5},function(result){
+    $.get("/basicInfo/findAllUsers",{name:name,certNum:cert_num,startTime:startTime,endTime:endTime,page:pageNum,limit:5},function(result){
       console.log(result.datas)
       //填充数据到tbody
       $("#tbody").empty();//清除之前的内容
