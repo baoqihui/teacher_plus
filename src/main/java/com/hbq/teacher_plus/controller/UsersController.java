@@ -109,6 +109,26 @@ public class UsersController {
     }
 
     /**
+     * 通过手机号查询用户信息
+     * */
+    @ApiOperation(value = "查询")
+    @GetMapping("/users/getUsersInfo/{tel}")
+    public Result findUserByTel(@PathVariable String tel) {
+        Users model = usersService.getOne(new QueryWrapper<Users>().eq("tel",tel));
+        return Result.succeed(model, "查询成功");
+    }
+    /**
+     * 通过手机号修改用户信息
+     * */
+    @RequestMapping(value="/users/editUsersInfo")
+    @ResponseBody
+    public Result editUserByTel(String tel,String type) {
+        Users model = usersService.getOne(new QueryWrapper<Users>().eq("tel",tel));
+        model.setType(type);
+        usersService.updateById(model);
+        return Result.succeed(model, "修改权限成功");
+    }
+    /**
      * 删除
      */
     @ApiOperation(value = "删除")

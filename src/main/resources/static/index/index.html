@@ -78,33 +78,60 @@
         <li class="submenu">
             <a href="#">
                 <i class="fa fa-table"></i>
-                <span class="menu1_name">教师端</span>
+                <span class="menu1_name">教师端-基本情况</span>
                 <span class="label label-important">3</span>
             </a>
             <ul>
-                <li><a class="menu_a" link="../teacher/basicInfo.html"><i class="icon icon-caret-right"></i>基本情况-基本信息</a></li>
-                <li><a class="menu_a" link="../teacher/education.html"><i class="icon icon-caret-right"></i>基本情况-教育信息</a></li>
-                <li><a class="menu_a" link="../teacher/work.html"><i class="icon icon-caret-right"></i>基本情况-工作信息</a></li>
-                <li><a class="menu_a" link="../teacher/teacherInfo.html"><i class="icon icon-caret-right"></i>教学情况-教学内容</a></li>
-                <li><a class="menu_a" link="../teacher/practical.html"><i class="icon icon-caret-right"></i>教学情况-应用型课程</a></li>
-                <li><a class="menu_a" link="../teacher/paper.html"><i class="icon icon-caret-right"></i>教学情况-学生论文</a></li>
-                <li><a class="menu_a" link="../teacher/teacherPaper.html"><i class="icon icon-caret-right"></i>科研成果-学术论文</a></li>
-                <li><a class="menu_a" link="../teacher/monograph.html"><i class="icon icon-caret-right"></i>科研成果-出版专著</a></li>
-                <li><a class="menu_a" link="../teacher/patent.html"><i class="icon icon-caret-right"></i>科研成果-专利情况</a></li>
+                <li><a class="menu_a" link="../teacher/basicInfo.html"><i class="fa fa-arrows"></i>基本信息</a></li>
+                <li><a class="menu_a" link="../teacher/education.html"><i class="fa fa-crosshairs"></i>教育信息</a></li>
+                <li><a class="menu_a" link="../teacher/work.html"><i class="fa fa-adjust"></i>工作信息</a></li>
             </ul>
-
         </li>
+        <li class="submenu">
+            <a href="#">
+                <i class="fa fa-umbrella"></i>
+                <span class="menu1_name">教师端-教学情况</span>
+                <span class="label label-important">3</span>
+            </a>
+            <ul>
+                <li><a class="menu_a" link="../teacher/teacherInfo.html"><i class="fa fa-arrows"></i>教学内容</a></li>
+                <li><a class="menu_a" link="../teacher/practical.html"><i class="fa fa-crosshairs"></i>应用型课程</a></li>
+                <li><a class="menu_a" link="../teacher/paper.html"><i class="fa fa-adjust"></i>学生论文</a></li>
+            </ul>
+        </li>
+        <li class="submenu">
+            <a href="#">
+                <i class="fa fa-tint"></i>
+                <span class="menu1_name">&nbsp;教师端-科研成果</span>
+                <span class="label label-important">3</span>
+            </a>
+            <ul>
+                <li><a class="menu_a" link="../teacher/teacherPaper.html"><i class="fa fa-arrows"></i>学术论文</a></li>
+                <li><a class="menu_a" link="../teacher/monograph.html"><i class="fa fa-crosshairs"></i>出版专著</a></li>
+                <li><a class="menu_a" link="../teacher/patent.html"><i class="fa fa-adjust"></i>专利情况</a></li>
+            </ul>
+        </li>
+
         <li id="manage" class="submenu">
             <a href="#">
-                <i class=" fa fa-tv"></i>
+                <i class=" fa fa-user-times"></i>
                 <span class="menu1_name">管理端</span>
                 <span class="label label-important">3</span>
             </a>
             <ul>
-                <li><a class="menu_a" link="../manage/basics.html"><i class="icon icon-caret-right"></i> 专业教师基本情况</a></li>
-                <li><a class="menu_a" link="../manage/transaction.html"><i class="icon icon-caret-right"></i>教师岗位异动情况</a></li>
-                <li><a class="menu_a" link="../manage/teachings.html"><i class="icon icon-caret-right"></i>教师授课情况</a></li>
-                <li><a class="menu_a" link="../manage/authority.html"><i class="icon icon-caret-right"></i>权限管理</a></li>
+                <li><a class="menu_a" link="../manage/basics.html"><i class="fa fa-arrows"></i>专业教师基本情况</a></li>
+                <li><a class="menu_a" link="../manage/transaction.html"><i class="fa fa-crosshairs"></i>教师岗位异动情况</a></li>
+                <li><a class="menu_a" link="../manage/teachings.html"><i class="fa fa-adjust"></i>教师授课情况</a></li>
+            </ul>
+        </li>
+        <li id="admin" class="submenu">
+            <a href="#">
+                <i class=" fa fa-tv"></i>
+                <span class="menu1_name">权限管理</span>
+                <span class="label label-important">1</span>
+            </a>
+            <ul>
+                <li><a class="menu_a" link="../manage/users.html"><i class="fa fa-magnet"></i>权限管理</a></li>
             </ul>
         </li>
     </ul>
@@ -156,8 +183,11 @@
         var username=$.cookie('username'); //args["username"];
         var type=$.cookie('type'); //args["type"];
         $("#span1").text("欢迎您："+username);
-        if(type!="1"){
+        if(type=="0"){
             $("#manage").hide();
+            $("#admin").hide();
+        }if (type=="1"){
+            $("#admin").hide();
         }
     })
 </script>
