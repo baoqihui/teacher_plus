@@ -81,7 +81,6 @@
                         </form>
 
                         <center>
-                            <button id="query" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">查询</button>
                             <button id="btn1" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px">保存</button>
                         </center>
 
@@ -111,8 +110,8 @@
 <script src="../js/tool.js"></script>
 <script>
     $(function () {
-        $("#query").click(function () {
-                $.get("/users/getUsersInfo/"+$("#tel").val(),{},function (result) {
+        $("#tel").live("blur",function () {
+                $.get("/users/getUsersInfo/"+$(this).val(),{},function (result) {
                     if (result.resp_code=="0"){
                         loadData(result.datas);
                     }

@@ -47,6 +47,7 @@
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
+            <button id="adde" class="btn btn-info btn-large" style="border-radius: 5px">添加获批专利情况</button>
             <div id="form_2" class="span12">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -71,69 +72,70 @@
 
                             </tbody>
                         </table>
+                        <div id="form3" class="span12" style="display: none">
 
-                        <form id="form1" action="#" method="get" class="form-horizontal">
-                            <input id="cuId" name="cuId" type="text" style="display: none">
+                            <form id="form1" action="#" method="get" class="form-horizontal">
+                                <input id="cuId" name="cuId" type="text" style="display: none">
 
-                            <div class="control-group">
-                                <label class="control-label">专利名称：</label>
-                                <div class="controls">
-                                    <input name="patentName" type="text" class="span11" placeholder="Last name" />
+                                <div class="control-group">
+                                    <label class="control-label">专利名称：</label>
+                                    <div class="controls">
+                                        <input name="patentName" type="text" class="span11" placeholder="Last name" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">作者 ：</label>
-                                <div class="controls">
-                                    <input name="patentAuthor" type="text" class="span11" placeholder="Company name" />
+                                <div class="control-group">
+                                    <label class="control-label">作者 ：</label>
+                                    <div class="controls">
+                                        <input name="patentAuthor" type="text" class="span11" placeholder="Company name" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">最高排名：</label>
-                                <div class="controls">
-                                    <input name="highestRanking" type="text" class="span11" placeholder="Company name" />
+                                <div class="control-group">
+                                    <label class="control-label">最高排名：</label>
+                                    <div class="controls">
+                                        <input name="highestRanking" type="text" class="span11" placeholder="Company name" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">专利类型：</label>
-                                <div class="controls">
-                                    <select  name="type">
-                                        <option value="发明专利">发明专利</option>
-                                        <option value="实用新型专利">实用新型专利</option>
-                                        <option value="外观设计专利">外观设计专利</option>
-                                    </select>
+                                <div class="control-group">
+                                    <label class="control-label">专利类型：</label>
+                                    <div class="controls">
+                                        <select  name="type">
+                                            <option value="发明专利">发明专利</option>
+                                            <option value="实用新型专利">实用新型专利</option>
+                                            <option value="外观设计专利">外观设计专利</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">获批时间 ：</label>
-                                <div class="controls">
-                                    <input name="approvedTime" type="date" class="span11" />
+                                <div class="control-group">
+                                    <label class="control-label">获批时间 ：</label>
+                                    <div class="controls">
+                                        <input name="approvedTime" type="date" class="span11" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">是否应用 ：</label>
-                                <div class="controls">
-                                    <select name="isApplication">
-                                        <option value="是">是</option>
-                                        <option value="否">否</option>
-                                    </select>
+                                <div class="control-group">
+                                    <label class="control-label">是否应用 ：</label>
+                                    <div class="controls">
+                                        <select name="isApplication">
+                                            <option value="是">是</option>
+                                            <option value="否">否</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                        <center>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <label class="control-label">Excel：</label>
-                                    <input id="excel"  type="file" size="15" style="opacity: 0;">
-                                    <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
-                                </div>
-                            </div>
-                            <form action="/patent/leadOut" method="post" style="display: inline-block;">
-                                <input id="cuId2" name="cuId" type="text" style="display: none" >
-                                <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
                             </form>
-                            <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
-                        </center>
-
+                            <center>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <label class="control-label">Excel：</label>
+                                        <input id="excel"  type="file" size="15" style="opacity: 0;">
+                                        <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+                                    </div>
+                                </div>
+                                <form action="/patent/leadOut" method="post" style="display: inline-block;">
+                                    <input id="cuId2" name="cuId" type="text" style="display: none" >
+                                    <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
+                                </form>
+                                <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
+                            </center>
+                        </div>
                     </div>
                 </div>
             </div>

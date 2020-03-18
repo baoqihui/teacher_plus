@@ -26,6 +26,7 @@
   <div class="container-fluid">
 
     <div class="row-fluid">
+      <button id="adde" class="btn btn-info btn-large" style="border-radius: 5px">添加教学内容</button>
       <div id="form_1" class="span12">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -52,91 +53,92 @@
               <tbody id="tbody">
               </tbody>
             </table>
-
-            <form id="form1" action="#" method="get" class="form-horizontal">
-              <input id="cuId" name="cuId" type="text" style="display: none">
-              <div class="control-group">
-                <label class="control-label">学期时间：</label>
-                <div class="controls">
-                  <select name="termTime">
-                    <option value="2015-2016第二学期">2015-2016第二学期</option>
-                    <option value="2016-2017第一学期">2016-2017第一学期</option>
-                    <option value="2016-2017第二学期">2016-2017第二学期</option>
-                    <option value="2017-2018第一学期">2017-2018第一学期</option>
-                    <option value="2017-2018第二学期">2017-2018第二学期</option>
-                    <option value="2018-2019第一学期">2018-2019第一学期</option>
-                    <option value="2018-2019第二学期">2018-2019第二学期</option>
-                    <option value="2019-2020第一学期">2019-2020第一学期</option>
-                  </select>
+            <div id="form3" class="span12" style="display: none">
+              <form id="form1" action="#" method="get" class="form-horizontal">
+                <input id="cuId" name="cuId" type="text" style="display: none">
+                <div class="control-group">
+                  <label class="control-label">学期时间：</label>
+                  <div class="controls">
+                    <select name="termTime">
+                      <option value="2015-2016第二学期">2015-2016第二学期</option>
+                      <option value="2016-2017第一学期">2016-2017第一学期</option>
+                      <option value="2016-2017第二学期">2016-2017第二学期</option>
+                      <option value="2017-2018第一学期">2017-2018第一学期</option>
+                      <option value="2017-2018第二学期">2017-2018第二学期</option>
+                      <option value="2018-2019第一学期">2018-2019第一学期</option>
+                      <option value="2018-2019第二学期">2018-2019第二学期</option>
+                      <option value="2019-2020第一学期">2019-2020第一学期</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">课程编号：</label>
-                <div class="controls">
-                  <select name="courseNum">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                  </select>
+                <div class="control-group">
+                  <label class="control-label">课程编号：</label>
+                  <div class="controls">
+                    <select name="courseNum">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">课程名 ：</label>
-                <div class="controls">
-                  <input name="courseName" type="text" class="span11" placeholder="Company name" />
+                <div class="control-group">
+                  <label class="control-label">课程名 ：</label>
+                  <div class="controls">
+                    <input name="courseName" type="text" class="span11" placeholder="Company name" />
+                  </div>
                 </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">课程性质：</label>
-                <div class="controls">
-                  <input name="courseNature" type="text" class="span11" placeholder="Company name" />
+                <div class="control-group">
+                  <label class="control-label">课程性质：</label>
+                  <div class="controls">
+                    <input name="courseNature" type="text" class="span11" placeholder="Company name" />
+                  </div>
                 </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">理论课时：</label>
-                <div class="controls">
-                  <input name="theory" type="text" class="span11" placeholder="Company name" />
+                <div class="control-group">
+                  <label class="control-label">理论课时：</label>
+                  <div class="controls">
+                    <input name="theory" type="text" class="span11" placeholder="Company name" />
+                  </div>
                 </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">实验学时 ：</label>
-                <div class="controls">
-                  <input name="experimental" type="text" class="span11" />
+                <div class="control-group">
+                  <label class="control-label">实验学时 ：</label>
+                  <div class="controls">
+                    <input name="experimental" type="text" class="span11" />
+                  </div>
                 </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">实训学时 ：</label>
-                <div class="controls">
-                  <input name="training" type="text" class="span11" />
+                <div class="control-group">
+                  <label class="control-label">实训学时 ：</label>
+                  <div class="controls">
+                    <input name="training" type="text" class="span11" />
+                  </div>
                 </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">是否优质课：</label>
-                <div class="controls">
-                  <input type="radio" name="qualityClass" class="span11" value="是" > 是
-                  <input type="radio" name="qualityClass" class="span11" value="否" checked> 否
+                <div class="control-group">
+                  <label class="control-label">是否优质课：</label>
+                  <div class="controls">
+                    <input type="radio" name="qualityClass" class="span11" value="是" > 是
+                    <input type="radio" name="qualityClass" class="span11" value="否" checked> 否
+                  </div>
                 </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">本人承担实际学时 ：</label>
-                <div class="controls">
-                  <input name="persion" type="text" class="span11" />
+                <div class="control-group">
+                  <label class="control-label">本人承担实际学时 ：</label>
+                  <div class="controls">
+                    <input name="persion" type="text" class="span11" />
+                  </div>
                 </div>
-              </div>
-            </form>
-            <center>
-              <div class="control-group">
-                <div class="controls">
-                  <label class="control-label">Excel：</label>
-                  <input id="excel"  type="file" size="15" style="opacity: 0;">
-                  <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
-                </div>
-              </div>
-              <form action="/teacherInfo/leadOut" method="post" style="display: inline-block;">
-                <input id="cuId2" name="cuId" type="text" style="display: none" >
-                <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
               </form>
-              <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
-            </center>
+              <center>
+                <div class="control-group">
+                  <div class="controls">
+                    <label class="control-label">Excel：</label>
+                    <input id="excel"  type="file" size="15" style="opacity: 0;">
+                    <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+                  </div>
+                </div>
+                <form action="/teacherInfo/leadOut" method="post" style="display: inline-block;">
+                  <input id="cuId2" name="cuId" type="text" style="display: none" >
+                  <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
+                </form>
+                <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
+              </center>
+            </div>
           </div>
         </div>
       </div>

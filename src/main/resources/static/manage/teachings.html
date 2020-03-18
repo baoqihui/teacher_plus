@@ -2,16 +2,19 @@
 <html lang="en">
 <head>
 <title>教师信息管理系统</title>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="../css/bootstrap.min.css" />
-<link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
-<link rel="stylesheet" href="../css/uniform.css" />
-<link rel="stylesheet" href="../css/select2.css" />
-<link rel="stylesheet" href="../css/matrix-style2.css" />
-<link rel="stylesheet" href="../css/matrix-media.css" />
-<link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
+  <link rel="stylesheet" href="../css/colorpicker.css" />
+  <link rel="stylesheet" href="../css/datepicker.css" />
+  <link rel="stylesheet" href="../css/uniform.css" />
+  <link rel="stylesheet" href="../css/select2.css" />
+  <link rel="stylesheet" href="../css/matrix-style2.css" />
+  <link rel="stylesheet" href="../css/matrix-media.css" />
+  <link rel="stylesheet" href="../css/bootstrap-wysihtml5.css" />
+  <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
@@ -39,6 +42,7 @@
           <span class="control-label">任课时期：</span>
           <div class="controls">
             <select id="termTime">
+              <option value=""></option>
               <option value="2015-2016第二学期">2015-2016第二学期</option>
               <option value="2016-2017第一学期">2016-2017第一学期</option>
               <option value="2016-2017第二学期">2016-2017第二学期</option>
@@ -57,13 +61,17 @@
     <hr>
     <div class="row-fluid">
       <div class="span12">
+        <form action="/teacherInfo/leadOutAll" method="post" style="display: inline-block;">
+          <input id="cuId2" name="cuId" type="text" style="display: none" >
+          <input type="submit" class="btn btn-info btn-large" style="border-radius: 5px"; value="全部导出";>
+        </form>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon">
            </span>
             <h5>专业教师基本情况</h5>
           </div>
           <div class="widget-content nopadding">
-            <table id="t1"  style="text-align: center">
+            <table id="t1" class="table table-bordered table-striped" frame="box">
               <thead>
               <tr >
                 <th>教师姓名</th>
@@ -102,31 +110,27 @@
   </div>
 </div>
 
-<!-- 全局js -->
-<script src="../js/jquery.min.js?v=2.1.4"></script>
-<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.7.1.js"></script>
+<script src="../js/jquery.ui.custom.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-colorpicker.js"></script>
+<script src="../js/bootstrap-datepicker.js"></script>
 
-<!-- Bootstrap table -->
-<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
-<script src="../js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
-<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-
-<!--导出插件-->
-<script src="../js/plugins/bootstrap-table/locale/tableExport.js"></script>
-<script src="../js/plugins/bootstrap-table/bootstrap-table-export.js"></script>
+<script src="../js/masked.js"></script>
+<script src="../js/jquery.uniform.js"></script>
+<script src="../js/select2.min.js"></script>
+<script src="../js/matrix.js"></script>
+<script src="../js/matrix.form_common.js"></script>
+<script src="../js/wysihtml5-0.3.0.js"></script>
+<script src="../js/jquery.peity.min.js"></script>
+<script src="../js/bootstrap-wysihtml5.js"></script>
+<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+<script src="../js/tool.js"></script>
 
 <script type="text/javascript">
   $(function () {
     queryPage(1);
-    $('#t1').bootstrapTable({
-      striped: true,	//有条纹
-      pagination: true,	//页码信息
-      search: false,		//搜索
-      showColumns: true,	//列隐藏
-      showRefresh: false,	//刷新
-      showExport: true,	//导出
-      exportTypes: ['excel','txt','xml'],		//导出格式
-    })
+
     $("#su").click(function () {
       queryPage(1);
     })

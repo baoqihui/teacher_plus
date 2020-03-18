@@ -113,6 +113,23 @@ public class TeacherInfoController {
      * 导出
      */
     @ApiOperation(value = "导出")
+    @PostMapping("/teacherInfo/leadOutAll")
+    public void leadOutAll(String cuId, HttpServletResponse response) throws IOException {
+        List<TeacherInfo> teacherInfos =new ArrayList<>();
+        List<TeacherInfo> teacherInfoList = teacherInfoService.list();
+        if (teacherInfoList.isEmpty()) {teacherInfos.add(teacherInfoService.getById(0)); } else {
+            for (TeacherInfo teacherInfo : teacherInfoList) {
+                teacherInfos.add(teacherInfo);
+            }
+        }
+        //导出操作
+        ExcelUtil.exportExcel(teacherInfos, "教学内容导出", "教学内容导出", TeacherInfo.class, "teacherInfo.xls", response);
+
+    }
+    /**
+     * 导出
+     */
+    @ApiOperation(value = "导出全部")
     @PostMapping("/teacherInfo/leadOut")
     public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<TeacherInfo> teacherInfos =new ArrayList<>();

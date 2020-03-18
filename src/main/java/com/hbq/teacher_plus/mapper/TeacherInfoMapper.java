@@ -3,6 +3,7 @@ package com.hbq.teacher_plus.mapper;
 import com.hbq.teacher_plus.model.TeacherInfo;
 import com.hbq.teacher_plus.common.mapper.SuperMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hbq.teacher_plus.vo.TeacherInfoVo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -24,5 +25,5 @@ public interface TeacherInfoMapper extends SuperMapper<TeacherInfo> {
      * @return
      */
     List<TeacherInfo> findList(Page<TeacherInfo> page, @Param("p") Map<String, Object> params);
-    List<TeacherInfo> findList2(Page<TeacherInfo> page, @Param("p") Map<String, Object> params);
+    List<TeacherInfoVo> findList2(Page<TeacherInfoVo> page, @Param("p") Map<String, Object> params);
 }

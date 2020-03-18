@@ -5,6 +5,7 @@ import com.hbq.teacher_plus.common.model.PageResult;
 import com.hbq.teacher_plus.mapper.TeacherInfoMapper;
 import com.hbq.teacher_plus.model.TeacherInfo;
 import com.hbq.teacher_plus.service.ITeacherInfoService;
+import com.hbq.teacher_plus.vo.TeacherInfoVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoMapper, Teach
         List<TeacherInfo> list  =  baseMapper.findList(pages, params);
         return PageResult.<TeacherInfo>builder().data(list).code(0).count(pages.getTotal()).build();
     }
-    public PageResult<TeacherInfo> findList2(Map<String, Object> params){
+    public PageResult<TeacherInfoVo> findList2(Map<String, Object> params){
         Integer page = MapUtils.getInteger(params, "page");
         Integer limit = MapUtils.getInteger(params, "limit");
         if (page == null) {
@@ -48,8 +49,8 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoMapper, Teach
         if (limit == null) {
             limit = -1;
         }
-        Page<TeacherInfo> pages = new Page<>(page, limit);
-        List<TeacherInfo> list  =  baseMapper.findList2(pages, params);
-        return PageResult.<TeacherInfo>builder().data(list).code(0).count(pages.getTotal()).build();
+        Page<TeacherInfoVo> pages = new Page<>(page, limit);
+        List<TeacherInfoVo> list  =  baseMapper.findList2(pages, params);
+        return PageResult.<TeacherInfoVo>builder().data(list).code(0).count(pages.getTotal()).build();
     }
 }

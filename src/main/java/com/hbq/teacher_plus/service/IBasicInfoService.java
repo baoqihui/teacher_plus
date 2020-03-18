@@ -3,6 +3,7 @@ package com.hbq.teacher_plus.service;
 import com.hbq.teacher_plus.model.BasicInfo;
 import com.hbq.teacher_plus.common.model.PageResult;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hbq.teacher_plus.vo.BasicInfoVo;
 
 import java.util.Map;
 
@@ -19,6 +20,6 @@ public interface IBasicInfoService extends IService<BasicInfo> {
      * @return
      */
     PageResult<BasicInfo> findList(Map<String, Object> params);
-    PageResult<BasicInfo> findList2(Map<String, Object> params);
+    PageResult<BasicInfoVo> findList2(Map<String, Object> params);
 }
 

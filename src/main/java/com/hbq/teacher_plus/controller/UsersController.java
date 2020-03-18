@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hbq.teacher_plus.common.model.PageResult;
 import com.hbq.teacher_plus.common.model.Result;
+import com.hbq.teacher_plus.model.BasicInfo;
 import com.hbq.teacher_plus.model.Users;
+import com.hbq.teacher_plus.service.IBasicInfoService;
 import com.hbq.teacher_plus.service.IUsersService;
 import com.hbq.teacher_plus.util.ExcelUtil;
 import com.hbq.teacher_plus.util.JedisConnect;
@@ -35,7 +37,8 @@ import java.util.Map;
 public class UsersController {
     @Autowired
     private IUsersService usersService;
-
+    @Autowired
+    private IBasicInfoService basicInfoService;
     @RequestMapping(value="/userLogin.do")
     @ResponseBody
     public Result userLogin(Users users,String code,HttpSession session){
@@ -79,7 +82,16 @@ public class UsersController {
         Users model = usersService.getById(id);
         return Result.succeed(model, "查询成功");
     }
-
+    /**
+     * 查询
+     */
+    @ApiOperation(value = "查询")
+    @GetMapping("/users/findUserNameByTel/{tel}")
+    public Result findUserNameByTel(@PathVariable String tel) {
+        Users model = usersService.getOne(new QueryWrapper<Users>().eq("tel",tel).eq("is_del",0));
+        BasicInfo one = basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("cu_id", model.getId()).eq("is_del", 0));
+        return Result.succeed(one.getName(), "查询成功");
+    }
     /**
      * 新增or更新
      */

@@ -47,6 +47,7 @@
   </div>
   <div class="container-fluid">
     <div class="row-fluid">
+      <button id="adde" class="btn btn-info btn-large" style="border-radius: 5px">添加发表学术论文情况</button>
       <div id="form_2" class="span12">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -71,70 +72,70 @@
 
               </tbody>
             </table>
+            <div id="form3" class="span12" style="display: none">
+              <form id="form1" action="#" method="get" class="form-horizontal">
+                <input id="cuId" name="cuId" type="text" style="display: none">
 
-            <form id="form1" action="#" method="get" class="form-horizontal">
-              <input id="cuId" name="cuId" type="text" style="display: none">
-
+                  <div class="control-group">
+                    <label class="control-label">论文名称：</label>
+                    <div class="controls">
+                      <input name="paperName" type="text" class="span11" placeholder="Last name" />
+                    </div>
+                  </div>
                 <div class="control-group">
-                  <label class="control-label">论文名称：</label>
+                  <label class="control-label">第一作者或通讯作者 ：</label>
                   <div class="controls">
-                    <input name="paperName" type="text" class="span11" placeholder="Last name" />
+                    <input name="author" type="text" class="span11" placeholder="Company name" />
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">发表期刊：</label>
+                  <div class="controls">
+                    <input name="published" type="date" class="span11" placeholder="Company name" />
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">发表时间：</label>
+                  <div class="controls">
+                    <input name="publishTime" type="date" class="span11" placeholder="Company name" />
                   </div>
                 </div>
               <div class="control-group">
-                <label class="control-label">第一作者或通讯作者 ：</label>
-                <div class="controls">
-                  <input name="author" type="text" class="span11" placeholder="Company name" />
-                </div>
+                  <label class="control-label">收录情况 收录索引：</label>
+                  <div class="controls">
+                  <select  name="record">
+                    <option value="SCI">SCI</option>
+                    <option value="SSCI">SSCI</option>
+                    <option value="A&HCI">A&HCI</option>
+                    <option value="EI">EI</option>
+                    <option value="ISTP">ISTP</option>
+                    <option value="CSSCI">CSSCI</option>
+                    <option value="中文核心">中文核心</option>
+                  </select>
+                  </div>
               </div>
-              <div class="control-group">
-                <label class="control-label">发表期刊：</label>
-                <div class="controls">
-                  <input name="published" type="date" class="span11" placeholder="Company name" />
+                <div class="control-group">
+                  <label class="control-label">他引次数 ：</label>
+                  <div class="controls">
+                    <input name="citation" type="text" class="span11" />
+                  </div>
                 </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">发表时间：</label>
-                <div class="controls">
-                  <input name="publishTime" type="date" class="span11" placeholder="Company name" />
-                </div>
-              </div>
-            <div class="control-group">
-                <label class="control-label">收录情况 收录索引：</label>
-                <div class="controls">
-                <select  name="record">
-                  <option value="SCI">SCI</option>
-                  <option value="SSCI">SSCI</option>
-                  <option value="A&HCI">A&HCI</option>
-                  <option value="EI">EI</option>
-                  <option value="ISTP">ISTP</option>
-                  <option value="CSSCI">CSSCI</option>
-                  <option value="中文核心">中文核心</option>
-                </select>
-                </div>
-            </div>
-              <div class="control-group">
-                <label class="control-label">他引次数 ：</label>
-                <div class="controls">
-                  <input name="citation" type="text" class="span11" />
-                </div>
-              </div>
-            </form>
-            <center>
-              <div class="control-group">
-                <div class="controls">
-                  <label class="control-label">Excel：</label>
-                  <input id="excel"  type="file" size="15" style="opacity: 0;">
-                  <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
-                </div>
-              </div>
-              <form action="/teacherPaper/leadOut" method="post" style="display: inline-block;">
-                <input id="cuId2" name="cuId" type="text" style="display: none" >
-                <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
               </form>
-              <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
-            </center>
-
+              <center>
+                <div class="control-group">
+                  <div class="controls">
+                    <label class="control-label">Excel：</label>
+                    <input id="excel"  type="file" size="15" style="opacity: 0;">
+                    <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+                  </div>
+                </div>
+                <form action="/teacherPaper/leadOut" method="post" style="display: inline-block;">
+                  <input id="cuId2" name="cuId" type="text" style="display: none" >
+                  <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
+                </form>
+                <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
+              </center>
+            </div>
           </div>
         </div>
       </div>

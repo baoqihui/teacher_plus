@@ -24,6 +24,7 @@
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
+            <button id="adde" class="btn btn-info btn-large" style="border-radius: 5px">添加应用型课程建设情况</button>
             <div id="form_2" class="span12">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -47,56 +48,56 @@
 
                             </tbody>
                         </table>
-
-                        <form id="form1" action="#" method="get" class="form-horizontal">
-                            <input id="cuId" name="cuId" type="text" style="display: none">
-                            <div class="control-group">
-                                <label class="control-label">课程名称：</label>
-                                <div class="controls">
-                                    <input name="courseTitle" type="text" class="span11" placeholder="Company name" />
+                        <div id="form3" class="span12" style="display: none">
+                            <form id="form1" action="#" method="get" class="form-horizontal">
+                                <input id="cuId" name="cuId" type="text" style="display: none">
+                                <div class="control-group">
+                                    <label class="control-label">课程名称：</label>
+                                    <div class="controls">
+                                        <input name="courseTitle" type="text" class="span11" placeholder="Company name" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">立项时间：</label>
-                                <div class="controls">
-                                    <input name="projectTime" type="date" class="span11" placeholder="Company name" />
+                                <div class="control-group">
+                                    <label class="control-label">立项时间：</label>
+                                    <div class="controls">
+                                        <input name="projectTime" type="date" class="span11" placeholder="Company name" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">是否结项 ：</label>
-                                <div class="controls">
-                                    <input type="radio" name="isPost" class="span11" value="是" > 是
-                                    <input type="radio" name="isPost" class="span11" value="否" checked> 否
+                                <div class="control-group">
+                                    <label class="control-label">是否结项 ：</label>
+                                    <div class="controls">
+                                        <input type="radio" name="isPost" class="span11" value="是" > 是
+                                        <input type="radio" name="isPost" class="span11" value="否" checked> 否
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">参与情况 ：</label>
-                                <div class="controls">
-                                    <input name="participation" type="text" class="span11" placeholder="Company name" />
+                                <div class="control-group">
+                                    <label class="control-label">参与情况 ：</label>
+                                    <div class="controls">
+                                        <input name="participation" type="text" class="span11" placeholder="Company name" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">经费（万） ：</label>
-                                <div class="controls">
-                                    <input name="expenditure" type="text" class="span11" placeholder="Company name" />
+                                <div class="control-group">
+                                    <label class="control-label">经费（万） ：</label>
+                                    <div class="controls">
+                                        <input name="expenditure" type="text" class="span11" placeholder="Company name" />
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                        <center>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <label class="control-label">Excel：</label>
-                                    <input id="excel"  type="file" size="15" style="opacity: 0;">
-                                    <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
-                                </div>
-                            </div>
-                            <form action="/practical/leadOut" method="post" style="display: inline-block;">
-                                <input id="cuId2" name="cuId" type="text" style="display: none" >
-                                <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
                             </form>
-                            <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
-                        </center>
-
+                            <center>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <label class="control-label">Excel：</label>
+                                        <input id="excel"  type="file" size="15" style="opacity: 0;">
+                                        <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+                                    </div>
+                                </div>
+                                <form action="/practical/leadOut" method="post" style="display: inline-block;">
+                                    <input id="cuId2" name="cuId" type="text" style="display: none" >
+                                    <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
+                                </form>
+                                <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
+                            </center>
+                        </div>
                     </div>
                 </div>
             </div>

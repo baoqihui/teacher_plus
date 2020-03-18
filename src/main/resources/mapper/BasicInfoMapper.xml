@@ -25,7 +25,7 @@
         </if>
         order by t.id asc
     </select>
-    <resultMap type="com.hbq.teacher_plus.model.BasicInfo" id="rm">
+    <resultMap type="com.hbq.teacher_plus.vo.BasicInfoVo" id="rm">
         <id column="tid" property="id"/>
         <result column="cu_id" property="cuId"/>
         <result column="name" property="name"/>

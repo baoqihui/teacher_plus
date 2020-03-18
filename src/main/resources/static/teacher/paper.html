@@ -24,6 +24,7 @@
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
+            <button id="adde" class="btn btn-info btn-large" style="border-radius: 5px">添加指导学生发表论文</button>
             <div id="form_3" class="span12">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -49,69 +50,69 @@
 
                             </tbody>
                         </table>
+                        <div id="form3" class="span12" style="display: none">
+                            <form id="form1" action="#" method="get" class="form-horizontal">
+                                <input id="cuId" name="cuId" type="text" style="display: none">
+                                <div class="control-group">
+                                    <label class="control-label">论文名称：</label>
+                                    <div class="controls">
+                                        <input name="paperTitle" type="text" class="span11" placeholder="Company name" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">期刊：</label>
+                                    <div class="controls">
+                                        <input name="periodical" type="text" class="span11" placeholder="Company name" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">日期 ：</label>
+                                    <div class="controls">
+                                        <input name="publishTime" type="date" class="span11" placeholder="Company name" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">级别：</label>
+                                    <div class="controls">
+                                        <input name="rank" type="text" class="span11" placeholder="Company name" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">学生姓名：</label>
+                                    <div class="controls">
+                                        <input name="stuName" type="text" class="span11" placeholder="Company name" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">第一作者 ：</label>
+                                    <div class="controls">
+                                        <input name="firstAuthor" type="text" class="span11" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">学生名次：</label>
+                                    <div class="controls">
+                                        <input name="stuRank" type="text"  class="span11" />
 
-                        <form id="form1" action="#" method="get" class="form-horizontal">
-                            <input id="cuId" name="cuId" type="text" style="display: none">
-                            <div class="control-group">
-                                <label class="control-label">论文名称：</label>
-                                <div class="controls">
-                                    <input name="paperTitle" type="text" class="span11" placeholder="Company name" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">期刊：</label>
-                                <div class="controls">
-                                    <input name="periodical" type="text" class="span11" placeholder="Company name" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">日期 ：</label>
-                                <div class="controls">
-                                    <input name="publishTime" type="date" class="span11" placeholder="Company name" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">级别：</label>
-                                <div class="controls">
-                                    <input name="rank" type="text" class="span11" placeholder="Company name" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">学生姓名：</label>
-                                <div class="controls">
-                                    <input name="stuName" type="text" class="span11" placeholder="Company name" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">第一作者 ：</label>
-                                <div class="controls">
-                                    <input name="firstAuthor" type="text" class="span11" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">学生名次：</label>
-                                <div class="controls">
-                                    <input name="stuRank" type="text"  class="span11" />
 
-                                </div>
-                            </div>
-
-                        </form>
-                        <center>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <label class="control-label">Excel：</label>
-                                    <input id="excel"  type="file" size="15" style="opacity: 0;">
-                                    <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
-                                </div>
-                            </div>
-                            <form action="/paper/leadOut" method="post" style="display: inline-block;">
-                                <input id="cuId2" name="cuId" type="text" style="display: none" >
-                                <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
                             </form>
-                            <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
-                        </center>
-
+                            <center>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <label class="control-label">Excel：</label>
+                                        <input id="excel"  type="file" size="15" style="opacity: 0;">
+                                        <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+                                    </div>
+                                </div>
+                                <form action="/paper/leadOut" method="post" style="display: inline-block;">
+                                    <input id="cuId2" name="cuId" type="text" style="display: none" >
+                                    <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
+                                </form>
+                                <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
+                            </center>
+                        </div>
                     </div>
                 </div>
             </div>

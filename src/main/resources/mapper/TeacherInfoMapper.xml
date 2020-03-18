@@ -10,7 +10,7 @@
         </if>
         order by t.id desc
     </select>
-    <select id="findList2" resultType="com.hbq.teacher_plus.model.TeacherInfo">
+    <select id="findList2" resultType="com.hbq.teacher_plus.vo.TeacherInfoVo">
         select * from teacher_info t
         left join basic_info b on t.cu_id=b.cu_id
         where t.is_del=0 AND b.is_del=0

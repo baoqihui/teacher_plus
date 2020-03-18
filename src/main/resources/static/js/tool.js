@@ -33,6 +33,9 @@ $(function () {
             })
         }
     })
+    $("#adde").click(function () {
+        $("#form3").show();
+    })
 })
 
 //导入函数

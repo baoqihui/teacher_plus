@@ -47,6 +47,7 @@
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
+            <button id="adde" class="btn btn-info btn-large" style="border-radius: 5px">添加教师出版专著情况</button>
             <div id="form_2" class="span12">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -71,65 +72,65 @@
 
                             </tbody>
                         </table>
-
-                        <form id="form1" action="#" method="get" class="form-horizontal">
-                            <input id="cuId" name="cuId" type="text" style="display: none">
-                            <div class="control-group">
-                                <label class="control-label">专著名称：</label>
-                                <div class="controls">
-                                    <input name="monographName" type="text" class="span11" placeholder="Last name" />
+                        <div id="form3" class="span12" style="display: none">
+                            <form id="form1" action="#" method="get" class="form-horizontal">
+                                <input id="cuId" name="cuId" type="text" style="display: none">
+                                <div class="control-group">
+                                    <label class="control-label">专著名称：</label>
+                                    <div class="controls">
+                                        <input name="monographName" type="text" class="span11" placeholder="Last name" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">第一著作人 ：</label>
-                                <div class="controls">
-                                    <input name="author" type="text" class="span11" placeholder="Company name" />
+                                <div class="control-group">
+                                    <label class="control-label">第一著作人 ：</label>
+                                    <div class="controls">
+                                        <input name="author" type="text" class="span11" placeholder="Company name" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">专著类别：</label>
-                                <div class="controls">
-                                    <select  name="type">
-                                        <option value="专著">专著</option>
-                                        <option value="译著">译著</option>
-                                        <option value="辞书">辞书</option>
-                                    </select>
+                                <div class="control-group">
+                                    <label class="control-label">专著类别：</label>
+                                    <div class="controls">
+                                        <select  name="type">
+                                            <option value="专著">专著</option>
+                                            <option value="译著">译著</option>
+                                            <option value="辞书">辞书</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">出版社：</label>
-                                <div class="controls">
-                                    <input name="press" type="text" class="span11" placeholder="Company name" />
+                                <div class="control-group">
+                                    <label class="control-label">出版社：</label>
+                                    <div class="controls">
+                                        <input name="press" type="text" class="span11" placeholder="Company name" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">出版时间：</label>
-                                <div class="controls">
-                                    <input name="pressTime" type="date" class="span11" placeholder="Company name" />
+                                <div class="control-group">
+                                    <label class="control-label">出版时间：</label>
+                                    <div class="controls">
+                                        <input name="pressTime" type="date" class="span11" placeholder="Company name" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">主编/参编 ：</label>
-                                <div class="controls">
-                                    <input name="chiefEditor" type="text" class="span11" />
+                                <div class="control-group">
+                                    <label class="control-label">主编/参编 ：</label>
+                                    <div class="controls">
+                                        <input name="chiefEditor" type="text" class="span11" />
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                        <center>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <label class="control-label">Excel：</label>
-                                    <input id="excel"  type="file" size="15" style="opacity: 0;">
-                                    <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
-                                </div>
-                            </div>
-                            <form action="/monograph/leadOut" method="post" style="display: inline-block;">
-                                <input id="cuId2" name="cuId" type="text" style="display: none" >
-                                <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
                             </form>
-                            <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
-                        </center>
-
+                            <center>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <label class="control-label">Excel：</label>
+                                        <input id="excel"  type="file" size="15" style="opacity: 0;">
+                                        <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+                                    </div>
+                                </div>
+                                <form action="/monograph/leadOut" method="post" style="display: inline-block;">
+                                    <input id="cuId2" name="cuId" type="text" style="display: none" >
+                                    <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
+                                </form>
+                                <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
+                            </center>
+                        </div>
                     </div>
                 </div>
             </div>
