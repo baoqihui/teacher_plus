@@ -53,4 +53,5 @@ public class TeacherInfo extends SuperEntity {
         @ApiModelProperty(value = "",hidden = true)
         private Boolean isDel;
 
+        private String name;
 }

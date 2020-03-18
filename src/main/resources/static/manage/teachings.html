@@ -26,31 +26,39 @@
         <div class="control-group" style="display: inline-block;">
           <span class="control-label">姓名：</span>
           <div class="controls">
-            <input type="text" placeholder="Company name" />
+            <input id="name" type="text"  />
           </div>
         </div>
         <div class="control-group" style="display: inline-block; ">
-          <span class="control-label">身份证号：</span>
+          <span class="control-label">主讲课程：</span>
           <div class="controls">
-            <input type="text" placeholder="Company name" />
+            <input id="courseName" type="text"  />
           </div>
         </div>
         <div class="control-group" style="display: inline-block; ">
-          <span class="control-label">专业技术职务：</span>
+          <span class="control-label">任课时期：</span>
           <div class="controls">
-            <input type="text" placeholder="Company name" />
+            <select id="termTime">
+              <option value="2015-2016第二学期">2015-2016第二学期</option>
+              <option value="2016-2017第一学期">2016-2017第一学期</option>
+              <option value="2016-2017第二学期">2016-2017第二学期</option>
+              <option value="2017-2018第一学期">2017-2018第一学期</option>
+              <option value="2017-2018第二学期">2017-2018第二学期</option>
+              <option value="2018-2019第一学期">2018-2019第一学期</option>
+              <option value="2018-2019第二学期">2018-2019第二学期</option>
+              <option value="2019-2020第一学期">2019-2020第一学期</option>
+            </select>
           </div>
         </div>
       </form>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button class="btn btn-warning" style="display: inline-block; ">搜索</button>
+      <button id="su" class="btn btn-warning" style="display: inline-block; ">搜索</button>
     </div>
     <hr>
     <div class="row-fluid">
       <div class="span12">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon">
-            <input type="checkbox" id="title-checkbox" name="title-checkbox" />
            </span>
             <h5>专业教师基本情况</h5>
           </div>
@@ -58,78 +66,33 @@
             <table id="t1"  style="text-align: center">
               <thead>
               <tr >
-                <th><i class="icon-resize-vertical" ></i></th>
                 <th>教师姓名</th>
                 <th>主讲课程</th>
-                <th>任课学年</th>
-                <th>任课学期</th>
+                <th>任课时期</th>
                 <th>本人承担实际学时</th>
                 <th>操作</th>
               </tr>
               </thead>
-              <tbody>
-              <tr>
-                <td><input type="checkbox" /></td>
-                <td>王飞飞</td>
-                <td>.NET高级开发技术</td>
-                <td>2015-2016</td>
-                <td>第1学期</td>
-                <td>72</td>
-                <td><a href="#"><i class="icon-trash">删除</i></a></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" /></td>
-                <td>王飞飞</td>
-                <td>.NET高级开发技术</td>
-                <td>2015-2016</td>
-                <td>第1学期</td>
-                <td>72</td>
-                <td><a href="#"><i class="icon-trash">删除</i></a></td>
-              </tr><tr>
-                <td><input type="checkbox" /></td>
-                <td>王飞飞</td>
-                <td>.NET高级开发技术</td>
-                <td>2015-2016</td>
-                <td>第1学期</td>
-                <td>72</td>
-                <td><a href="#"><i class="icon-trash">删除</i></a></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" /></td>
-                <td>王飞飞</td>
-                <td>.NET高级开发技术</td>
-                <td>2015-2016</td>
-                <td>第1学期</td>
-                <td>72</td>
-                <td><a href="#"><i class="icon-trash">删除</i></a></td>
-              </tr><tr>
-                <td><input type="checkbox" /></td>
-                <td>王飞飞</td>
-                <td>.NET高级开发技术</td>
-                <td>2015-2016</td>
-                <td>第1学期</td>
-                <td>72</td>
-                <td><a href="#"><i class="icon-trash">删除</i></a></td>
-              </tr>
+              <tbody id="tbody">
 
 
               </tbody>
             </table>
             <div class="pagination" style="margin-left: 70%">
               <ul>
-                <li><a id="first">第一页</a></li>
-                <li><a id="previous">上一页</a></li>
-                <li class="active"><a pageNum="1">1</a> </li>
-                <li><a pageNum="2">2</a></li>
-                <li><a pageNum="3">3</a></li>
-                <li><a pageNum="4">4</a></li>
-                <li><a pageNum="5">5</a></li>
-                <li><a id="next">下一页</a></li>
-                <li><a id="last">最后一页</a></li>
+                <li><a href="#" id="first">第一页</a></li>
+                <li><a href="#" id="previous">上一页</a></li>
+                <li><a href="#" pageNum="1">1</a> </li>
+                <li><a href="#" pageNum="2">2</a></li>
+                <li><a href="#" pageNum="3">3</a></li>
+                <li><a href="#" pageNum="4">4</a></li>
+                <li><a href="#" pageNum="5">5</a></li>
+                <li><a href="#" id="next">下一页</a></li>
+                <li><a href="#" id="last">最后一页</a></li>
 
-                <li><a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  共有<span>5</span>条记录
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                <li><a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <span id="span2"></span>&nbsp;&nbsp;共<span id="span1"></span>条记录
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</a></li>
               </ul>
             </div>
           </div>
@@ -154,6 +117,7 @@
 
 <script type="text/javascript">
   $(function () {
+    queryPage(1);
     $('#t1').bootstrapTable({
       striped: true,	//有条纹
       pagination: true,	//页码信息
@@ -163,7 +127,80 @@
       showExport: true,	//导出
       exportTypes: ['excel','txt','xml'],		//导出格式
     })
+    $("#su").click(function () {
+      queryPage(1);
+    })
+    $(".pagination a").bind("click",function(){
+      var num = $(this).attr("pageNum");
+      if (num<=lastPage){
+        queryPage(num);
+      }
+      if ($(".pagination a").attr("pageNum")==num){
+        $(this).parent("li").attr("class","active");
+      }
+    });
+    $("#remove").live("click",function() {
+      var r = confirm("\t确定删除？")
+      if (r == true) {
+        var eid = $(this).attr("eid");
+        var cid = $(this).attr("cid");
+        $.ajax({
+          url:"../teacherInfo/byCuId/"+ eid+"/"+cid,
+          type:"delete",
+          data:{},
+          dataType:"json",
+          success:function (result) {
+            if (result.resp_code == "0") {
+              alert(result.resp_msg);
+              window.location.href = "teachings.html";
+            }else {
+              $("#span1").text(result.resp_msg);
+            }
+          }
+        })
+      }
+    })
   })
+  //表格填充函数
+  function queryPage(pageNum){
+    var name=$("#name").val();
+    var courseName=$("#courseName").val();
+    var termTime=$("#termTime").val();
+    //当前页码
+    pageNum= pageNum==undefined?1:pageNum;
+    //页码的有效性判断
+    $.get("/teacherInfo/findAllUsers",{name:name,courseName:courseName,termTime:termTime,page:pageNum,limit:5},function(result){
+      console.log(result);
+      //填充数据到tbody
+      $("#tbody").empty();//清除之前的内容
+      $(result.data).each(function(index,teacherInfo){
+        $("#tbody").append(
+                " <tr>"+
+                "<td>"+teacherInfo.name+"</td>"+
+                "<td >"+teacherInfo.courseName+"</td>"+
+                "<td >"+teacherInfo.termTime+"</td>"+
+                "<td>"+teacherInfo.persion+"</td>"+
+                "<td>"+
+                "<a href='#' id='remove' class='icon-trash' eid="+teacherInfo.cuId+" cid="+teacherInfo.courseNum+">删除</a></td>"+
+                "</tr>"
+        );
+      })
+      //给按钮添加对应的数值
+      var num = pageNum;
+      var count=result.count;
+      lastPage=(count/5)%1===0?(count/5):parseInt(count/5)+1;
+      $("a#first").attr("pageNum",1);
+      $("a#previous").attr("pageNum",num-1<1?1:num-1);
+      $("a#next").attr("pageNum",num+1>lastPage?lastPage:num+1);
+      $("a#last").attr("pageNum",lastPage);
+      $("span#span1").text(count);
+      $("span#span2").text("第"+num+"页/共"+lastPage+"页");
+
+      $("#pageNum").val(num);
+
+    },"json");
+
+  }
 </script>
 </body>
 </html>

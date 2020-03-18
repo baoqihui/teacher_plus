@@ -10,4 +10,19 @@
         </if>
         order by t.id desc
     </select>
+    <select id="findList2" resultType="com.hbq.teacher_plus.model.TeacherInfo">
+        select * from teacher_info t
+        left join basic_info b on t.cu_id=b.cu_id
+        where t.is_del=0 AND b.is_del=0
+        <if test="p.name != null and p.name != ''">
+            and b.name LIKE '%${p.name}%'
+        </if>
+        <if test="p.courseName != null and p.courseName != ''">
+            and t.course_name LIKE '%${p.courseName}%'
+        </if>
+        <if test="p.termTime != null and p.termTime != ''">
+            and t.term_time LIKE '%${p.termTime}%'
+        </if>
+        order by t.id desc
+    </select>
 </mapper>

@@ -24,4 +24,5 @@ public interface TeacherInfoMapper extends SuperMapper<TeacherInfo> {
      * @return
      */
     List<TeacherInfo> findList(Page<TeacherInfo> page, @Param("p") Map<String, Object> params);
+    List<TeacherInfo> findList2(Page<TeacherInfo> page, @Param("p") Map<String, Object> params);
 }

@@ -92,7 +92,12 @@ public class BasicInfoController {
         basicInfoService.removeById(id);
         return Result.succeed("删除成功");
     }
-
+    @ApiOperation(value = "通过cu_id删除")
+    @DeleteMapping("/basicInfo/byCuId/{cuId}")
+    public Result deleteByCuId(@PathVariable Long cuId) {
+        basicInfoService.remove(new QueryWrapper<BasicInfo>().eq("cu_id",cuId));
+        return Result.succeed("删除成功");
+    }
     @ApiOperation(value = "基本信息导入")
     @PostMapping("/basicInfo/leadIn")
     public  Result leadIn(MultipartFile excel,String cuId) throws Exception {

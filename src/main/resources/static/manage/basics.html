@@ -161,7 +161,7 @@
       if (r == true) {
         var eid = $(this).attr("eid");
         $.ajax({
-          url:"../basicInfo/"+ eid,
+          url:"../basicInfo/byCuId/"+ eid,
           type:"delete",
           data:{},
           dataType:"json",

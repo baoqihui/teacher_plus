@@ -48,6 +48,11 @@ public class TeacherInfoController {
         return teacherInfoService.findList(params);
     }
 
+    @ApiOperation(value = "查询列表(此接口请使用PostMan测试)")
+    @GetMapping("/teacherInfo/findAllUsers")
+    public PageResult findAllUsers(@RequestParam(required = false) Map<String, Object> params) {
+        return teacherInfoService.findList2(params);
+    }
     /**
      * 查询
      */
@@ -77,7 +82,12 @@ public class TeacherInfoController {
         teacherInfoService.removeById(id);
         return Result.succeed("删除成功");
     }
-    
+    @ApiOperation(value = "通过cu_id删除")
+    @DeleteMapping("/teacherInfo/byCuId/{cuId}/{cid}")
+    public Result deleteByCuId(@PathVariable Long cuId,@PathVariable Long cid) {
+        teacherInfoService.remove(new QueryWrapper<TeacherInfo>().eq("cu_id",cuId).eq("course_num",cid));
+        return Result.succeed("删除成功");
+    }
     /**
      * 导入
      */

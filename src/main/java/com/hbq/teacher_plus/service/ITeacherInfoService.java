@@ -19,5 +19,6 @@ public interface ITeacherInfoService extends IService<TeacherInfo> {
      * @return
      */
     PageResult<TeacherInfo> findList(Map<String, Object> params);
+    PageResult<TeacherInfo> findList2(Map<String, Object> params);
 }
 
