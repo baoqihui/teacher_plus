@@ -7,15 +7,14 @@
         order by t.id desc
     </select>
     <select id="findList2" resultMap="rm">
-        select *,t.id tid,w.id wid,e.id eid from basic_info t
+        select * from basic_info t
         left join work w on t.cu_id=w.cu_id
-        left join education e on t.cu_id=e.cu_id
-        where t.is_del=0 and w.is_del=0 and e.is_del=0
+        where t.is_del=0
         <if test="p.name != null and p.name != ''">
-            and t.name=${p.name}
+            and t.name LIKE '%${p.name}%'
         </if>
         <if test="p.certNum != null and p.certNum != ''">
-            and t.cert_num=${p.certNum}
+            and t.cert_num LIKE '%${p.certNum}%'
         </if>
 
         <if test="p.startTime != null and p.startTime != '' ">
@@ -24,7 +23,7 @@
         <if test="p.endTime !=null and p.endTime != '' ">
             and '${p.endTime}' >= w.work_time
         </if>
-        order by t.id desc
+        order by t.id asc
     </select>
     <resultMap type="com.hbq.teacher_plus.model.BasicInfo" id="rm">
         <id column="tid" property="id"/>
@@ -44,13 +43,5 @@
             <result column="train" property="train"/>
             <result column="supervisor" property="supervisor"/>
         </association>
-        <collection property="educations" ofType="com.hbq.teacher_plus.model.Education">
-            <id column="eid" property="id"/>
-            <result column="degree" property="degree"/>
-            <result column="major" property="major"/>
-            <result column="studying_time" property="studyingTime"/>
-            <result column="gradua_time" property="graduaTime"/>
-            <result column="school" property="school"/>
-        </collection>
     </resultMap>
 </mapper>

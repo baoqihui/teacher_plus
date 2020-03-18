@@ -68,6 +68,7 @@
                   <th rowspan="2">出生年月</th>
 
                   <th rowspan="2">专业技术职务</th>
+                  <th rowspan="2">最终学位</th>
                   <th colspan="4">本科学历</th>
                   <th colspan="4">硕士学历</th>
                   <th rowspan="2">参加工作时间</th>
@@ -96,19 +97,19 @@
             </table>
         <div class="pagination" style="margin-left: 70%">
           <ul>
-            <li><a id="first">第一页</a></li>
-            <li><a id="previous">上一页</a></li>
-            <li class="active"><a pageNum="1">1</a> </li>
-            <li><a pageNum="2">2</a></li>
-            <li><a pageNum="3">3</a></li>
-            <li><a pageNum="4">4</a></li>
-            <li><a pageNum="5">5</a></li>
-            <li><a id="next">下一页</a></li>
-            <li><a id="last">最后一页</a></li>
+            <li><a href="#" id="first">第一页</a></li>
+            <li><a href="#" id="previous">上一页</a></li>
+            <li><a href="#" pageNum="1">1</a> </li>
+            <li><a href="#" pageNum="2">2</a></li>
+            <li><a href="#" pageNum="3">3</a></li>
+            <li><a href="#" pageNum="4">4</a></li>
+            <li><a href="#" pageNum="5">5</a></li>
+            <li><a href="#" id="next">下一页</a></li>
+            <li><a href="#" id="last">最后一页</a></li>
 
-            <li><a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              共有<span>5</span>条记录
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span id="span2"></span>&nbsp;&nbsp;共<span id="span1"></span>条记录
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</a></li>
           </ul>
             </div>
           </div>
@@ -133,7 +134,6 @@
 
 <script type="text/javascript">
   $(function () {
-
     queryPage(1);
     $('#t1').bootstrapTable({
       striped: true,	//有条纹
@@ -147,6 +147,35 @@
     $("#su").click(function () {
       queryPage(1);
     })
+    $(".pagination a").bind("click",function(){
+      var num = $(this).attr("pageNum");
+      if (num<=lastPage){
+        queryPage(num);
+      }
+      if ($(".pagination a").attr("pageNum")==num){
+        $(this).parent("li").attr("class","active");
+      }
+    });
+    $("#remove").live("click",function() {
+      var r = confirm("\t确定删除？")
+      if (r == true) {
+        var eid = $(this).attr("eid");
+        $.ajax({
+          url:"../basicInfo/"+ eid,
+          type:"delete",
+          data:{},
+          dataType:"json",
+          success:function (result) {
+            if (result.resp_code == "0") {
+              alert(result.resp_msg);
+              window.location.href = "basics.html";
+            }else {
+              $("#span1").text(result.resp_msg);
+            }
+          }
+        })
+      }
+    })
   })
 
   //表格填充函数
@@ -159,10 +188,45 @@
     pageNum= pageNum==undefined?1:pageNum;
     //页码的有效性判断
     $.get("/basicInfo/findAllUsers",{name:name,certNum:cert_num,startTime:startTime,endTime:endTime,page:pageNum,limit:5},function(result){
-      console.log(result.datas)
+      console.log(result)
+      var final="";
+      var degree0="";var major0="";var studyingTime0="";var graduaTime0="";var school0="";
+      var degree1="";var major1="";var studyingTime1="";var graduaTime1="";var school1="";
+      var workTime="";var teachTime="";var atTime="";var isWork="";var train="";var supervisor="";
       //填充数据到tbody
       $("#tbody").empty();//清除之前的内容
       $(result.datas.data).each(function(index,basicInfo){
+        if (basicInfo.educations!=""){
+          $(basicInfo.educations).each(function (index1,education) {
+             final=education.certificate;
+          })
+        }
+        var educations0=basicInfo.educations[0];
+        if (educations0!=undefined){
+          degree0=educations0.degree;
+          major0=educations0.major;
+          studyingTime0=educations0.studyingTime;
+          graduaTime0=educations0.graduaTime;
+          school0=educations0.school;
+        }
+        var educations1=basicInfo.educations[1];
+        if (educations1!=undefined){
+          degree1=educations1.degree;
+          major1=educations1.major;
+          studyingTime1=educations1.studyingTime;
+          graduaTime1=educations1.graduaTime;
+          school1=educations1.school;
+
+        }
+        var work=basicInfo.work;
+        if (work!=undefined){
+          workTime=work.workTime;
+          teachTime=work.teachTime;
+          atTime=work.atTime;
+          isWork=work.isWork;
+          train=work.train;
+          supervisor=work.supervisor;
+        }
         $("#tbody").append(
                 " <tr>"+
                 "<td>"+basicInfo.name+"</td>"+
@@ -171,30 +235,44 @@
                 "<td>"+basicInfo.sex+"</td>"+
                 "<td >"+basicInfo.birthday+"</td>"+
                 "<td >"+basicInfo.skillJob+"</td>"+
+                "<td >"+final+"</td>"+
 
-                "<td>"+basicInfo.educations[0].degree+"</td>"+
-                "<td>"+basicInfo.educations[0].major+"</td>"+
-                "<td>"+basicInfo.educations[0].studyingTime+"-"+basicInfo.educations[0].graduaTime+"</td>"+
-                "<td>"+basicInfo.educations[0].school+"</td>"+
+                "<td>"+degree0+"</td>"+
+                "<td>"+major0+"</td>"+
+                "<td>"+studyingTime0+"-"+graduaTime0+"</td>"+
+                "<td>"+school0+"</td>"+
 
-                "<td>"+basicInfo.educations[1].degree+"</td>"+
-                "<td>"+basicInfo.educations[1].major+"</td>"+
-                "<td>"+basicInfo.educations[1].studyingTime+"-"+basicInfo.educations[0].graduaTime+"</td>"+
-                "<td>"+basicInfo.educations[1].school+"</td>"+
+                "<td>"+degree1+"</td>"+
+                "<td>"+major1+"</td>"+
+                "<td>"+studyingTime1+"-"+graduaTime1+"</td>"+
+                "<td>"+school1+"</td>"+
 
-                "<td>"+basicInfo.work.workTime+"</td>"+
-                "<td>"+basicInfo.work.teachTime+"</td>"+
-                "<td>"+basicInfo.work.atTime+"</td>"+
-                "<td>"+basicInfo.work.isWork+"</td>"+
-                "<td>"+basicInfo.work.train+"</td>"+
-                "<td>"+basicInfo.work.supervisor+"</td>"+
+                "<td>"+workTime+"</td>"+
+                "<td>"+teachTime+"</td>"+
+                "<td>"+atTime+"</td>"+
+                "<td>"+isWork+"</td>"+
+                "<td>"+train+"</td>"+
+                "<td>"+supervisor+"</td>"+
                 "<td>"+
                 "<a href='#' id='remove' class='icon-remove' eid="+basicInfo.cuId+" >删除</a></td>"+
                 "</tr>"
         );
       })
+      //给按钮添加对应的数值
+      var num = pageNum;
+      var count=result.datas.count;
+      lastPage=(count/5)%1===0?(count/5):parseInt(count/5)+1;
+      $("a#first").attr("pageNum",1);
+      $("a#previous").attr("pageNum",num-1<1?1:num-1);
+      $("a#next").attr("pageNum",num+1>lastPage?lastPage:num+1);
+      $("a#last").attr("pageNum",lastPage);
+      $("span#span1").text(count);
+      $("span#span2").text("第"+num+"页/共"+lastPage+"页");
+
+      $("#pageNum").val(num);
 
     },"json");
+
   }
 </script>
 

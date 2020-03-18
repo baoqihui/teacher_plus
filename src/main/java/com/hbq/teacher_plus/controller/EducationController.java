@@ -64,6 +64,16 @@ public class EducationController {
     @ApiOperation(value = "保存")
     @PostMapping("/education")
     public Result save(@RequestBody Education education) {
+        String certificate=education.getCertificate();
+        if (certificate.equals("本科")){
+            education.setCertId(1);
+        }else if (certificate.equals("硕士")){
+            education.setCertId(2);
+        }else if (certificate.equals("博士")){
+            education.setCertId(3);
+        }else {
+            return Result.failed("保存失败");
+        }
         educationService.saveOrUpdate(education);
         return Result.succeed("保存成功");
     }

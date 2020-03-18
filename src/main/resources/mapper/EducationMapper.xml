@@ -9,6 +9,6 @@
                and t.cu_id=${p.cuId}
             </if>
 
-        order by t.id asc
+        order by t.cert_id asc
     </select>
 </mapper>

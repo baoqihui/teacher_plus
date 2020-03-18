@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hbq.teacher_plus.common.model.PageResult;
 import com.hbq.teacher_plus.common.model.Result;
 import com.hbq.teacher_plus.model.BasicInfo;
+import com.hbq.teacher_plus.model.Education;
 import com.hbq.teacher_plus.service.IBasicInfoService;
+import com.hbq.teacher_plus.service.IEducationService;
 import com.hbq.teacher_plus.util.ExcelUtil;
 import com.hbq.teacher_plus.util.UploadImg;
 import io.swagger.annotations.Api;
@@ -34,7 +36,8 @@ import java.util.Map;
 public class BasicInfoController {
     @Autowired
     private IBasicInfoService basicInfoService;
-
+    @Autowired
+    private IEducationService educationService;
     @RequestMapping(value="/upload.do",method={RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
     public String upload(MultipartFile m_image_addr) throws Exception{
@@ -136,6 +139,11 @@ public class BasicInfoController {
     @GetMapping("/basicInfo/findAllUsers")
     public Result findAllUsers(@RequestParam(required = false) Map<String, Object> params) {
         PageResult<BasicInfo> basicInfos = basicInfoService.findList2(params);
+        List<BasicInfo> list=basicInfos.getData();
+        for (BasicInfo basicInfo : list) {
+            String cuId=basicInfo.getCuId();
+            basicInfo.setEducations(educationService.list(new QueryWrapper<Education>().eq("cu_id",cuId).orderByAsc("cert_id")));
+        }
         return Result.succeed(basicInfos, "查询成功");
     }
 }

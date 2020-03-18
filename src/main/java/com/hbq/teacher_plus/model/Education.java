@@ -24,6 +24,8 @@ public class Education extends SuperEntity {
 
         @ApiModelProperty(value = "用户id")
         private String cuId;
+        @ApiModelProperty(value = "学历id")
+        private Integer certId;
         @Excel(name = "学历")
         @ApiModelProperty(value = "学历")
         private String certificate;
