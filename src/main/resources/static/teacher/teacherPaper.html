@@ -186,7 +186,7 @@
     pageNum= pageNum==undefined?1:pageNum;
 
     //页码的有效性判断
-    $.get("../"+CLASS_NAME+"",{page:pageNum,limit:5,cuId:$.cookie("cuId")},function(result){
+    $.get("../"+CLASS_NAME+"",{page:pageNum,limit:50,cuId:$.cookie("cuId")},function(result){
       console.log(result.data)
       //填充数据到tbody
       $("#tbody").empty();//清除之前的内容
@@ -200,7 +200,7 @@
                 "<td>"+teacherPaper.record+"</td>"+
                 "<td>"+teacherPaper.citation+"</td>"+
                 "<td>"+
-                "<a href='#' id='remove' class='icon-remove' eid="+teacherPaper.id+" >删除</a></td>"+
+                "<a href='#' id='remove' class='icon-trash' eid="+teacherPaper.id+" >删除</a></td>"+
                 "</tr>"
         );
       })

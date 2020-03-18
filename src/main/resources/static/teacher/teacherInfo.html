@@ -182,7 +182,7 @@
     pageNum= pageNum==undefined?1:pageNum;
 
     //页码的有效性判断
-    $.get("../teacherInfo",{page:pageNum,limit:10,cuId:$.cookie("cuId")},function(result){
+    $.get("../teacherInfo",{page:pageNum,limit:50,cuId:$.cookie("cuId")},function(result){
       console.log(result.data)
       //填充数据到tbody
       $("#tbody").empty();//清除之前的内容
@@ -200,7 +200,7 @@
                 "<td>"+teacherInfo.qualityClass+"</td>"+
                 "<td>"+teacherInfo.persion+"</td>"+
                 "<td>"+
-                "<a href='#' id='remove' class='icon-remove' eid="+teacherInfo.id+" >删除</a></td>"+
+                "<a href='#' id='remove' class='icon-trash' eid="+teacherInfo.id+" >删除</a></td>"+
                 "</tr>"
         );
       })

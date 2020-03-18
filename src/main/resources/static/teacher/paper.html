@@ -154,7 +154,7 @@
         pageNum= pageNum==undefined?1:pageNum;
 
         //页码的有效性判断
-        $.get("../paper",{page:pageNum,limit:5,cuId:$.cookie("cuId")},function(result){
+        $.get("../paper",{page:pageNum,limit:50,cuId:$.cookie("cuId")},function(result){
             console.log(result.data)
             //填充数据到tbody
             $("#tbody").empty();//清除之前的内容
@@ -170,7 +170,7 @@
                     "<td>"+paper.firstAuthor+"</td>"+
                     "<td>"+paper.stuRank+"</td>"+
                     "<td>"+
-                    "<a href='#' id='remove' class='icon-remove' eid="+paper.id+" >删除</a></td>"+
+                    "<a href='#' id='remove' class='icon-trash' eid="+paper.id+" >删除</a></td>"+
                     "</tr>"
                 );
             })

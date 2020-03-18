@@ -142,7 +142,7 @@
         pageNum= pageNum==undefined?1:pageNum;
 
         //页码的有效性判断
-        $.get("../practical",{page:pageNum,limit:5,cuId:$.cookie("cuId")},function(result){
+        $.get("../practical",{page:pageNum,limit:50,cuId:$.cookie("cuId")},function(result){
             console.log(result.data)
             //填充数据到tbody
             $("#tbody").empty();//清除之前的内容
@@ -156,7 +156,7 @@
                     "<td>"+practical.participation+"</td>"+
                     "<td>"+practical.expenditure+"</td>"+
                     "<td>"+
-                    "<a href='#' id='remove' class='icon-remove' eid="+practical.id+" >删除</a></td>"+
+                    "<a href='#' id='remove' class='icon-trash' eid="+practical.id+" >删除</a></td>"+
                     "</tr>"
                 );
             })
