@@ -1,6 +1,5 @@
 package com.hbq.teacher_plus.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hbq.teacher_plus.common.model.PageResult;
 import com.hbq.teacher_plus.common.model.Result;
@@ -9,7 +8,6 @@ import com.hbq.teacher_plus.model.Users;
 import com.hbq.teacher_plus.service.IBasicInfoService;
 import com.hbq.teacher_plus.service.IUsersService;
 import com.hbq.teacher_plus.util.ExcelUtil;
-import com.hbq.teacher_plus.util.JedisConnect;
 import com.hbq.teacher_plus.util.ToolNote;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -19,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -48,10 +45,10 @@ public class UsersController {
             Users user1=usersService.getOne(new QueryWrapper<Users>().eq("tel",users.getTel()).eq("password",users.getPassword()));
             if(user1!=null){
                 session.setAttribute("user", user1);
-                Jedis jedis= JedisConnect.Conn();
+                /*Jedis jedis= JedisConnect.Conn();
                 String json_user= JSONObject.toJSONString(user1);
                 jedis.set("user",json_user);
-                jedis.expire("user", 300);
+                jedis.expire("user", 300);*/
                 return Result.succeed(user1,"登陆成功");
             }else{
                 return Result.failed("账号或密码错误");

@@ -4,11 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 public class Config {
@@ -20,7 +15,7 @@ public class Config {
     /**
      * 拦截器
      * */
-    @Bean
+    /*@Bean
     public WebMvcConfigurer WebMvcConfigurer() {
         return new WebMvcConfigurer() {
             public void addInterceptors(InterceptorRegistry registry) {
@@ -33,7 +28,7 @@ public class Config {
                 //registry.addInterceptor(userInterceptor).addPathPatterns("/controller/**").excludePathPatterns(l);
             }
         };
-    }
+    }*/
 
 
     /**
