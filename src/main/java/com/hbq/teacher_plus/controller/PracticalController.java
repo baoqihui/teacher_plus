@@ -109,7 +109,7 @@ public class PracticalController {
     public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<Practical> practicals =new ArrayList<>();
         List<Practical> practicalList = practicalService.list(new QueryWrapper<Practical>().eq("cu_id", cuId));
-        if (practicalList.isEmpty()) {practicals.add(practicalService.getById(0)); } else {
+        if (practicalList.isEmpty()) {practicals.add(practicalService.getById(1)); } else {
             for (Practical practical : practicalList) {
                 practicals.add(practical);
             }

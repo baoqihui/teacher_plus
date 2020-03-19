@@ -106,7 +106,7 @@ public class TransactionController {
     public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<Transaction> transactions =new ArrayList<>();
         List<Transaction> transactionList = transactionService.list();
-        if (transactionList.isEmpty()) {transactions.add(transactionService.getById(0)); } else {
+        if (transactionList.isEmpty()) {transactions.add(transactionService.getById(1)); } else {
             for (Transaction transaction : transactionList) {
                 transactions.add(transaction);
             }

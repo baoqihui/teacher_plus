@@ -98,6 +98,14 @@ public class EducationController {
                 //无该用户信息
                 list.forEach(u -> {
                     u.setCuId(cuId);
+                    String certificate=u.getCertificate();
+                    if (certificate.equals("本科")){
+                        u.setCertId(1);
+                    }else if (certificate.equals("硕士")){
+                        u.setCertId(2);
+                    }else if (certificate.equals("博士")){
+                        u.setCertId(3);
+                    }
                     educationService.save(u);
                 });
                 return Result.succeed("成功导入信息"+rowNum+"行数据");
@@ -111,7 +119,7 @@ public class EducationController {
     public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<Education> educations =new ArrayList<>();
         List<Education> educationList = educationService.list(new QueryWrapper<Education>().eq("cu_id", cuId));
-        if (educationList.isEmpty()) {educations.add(educationService.getById(0)); } else {
+        if (educationList.isEmpty()) {educations.add(educationService.getById(1)); } else {
             for (Education education : educationList) {
                 educations.add(education);
             }

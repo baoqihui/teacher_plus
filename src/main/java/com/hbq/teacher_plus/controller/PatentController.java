@@ -107,7 +107,7 @@ public class PatentController {
     public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<Patent> patents =new ArrayList<>();
         List<Patent> patentList = patentService.list(new QueryWrapper<Patent>().eq("cu_id", cuId));
-        if (patentList.isEmpty()) {patents.add(patentService.getById(0)); } else {
+        if (patentList.isEmpty()) {patents.add(patentService.getById(1)); } else {
             for (Patent patent : patentList) {
                 patents.add(patent);
             }

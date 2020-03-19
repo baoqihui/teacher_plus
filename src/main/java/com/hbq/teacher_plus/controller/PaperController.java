@@ -109,7 +109,7 @@ public class PaperController {
     public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<Paper> papers =new ArrayList<>();
         List<Paper> paperList = paperService.list(new QueryWrapper<Paper>().eq("cu_id", cuId));
-        if (paperList.isEmpty()) {papers.add(paperService.getById(0)); } else {
+        if (paperList.isEmpty()) {papers.add(paperService.getById(1)); } else {
             for (Paper paper : paperList) {
                 papers.add(paper);
             }

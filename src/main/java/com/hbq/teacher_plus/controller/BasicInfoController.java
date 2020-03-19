@@ -143,7 +143,7 @@ public class BasicInfoController {
     public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<BasicInfo> basicInfos =new ArrayList<>();
         BasicInfo basicInfo=basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("cu_id",cuId));
-        if (basicInfo==null) {basicInfos.add(basicInfoService.getById(0));} else {basicInfos.add(basicInfo);}
+        if (basicInfo==null) {basicInfos.add(basicInfoService.getById(1));} else {basicInfos.add(basicInfo);}
         //导出操作
         ExcelUtil.exportExcel(basicInfos, "基本信息导出", "基本信息导出", BasicInfo.class, "basicInfo.xls", response);
 

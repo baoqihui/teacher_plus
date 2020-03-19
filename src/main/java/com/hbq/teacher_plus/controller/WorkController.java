@@ -122,7 +122,7 @@ public class WorkController {
     public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<Work> works =new ArrayList<>();
         List<Work> workList = workService.list(new QueryWrapper<Work>().eq("cu_id", cuId));
-        if (workList.isEmpty()) {works.add(workService.getById(0)); } else {
+        if (workList.isEmpty()) {works.add(workService.getById(1)); } else {
             for (Work work : workList) {
                 works.add(work);
             }

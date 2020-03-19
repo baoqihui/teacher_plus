@@ -134,7 +134,7 @@ public class TeacherInfoController {
     public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<TeacherInfo> teacherInfos =new ArrayList<>();
         List<TeacherInfo> teacherInfoList = teacherInfoService.list(new QueryWrapper<TeacherInfo>().eq("cu_id", cuId));
-        if (teacherInfoList.isEmpty()) {teacherInfos.add(teacherInfoService.getById(0)); } else {
+        if (teacherInfoList.isEmpty()) {teacherInfos.add(teacherInfoService.getById(1)); } else {
             for (TeacherInfo teacherInfo : teacherInfoList) {
                 teacherInfos.add(teacherInfo);
             }

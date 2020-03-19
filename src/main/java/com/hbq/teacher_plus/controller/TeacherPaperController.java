@@ -107,7 +107,7 @@ public class TeacherPaperController {
     public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<TeacherPaper> teacherPapers =new ArrayList<>();
         List<TeacherPaper> teacherPaperList = teacherPaperService.list(new QueryWrapper<TeacherPaper>().eq("cu_id", cuId));
-        if (teacherPaperList.isEmpty()) {teacherPapers.add(teacherPaperService.getById(0)); } else {
+        if (teacherPaperList.isEmpty()) {teacherPapers.add(teacherPaperService.getById(1)); } else {
             for (TeacherPaper teacherPaper : teacherPaperList) {
                 teacherPapers.add(teacherPaper);
             }

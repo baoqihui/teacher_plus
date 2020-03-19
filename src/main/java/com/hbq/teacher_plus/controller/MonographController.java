@@ -107,7 +107,7 @@ public class MonographController {
     public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<Monograph> monographs =new ArrayList<>();
         List<Monograph> monographList = monographService.list(new QueryWrapper<Monograph>().eq("cu_id", cuId));
-        if (monographList.isEmpty()) {monographs.add(monographService.getById(0)); } else {
+        if (monographList.isEmpty()) {monographs.add(monographService.getById(1)); } else {
             for (Monograph monograph : monographList) {
                 monographs.add(monograph);
             }
