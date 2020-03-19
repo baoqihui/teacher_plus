@@ -49,7 +49,7 @@ public class UsersController {
             if(user1!=null){
                 session.setAttribute("user", user1);
                 Jedis jedis= JedisConnect.Conn();
-                String json_user= JSONObject.toJSONString(users);
+                String json_user= JSONObject.toJSONString(user1);
                 jedis.set("user",json_user);
                 jedis.expire("user", 300);
                 return Result.succeed(user1,"登陆成功");

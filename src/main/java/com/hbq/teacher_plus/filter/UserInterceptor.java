@@ -1,10 +1,14 @@
-/*
 package com.hbq.teacher_plus.filter;
 
+/**
+ * 拦截器
+ * @author XiaoHui
+ *
+ */
+
 import com.alibaba.fastjson.JSONObject;
+import com.hbq.teacher_plus.model.Users;
 import com.hbq.teacher_plus.util.JedisConnect;
-import com.zhiyou.pojo.User;
-import com.zhiyou.util.JedisConnect;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,13 +16,6 @@ import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-*/
-/**
- * 拦截器
- * @author XiaoHui
- *
- *//*
 
 @Component
 public class UserInterceptor implements HandlerInterceptor {
@@ -39,9 +36,7 @@ public class UserInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
 		Jedis jedis= JedisConnect.Conn();
 		String json_user=jedis.get("user");
-		User user=JSONObject.parseObject(json_user, User.class);
-		//Object o=request.getSession().getAttribute("user");
-
+		Users user= JSONObject.parseObject(json_user, Users.class);
 		System.out.println("进入拦截器");
 		//不为空，已登录放行；
 		if(user!=null){
@@ -54,4 +49,4 @@ public class UserInterceptor implements HandlerInterceptor {
 	}
 
 }
-*/
+

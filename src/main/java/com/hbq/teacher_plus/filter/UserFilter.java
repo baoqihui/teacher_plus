@@ -1,4 +1,3 @@
-/*
 package com.hbq.teacher_plus.filter;
 
 import org.springframework.stereotype.Component;
@@ -22,7 +21,6 @@ public class UserFilter implements Filter {
 
 		System.out.println("进入过滤器！"+o);
 
-
         //得到当前页面所在目录下全名称
 		String urlPattern=request2.getServletPath();
 		
@@ -31,10 +29,8 @@ public class UserFilter implements Filter {
 
 	
 		if(o==null){		
-			System.out.println(2);
 			response2.sendRedirect(url+"login.html");
 		}else{
-			System.out.println(3);
 			chain.doFilter(request, response);
 		}
 
@@ -53,4 +49,4 @@ public class UserFilter implements Filter {
 	}
 }
 
-*/
+
