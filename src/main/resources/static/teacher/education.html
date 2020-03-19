@@ -57,8 +57,9 @@
                         <span id="span1" style="color: red;" className="education"></span>
                         <table id="t1" class="table table-bordered table-striped" frame="box">
                             <thead>
-                            <tr><th colspan="7" >已添学历信息（最终学位为已录入最高学位，删除重新添加以修改）</th></tr>
+                            <tr><th colspan="8" >已添学历信息（最终学位为已录入最高学位，删除重新添加以修改）</th></tr>
                             <tr>
+                                <th>编号</th>
                                 <th>学历</th>
                                 <th>毕业学校</th>
                                 <th>专业</th>
@@ -194,6 +195,7 @@
             $(result.data).each(function(index,education){
                 $("#tbody").append(
                     " <tr>"+
+                    "<td>"+(index+1)+"</td>"+
                     "<td>"+education.certificate+"</td>"+
                     "<td >"+education.school+"</td>"+
                     "<td >"+education.major+"</td>"+

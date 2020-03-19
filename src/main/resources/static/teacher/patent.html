@@ -57,8 +57,9 @@
                         <span id="span1" style="color: red;" className="patent"></span>
                         <table id="t1" class="table table-bordered table-striped" frame="box">
                             <thead>
-                            <tr><th colspan="7" >已添教师获批专利情况(删除重新添加以修改)</th></tr>
+                            <tr><th colspan="8" >已添教师获批专利情况(删除重新添加以修改)</th></tr>
                             <tr>
+                                <th>编号</th>
                                 <th>专利名称</th>
                                 <th>作者</th>
                                 <th>最高排名</th>
@@ -192,6 +193,7 @@
             $(result.data).each(function(index,patent){
                 $("#tbody").append(
                     " <tr>"+
+                    "<td>"+(index+1)+"</td>"+
                     "<td>"+patent.patentName+"</td>"+
                     "<td >"+patent.patentAuthor+"</td>"+
                     "<td >"+patent.highestRanking+"</td>"+

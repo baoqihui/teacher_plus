@@ -57,8 +57,9 @@
             <span id="span1" style="color: red;" className="teacherPaper"></span>
             <table id="t1" class="table table-bordered table-striped" frame="box">
               <thead>
-              <tr><th colspan="7" >已添教师发表学术论文情况(删除重新添加以修改)</th></tr>
+              <tr><th colspan="8" >已添教师发表学术论文情况(删除重新添加以修改)</th></tr>
               <tr>
+                <th>编号</th>
                 <th>论文名称</th>
                 <th>第一作者或通讯作者</th>
                 <th>发表期刊</th>
@@ -194,6 +195,7 @@
       $(result.data).each(function(index,teacherPaper){
         $("#tbody").append(
                 " <tr>"+
+                "<td>"+(index+1)+"</td>"+
                 "<td>"+teacherPaper.paperName+"</td>"+
                 "<td >"+teacherPaper.author+"</td>"+
                 "<td >"+teacherPaper.published+"</td>"+

@@ -36,8 +36,9 @@
             <span id="span1" style="color: red;" className="teacherInfo"></span>
             <table class="table table-bordered table-striped" frame="box">
               <thead>
-              <tr><th colspan="10" >已添教学内容（删除重新添加以修改）</th></tr>
+              <tr><th colspan="11" >已添教学内容（删除重新添加以修改）</th></tr>
               <tr>
+                <th>编号</th>
                 <th>学期时间</th>
                 <th>课程编号</th>
                 <th>课程名</th>
@@ -192,6 +193,7 @@
         console.log(teacherInfo.certificate)
         $("#tbody").append(
                 " <tr>"+
+                "<td>"+(index+1)+"</td>"+
                 "<td>"+teacherInfo.termTime+"</td>"+
                 "<td >"+teacherInfo.courseNum+"</td>"+
                 "<td >"+teacherInfo.courseName+"</td>"+

@@ -74,6 +74,7 @@
             <table id="t1" class="table table-bordered table-striped" frame="box">
               <thead>
               <tr >
+                <th>编号</th>
                 <th>教师姓名</th>
                 <th>主讲课程</th>
                 <th>任课时期</th>
@@ -180,6 +181,7 @@
       $(result.data).each(function(index,teacherInfo){
         $("#tbody").append(
                 " <tr>"+
+                "<td>"+(index+1)+"</td>"+
                 "<td>"+teacherInfo.name+"</td>"+
                 "<td >"+teacherInfo.courseName+"</td>"+
                 "<td >"+teacherInfo.termTime+"</td>"+

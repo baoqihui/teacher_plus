@@ -57,8 +57,9 @@
                         <span id="span1" style="color: red;" className="monograph"></span>
                         <table id="t1" class="table table-bordered table-striped" frame="box">
                             <thead>
-                            <tr><th colspan="7" >已添教师出版专著情况(删除重新添加以修改)</th></tr>
+                            <tr><th colspan="9" >已添教师出版专著情况(删除重新添加以修改)</th></tr>
                             <tr>
+                                <th>编号</th>
                                 <th>专著名称</th>
                                 <th>第一著作人</th>
                                 <th>专著类别</th>
@@ -186,6 +187,7 @@
             $(result.data).each(function(index,monograph){
                 $("#tbody").append(
                     " <tr>"+
+                    "<td>"+(index+1)+"</td>"+
                     "<td>"+monograph.monographName+"</td>"+
                     "<td >"+monograph.author+"</td>"+
                     "<td >"+monograph.type+"</td>"+
