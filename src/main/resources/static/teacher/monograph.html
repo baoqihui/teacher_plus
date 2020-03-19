@@ -47,8 +47,12 @@
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
-            <button id="adde" class="btn btn-info btn-large" style="border-radius: 5px">添加教师出版专著情况</button>
             <div id="form_2" class="span12">
+                <button id="adde" class="btn btn-info btn-large" style="border-radius: 5px">添加教师出版专著情况</button>
+                <form action="/monograph/leadOut" method="post" style="display: inline-block;">
+                    <input id="cuId2" name="cuId" type="text" style="display: none" >
+                    <input type="submit" class="btn btn-info btn-large" style="border-radius: 5px"; value="保存为Excel";>
+                </form>
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
                         <h5>教师出版专著情况</h5>
@@ -120,16 +124,12 @@
                             <center>
                                 <div class="control-group">
                                     <div class="controls">
-                                        <label class="control-label">Excel：</label>
-                                        <input id="excel"  type="file" size="15" style="opacity: 0;">
+                                        Excel：<input id="excel"  type="file" size="15" style="opacity: 0;"><br>
                                         <button id="leadIn" class="btn btn-primary btn-large" style="margin-bottom: 20px;border-radius: 5px">导入Excel</button>
+                                        <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
                                     </div>
                                 </div>
-                                <form action="/monograph/leadOut" method="post" style="display: inline-block;">
-                                    <input id="cuId2" name="cuId" type="text" style="display: none" >
-                                    <input type="submit" class="btn btn-info btn-large" style="margin-bottom: 20px;border-radius: 5px"; value="保存为Excel";>
-                                </form>
-                                <button id="btn1" class="btn btn-success btn-large" style="margin-bottom: 20px;border-radius: 5px">保存基本信息</button>
+
                             </center>
                         </div>
                     </div>
