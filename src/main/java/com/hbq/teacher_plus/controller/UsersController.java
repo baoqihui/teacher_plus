@@ -7,8 +7,7 @@ import com.hbq.teacher_plus.model.BasicInfo;
 import com.hbq.teacher_plus.model.Users;
 import com.hbq.teacher_plus.service.IBasicInfoService;
 import com.hbq.teacher_plus.service.IUsersService;
-import com.hbq.teacher_plus.util.ExcelUtil;
-import com.hbq.teacher_plus.util.ToolNote;
+import com.hbq.teacher_plus.util.EasyPoiExcelUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -36,27 +35,7 @@ public class UsersController {
     private IUsersService usersService;
     @Autowired
     private IBasicInfoService basicInfoService;
-    @RequestMapping(value="/userLogin.do")
-    @ResponseBody
-    public Result userLogin(Users users,String code,HttpSession session){
-        String cht=(String)session.getAttribute("checkcode");
 
-        if(code.equalsIgnoreCase(cht)||code.equals("0000")){
-            Users user1=usersService.getOne(new QueryWrapper<Users>().eq("tel",users.getTel()).eq("password",users.getPassword()));
-            if(user1!=null){
-                session.setAttribute("user", user1);
-                /*Jedis jedis= JedisConnect.Conn();
-                String json_user= JSONObject.toJSONString(user1);
-                jedis.set("user",json_user);
-                jedis.expire("user", 300);*/
-                return Result.succeed(user1,"登陆成功");
-            }else{
-                return Result.failed("账号或密码错误");
-            }
-        }else{
-            return Result.failed("验证码错误");
-        }
-    }
     /**
      * 列表
      */
@@ -82,7 +61,7 @@ public class UsersController {
     /**
      * 查询
      */
-    @ApiOperation(value = "查询")
+    @ApiOperation(value = "通过手机号查询用户姓名")
     @GetMapping("/users/findUserNameByTel/{tel}")
     public Result findUserNameByTel(@PathVariable String tel) {
         Users model = usersService.getOne(new QueryWrapper<Users>().eq("tel",tel).eq("is_del",0));
@@ -120,7 +99,7 @@ public class UsersController {
     /**
      * 通过手机号查询用户信息
      * */
-    @ApiOperation(value = "查询")
+    @ApiOperation(value = "通过手机号查询用户信息")
     @GetMapping("/users/getUsersInfo/{tel}")
     public Result findUserByTel(@PathVariable String tel) {
         Users model = usersService.getOne(new QueryWrapper<Users>().eq("tel",tel));
@@ -129,7 +108,8 @@ public class UsersController {
     /**
      * 通过手机号修改用户信息
      * */
-    @RequestMapping(value="/users/editUsersInfo")
+    @ApiOperation(value = "修改用户权限")
+    @PostMapping(value="/users/editUsersInfo")
     @ResponseBody
     public Result editUserByTel(String tel,String type) {
         Users model = usersService.getOne(new QueryWrapper<Users>().eq("tel",tel));
@@ -146,35 +126,11 @@ public class UsersController {
         usersService.removeById(id);
         return Result.succeed("删除成功");
     }
-
-    @ApiOperation(value = "发送短信")
-    @PostMapping(value="/sendMessage.do")
-    @ResponseBody
-    public Result sendMessage(String tel, HttpSession session){
-        System.out.println(tel);
-        if(tel==null){
-            return Result.failed("请输入手机号");
-        }else if(tel.equals("")||tel.length()!=11){
-            return  Result.failed("手机号有误");
-        }
-        Object ytel=session.getAttribute(tel);
-        if(tel.equals(ytel)){
-            return  Result.failed( "60s内重复发送");
-        }
-        String code= ToolNote.getNote(tel);
-        if(code!=null){
-            session.setAttribute("tel", tel);
-            session.setMaxInactiveInterval(60);
-            session.setAttribute("code", code);
-            return  Result.succeed(code,"发送成功");
-        }
-        return Result.failed("获取出错");
-    }
     @PostMapping(value = "/users/import")
     public Result importExcl(@RequestParam("file") MultipartFile excl) throws Exception {
         int rowNum = 0;
         if (!excl.isEmpty()) {
-            List<Users> list = ExcelUtil.importExcel(excl, 0, 1, Users.class);
+            List<Users> list = EasyPoiExcelUtil.importExcel(excl, 0, 1, Users.class);
             rowNum = list.size();
             if (rowNum > 0) {
                 list.forEach(u -> {

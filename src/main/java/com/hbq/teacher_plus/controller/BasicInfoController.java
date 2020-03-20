@@ -10,10 +10,7 @@ import com.hbq.teacher_plus.model.Work;
 import com.hbq.teacher_plus.service.IBasicInfoService;
 import com.hbq.teacher_plus.service.IEducationService;
 import com.hbq.teacher_plus.service.IWorkService;
-import com.hbq.teacher_plus.util.BuildPath;
-import com.hbq.teacher_plus.util.ExcelUtil;
-import com.hbq.teacher_plus.util.ExcelUtils;
-import com.hbq.teacher_plus.util.UploadImg;
+import com.hbq.teacher_plus.util.*;
 import com.hbq.teacher_plus.vo.BasicInfoVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -50,11 +47,6 @@ public class BasicInfoController {
     private IEducationService educationService;
     @Autowired
     private IWorkService workService;
-    @RequestMapping(value="/upload.do",method={RequestMethod.POST,RequestMethod.GET})
-    @ResponseBody
-    public String upload(MultipartFile m_image_addr) throws Exception{
-        return UploadImg.imgUpload(m_image_addr);
-    }
 
     /**
      * 列表
@@ -115,7 +107,7 @@ public class BasicInfoController {
     public  Result leadIn(MultipartFile excel,String cuId) throws Exception {
         int rowNum = 0;
         if (!excel.isEmpty()) {
-            List<BasicInfo> list = ExcelUtil.importExcel(excel, 1, 1, BasicInfo.class);
+            List<BasicInfo> list = EasyPoiExcelUtil.importExcel(excel, 1, 1, BasicInfo.class);
             rowNum = list.size();
             if (rowNum > 0) {
                 BasicInfo existBasicInfo=basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("cu_id",cuId));
@@ -145,7 +137,7 @@ public class BasicInfoController {
         BasicInfo basicInfo=basicInfoService.getOne(new QueryWrapper<BasicInfo>().eq("cu_id",cuId));
         if (basicInfo==null) {basicInfos.add(basicInfoService.getById(1));} else {basicInfos.add(basicInfo);}
         //导出操作
-        ExcelUtil.exportExcel(basicInfos, "基本信息导出", "基本信息导出", BasicInfo.class, "basicInfo.xls", response);
+        EasyPoiExcelUtil.exportExcel(basicInfos, "基本信息导出", "基本信息导出", BasicInfo.class, "basicInfo.xls", response);
 
     }
     @ApiOperation(value = "全部基本信息导出")
@@ -160,7 +152,7 @@ public class BasicInfoController {
                 "是否有行业经历","中青年教师实践教学能力培训","研究生导师"
         };
 
-        Workbook wk= ExcelUtils.exportExcel(titles,"全部基本信息导出");
+        Workbook wk= PoiExcelUtils.exportExcel(titles,"全部基本信息导出");
 
         XSSFSheet sheet=(XSSFSheet) wk.getSheet("全部基本信息导出");
         List<BasicInfo> data = basicInfoService.list();

@@ -6,7 +6,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ExcelUtils {
+public class PoiExcelUtils {
 	public static Workbook exportExcel(String[] titles,String name) throws Exception{
 
 		// 新建工作簿对象

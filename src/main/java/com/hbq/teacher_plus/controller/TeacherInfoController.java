@@ -5,7 +5,7 @@ import com.hbq.teacher_plus.common.model.PageResult;
 import com.hbq.teacher_plus.common.model.Result;
 import com.hbq.teacher_plus.model.TeacherInfo;
 import com.hbq.teacher_plus.service.ITeacherInfoService;
-import com.hbq.teacher_plus.util.ExcelUtil;
+import com.hbq.teacher_plus.util.EasyPoiExcelUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -48,7 +48,7 @@ public class TeacherInfoController {
         return teacherInfoService.findList(params);
     }
 
-    @ApiOperation(value = "查询列表(此接口请使用PostMan测试)")
+    @ApiOperation(value = "查询列表所有用户信息(此接口请使用PostMan测试)")
     @GetMapping("/teacherInfo/findAllUsers")
     public PageResult findAllUsers(@RequestParam(required = false) Map<String, Object> params) {
         return teacherInfoService.findList2(params);
@@ -96,7 +96,7 @@ public class TeacherInfoController {
     public  Result leadIn(MultipartFile excel, String cuId) throws Exception {
         int rowNum = 0;
         if (!excel.isEmpty()) {
-            List<TeacherInfo> list = ExcelUtil.importExcel(excel, 1, 1, TeacherInfo.class);
+            List<TeacherInfo> list = EasyPoiExcelUtil.importExcel(excel, 1, 1, TeacherInfo.class);
             rowNum = list.size();
             if (rowNum > 0) {
                 list.forEach(u -> {
@@ -112,24 +112,24 @@ public class TeacherInfoController {
     /**
      * 导出
      */
-    @ApiOperation(value = "导出")
+    @ApiOperation(value = "全部教学内容导出")
     @PostMapping("/teacherInfo/leadOutAll")
     public void leadOutAll(String cuId, HttpServletResponse response) throws IOException {
         List<TeacherInfo> teacherInfos =new ArrayList<>();
         List<TeacherInfo> teacherInfoList = teacherInfoService.list();
-        if (teacherInfoList.isEmpty()) {teacherInfos.add(teacherInfoService.getById(0)); } else {
+        if (teacherInfoList.isEmpty()) {teacherInfos.add(teacherInfoService.getById(1)); } else {
             for (TeacherInfo teacherInfo : teacherInfoList) {
                 teacherInfos.add(teacherInfo);
             }
         }
         //导出操作
-        ExcelUtil.exportExcel(teacherInfos, "教学内容导出", "教学内容导出", TeacherInfo.class, "teacherInfo.xls", response);
+        EasyPoiExcelUtil.exportExcel(teacherInfos, "全部教学内容导出", "全部教学内容导出", TeacherInfo.class, "AllTeacherInfo.xls", response);
 
     }
     /**
      * 导出
      */
-    @ApiOperation(value = "导出全部")
+    @ApiOperation(value = "个人教学内容导出")
     @PostMapping("/teacherInfo/leadOut")
     public void leadOut(String cuId, HttpServletResponse response) throws IOException {
         List<TeacherInfo> teacherInfos =new ArrayList<>();
@@ -140,7 +140,7 @@ public class TeacherInfoController {
             }
         }
         //导出操作
-        ExcelUtil.exportExcel(teacherInfos, "教学内容导出", "教学内容导出", TeacherInfo.class, "teacherInfo.xls", response);
+        EasyPoiExcelUtil.exportExcel(teacherInfos, "个人教学内容导出", "个人教学内容导出", TeacherInfo.class, "teacherInfo.xls", response);
 
     }
 }

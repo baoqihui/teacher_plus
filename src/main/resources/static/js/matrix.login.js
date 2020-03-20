@@ -12,7 +12,7 @@ $(function () {
 	//获取验证码
 	$("#btn1").bind("click",function(){
 		var tel=$("#regis_tel").val();
-		$.post("sendMessage.do",{tel:tel},function(result){
+		$.post("sendMessage",{tel:tel},function(result){
 			alert(result.resp_msg);
 		},"json")
 
@@ -60,7 +60,7 @@ $(function () {
 	//获取验证码
 	$("#btn2").bind("click",function(){
 		var tel=$("#change_tel").val();
-		$.post("sendMessage.do",{tel:tel},function(result){
+		$.post("sendMessage",{tel:tel},function(result){
 			alert(result.resp_msg);
 		},"json")
 
@@ -97,7 +97,7 @@ $(function () {
 		var login_tel=$("#login_tel").val();
 		var login_password=$("#login_password").val();
 		var code=$("#verify").val();
-		$.post("userLogin.do",{tel:login_tel,password:login_password,code:code},function(result){
+		$.post("userLogin",{tel:login_tel,password:login_password,code:code},function(result){
 			if(result.resp_code=="0"){
 				$.cookie('cuId',result.datas.id,{expires:1});
 				$.cookie('type',result.datas.type,{expires:1});

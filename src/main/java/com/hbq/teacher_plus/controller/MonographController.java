@@ -5,7 +5,7 @@ import com.hbq.teacher_plus.common.model.PageResult;
 import com.hbq.teacher_plus.common.model.Result;
 import com.hbq.teacher_plus.model.Monograph;
 import com.hbq.teacher_plus.service.IMonographService;
-import com.hbq.teacher_plus.util.ExcelUtil;
+import com.hbq.teacher_plus.util.EasyPoiExcelUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -85,7 +85,7 @@ public class MonographController {
     public  Result leadIn(MultipartFile excel, String cuId) throws Exception {
         int rowNum = 0;
         if (!excel.isEmpty()) {
-            List<Monograph> list = ExcelUtil.importExcel(excel, 1, 1, Monograph.class);
+            List<Monograph> list = EasyPoiExcelUtil.importExcel(excel, 1, 1, Monograph.class);
             rowNum = list.size();
             if (rowNum > 0) {
                 //无该用户信息
@@ -113,7 +113,7 @@ public class MonographController {
             }
         }
         //导出操作
-        ExcelUtil.exportExcel(monographs, "教师出版专著情况导出", "教师出版专著情况导出", Monograph.class, "monograph.xls", response);
+        EasyPoiExcelUtil.exportExcel(monographs, "教师出版专著情况导出", "教师出版专著情况导出", Monograph.class, "monograph.xls", response);
 
     }
 }

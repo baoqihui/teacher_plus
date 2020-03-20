@@ -5,7 +5,7 @@ import com.hbq.teacher_plus.common.model.PageResult;
 import com.hbq.teacher_plus.common.model.Result;
 import com.hbq.teacher_plus.model.Work;
 import com.hbq.teacher_plus.service.IWorkService;
-import com.hbq.teacher_plus.util.ExcelUtil;
+import com.hbq.teacher_plus.util.EasyPoiExcelUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -91,7 +91,7 @@ public class WorkController {
     public  Result leadIn(MultipartFile excel, String cuId) throws Exception {
         int rowNum = 0;
         if (!excel.isEmpty()) {
-            List<Work> list = ExcelUtil.importExcel(excel, 1, 1, Work.class);
+            List<Work> list = EasyPoiExcelUtil.importExcel(excel, 1, 1, Work.class);
             rowNum = list.size();
             if (rowNum > 0) {
                 Work existWork=workService.getOne(new QueryWrapper<Work>().eq("cu_id",cuId));
@@ -128,7 +128,7 @@ public class WorkController {
             }
         }
         //导出操作
-        ExcelUtil.exportExcel(works, "工作经历导出", "工作经历导出", Work.class, "work.xls", response);
+        EasyPoiExcelUtil.exportExcel(works, "工作经历导出", "工作经历导出", Work.class, "work.xls", response);
 
     }
 }

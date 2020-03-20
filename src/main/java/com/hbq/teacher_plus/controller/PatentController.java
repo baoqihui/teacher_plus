@@ -5,7 +5,7 @@ import com.hbq.teacher_plus.common.model.PageResult;
 import com.hbq.teacher_plus.common.model.Result;
 import com.hbq.teacher_plus.model.Patent;
 import com.hbq.teacher_plus.service.IPatentService;
-import com.hbq.teacher_plus.util.ExcelUtil;
+import com.hbq.teacher_plus.util.EasyPoiExcelUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -85,7 +85,7 @@ public class PatentController {
     public  Result leadIn(MultipartFile excel, String cuId) throws Exception {
         int rowNum = 0;
         if (!excel.isEmpty()) {
-            List<Patent> list = ExcelUtil.importExcel(excel, 1, 1, Patent.class);
+            List<Patent> list = EasyPoiExcelUtil.importExcel(excel, 1, 1, Patent.class);
             rowNum = list.size();
             if (rowNum > 0) {
                 //无该用户信息
@@ -113,7 +113,7 @@ public class PatentController {
             }
         }
         //导出操作
-        ExcelUtil.exportExcel(patents, "教师获批专利情况导出", "教师获批专利情况导出", Patent.class, "patent.xls", response);
+        EasyPoiExcelUtil.exportExcel(patents, "教师获批专利情况导出", "教师获批专利情况导出", Patent.class, "patent.xls", response);
 
     }
 }

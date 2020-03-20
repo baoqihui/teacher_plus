@@ -4,7 +4,7 @@ import com.hbq.teacher_plus.common.model.PageResult;
 import com.hbq.teacher_plus.common.model.Result;
 import com.hbq.teacher_plus.model.Transaction;
 import com.hbq.teacher_plus.service.ITransactionService;
-import com.hbq.teacher_plus.util.ExcelUtil;
+import com.hbq.teacher_plus.util.EasyPoiExcelUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -84,7 +84,7 @@ public class TransactionController {
     public  Result leadIn(MultipartFile excel, String cuId) throws Exception {
         int rowNum = 0;
         if (!excel.isEmpty()) {
-            List<Transaction> list = ExcelUtil.importExcel(excel, 1, 1, Transaction.class);
+            List<Transaction> list = EasyPoiExcelUtil.importExcel(excel, 1, 1, Transaction.class);
             rowNum = list.size();
             if (rowNum > 0) {
                     //无该用户信息
@@ -112,7 +112,7 @@ public class TransactionController {
             }
         }
         //导出操作
-        ExcelUtil.exportExcel(transactions, "教师异动情况导出", "教师异动情况导出", Transaction.class, "transaction.xls", response);
+        EasyPoiExcelUtil.exportExcel(transactions, "教师异动情况导出", "教师异动情况导出", Transaction.class, "transaction.xls", response);
 
     }
 }

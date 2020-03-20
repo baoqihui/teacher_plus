@@ -23,8 +23,8 @@ import java.util.Map;
  * @author zlt
  * @date 2019/1/6
  */
-public class ExcelUtil {
-    private ExcelUtil() {
+public class EasyPoiExcelUtil {
+    private EasyPoiExcelUtil() {
         throw new IllegalStateException("Utility class");
     }
 

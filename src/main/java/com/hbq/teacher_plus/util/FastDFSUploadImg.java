@@ -5,15 +5,22 @@ import org.csource.fastdfs.ClientGlobal;
 import org.csource.fastdfs.StorageClient1;
 import org.csource.fastdfs.TrackerClient;
 import org.csource.fastdfs.TrackerServer;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+@Component
+public class FastDFSUploadImg {
+	@Value("${FastDFS.propertiesPath}")
+	String propertiesPath;
+	@Value("${FastDFS.imgPrefixPath}")
+	String imgPrefixPath;
 
-public class UploadImg {
-	public static String imgUpload(MultipartFile imgFile) throws FileNotFoundException, IOException, Exception{
+	public  String imgUpload(MultipartFile imgFile) throws FileNotFoundException, IOException, Exception{
 		//1.加载配置文件ip端口
-		ClientGlobal.init("/D:/config/fastdfs.properties");
+		ClientGlobal.init(propertiesPath);
 		//2.创建管理端对象
 		TrackerClient trackerClient=new TrackerClient();
 		//3.获取连接
@@ -26,7 +33,7 @@ public class UploadImg {
 		//6.上传文件
 		String path=storageClient1.upload_file1(imgFile.getBytes(), "jpg", meta_list);
 		//拼接fastdfs的IP前缀得到图片真实地址
-		path="http://120.27.244.176/"+path;
+		path=imgPrefixPath+path;
 		
 		System.out.println(path);
 		//返回一个真实地址		

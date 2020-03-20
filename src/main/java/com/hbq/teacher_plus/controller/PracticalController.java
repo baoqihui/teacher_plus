@@ -5,7 +5,7 @@ import com.hbq.teacher_plus.common.model.PageResult;
 import com.hbq.teacher_plus.common.model.Result;
 import com.hbq.teacher_plus.model.Practical;
 import com.hbq.teacher_plus.service.IPracticalService;
-import com.hbq.teacher_plus.util.ExcelUtil;
+import com.hbq.teacher_plus.util.EasyPoiExcelUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -87,7 +87,7 @@ public class PracticalController {
     public  Result leadIn(MultipartFile excel, String cuId) throws Exception {
         int rowNum = 0;
         if (!excel.isEmpty()) {
-            List<Practical> list = ExcelUtil.importExcel(excel, 1, 1, Practical.class);
+            List<Practical> list = EasyPoiExcelUtil.importExcel(excel, 1, 1, Practical.class);
             rowNum = list.size();
             if (rowNum > 0) {
                 //无该用户信息
@@ -115,7 +115,7 @@ public class PracticalController {
             }
         }
         //导出操作
-        ExcelUtil.exportExcel(practicals, "应用型课程导出", "应用型课程导出", Practical.class, "practical.xls", response);
+        EasyPoiExcelUtil.exportExcel(practicals, "应用型课程导出", "应用型课程导出", Practical.class, "practical.xls", response);
 
     }
 }

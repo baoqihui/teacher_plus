@@ -172,11 +172,11 @@ function loadData(obj){
 }
 //上传图片
 function upLoadImg(){
-    $("#m_image_addr").live("change",function(){
+    $("#imgFile").live("change",function(){
         //注意这里不能写错。。。
-        var file=$("#m_image_addr")[0].files[0];
+        var file=$("#imgFile")[0].files[0];
         var formData = new FormData();
-        formData.append("m_image_addr",file);
+        formData.append("imgFile",file);
         //对文件类型进行判断
         var index=file.name.lastIndexOf(".");
         var type=file.name.substring(index);
@@ -185,7 +185,7 @@ function upLoadImg(){
             return;
         }
         $.ajax({
-            url:"../upload.do",
+            url:"../uploadImgToOSS",
             data:formData,
             dataType:"text",
             type:"post",

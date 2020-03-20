@@ -5,7 +5,7 @@ import com.hbq.teacher_plus.common.model.PageResult;
 import com.hbq.teacher_plus.common.model.Result;
 import com.hbq.teacher_plus.model.TeacherPaper;
 import com.hbq.teacher_plus.service.ITeacherPaperService;
-import com.hbq.teacher_plus.util.ExcelUtil;
+import com.hbq.teacher_plus.util.EasyPoiExcelUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -85,7 +85,7 @@ public class TeacherPaperController {
     public  Result leadIn(MultipartFile excel, String cuId) throws Exception {
         int rowNum = 0;
         if (!excel.isEmpty()) {
-            List<TeacherPaper> list = ExcelUtil.importExcel(excel, 1, 1, TeacherPaper.class);
+            List<TeacherPaper> list = EasyPoiExcelUtil.importExcel(excel, 1, 1, TeacherPaper.class);
             rowNum = list.size();
             if (rowNum > 0) {
                 //无该用户信息
@@ -113,7 +113,7 @@ public class TeacherPaperController {
             }
         }
         //导出操作
-        ExcelUtil.exportExcel(teacherPapers, "教师发表学术论文情况导出", "教师发表学术论文情况导出", TeacherPaper.class, "teacherPaper.xls", response);
+        EasyPoiExcelUtil.exportExcel(teacherPapers, "教师发表学术论文情况导出", "教师发表学术论文情况导出", TeacherPaper.class, "teacherPaper.xls", response);
 
     }
 }

@@ -1,5 +1,6 @@
 package com.hbq.teacher_plus.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,11 +31,17 @@ class SwaggerConfig {
                 .build();
     }
 
+    @Value("${Swagger.title}")
+    String title;
+    @Value("${Swagger.description}")
+    String description;
+    @Value("${Swagger.version}")
+    String version;
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("教师信息管理系统")
-                .description("restful 风格接口")
-                .version("1.0")
+                .title(title)
+                .description(description)
+                .version(version)
                 .build();
     }
 
