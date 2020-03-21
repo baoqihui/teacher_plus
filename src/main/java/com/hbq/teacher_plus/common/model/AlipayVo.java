@@ -31,7 +31,15 @@ public class AlipayVo implements Serializable {
      * 销售产品码，与支付宝签约的产品码名称
      */
     private String product_code;
-
+    /**
+     * 	具体描述信息。如果是多种商品，请将商品描述字符串累加传给body。
+     * */
+    private String body;
+    /**
+     *
+     * */
+    private String passback_params;
+    private String extend_params;
     // getter and setter ....
 }
 

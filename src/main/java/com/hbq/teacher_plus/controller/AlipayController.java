@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
 import com.hbq.teacher_plus.common.model.AlipayVo;
 import com.hbq.teacher_plus.config.AlipayConfig;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -132,7 +136,45 @@ public class AlipayController {
         }
         return pageString;
     }
+    @RequestMapping("/pay/web")
+    public   void   doPost (HttpServletRequest httpRequest, HttpServletResponse httpResponse)   throws ServletException, IOException {
+        AlipayClient client = new DefaultAlipayClient(AlipayConfig.URL, AlipayConfig.APPID, AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);
+        AlipayTradePagePayRequest alipayRequest =  new  AlipayTradePagePayRequest(); //创建API对应的request
+        alipayRequest.setReturnUrl( AlipayConfig.return_url );
+        alipayRequest.setNotifyUrl( AlipayConfig.notify_url ); //在公共参数中设置回跳和通知地址
+        AlipayVo alipayVo = new AlipayVo();
+        // String out_trade_no = UUID.randomUUID().toString().replace("-", "");
+        String out_trade_no = AlipayUtil.get().nextId() + "";
+        System.out.println("out_trade_no:" + out_trade_no);
+        // 设置订单单号,需要保证唯一性
+        alipayVo.setOut_trade_no(out_trade_no);
+        // 设置支付金额
+        alipayVo.setTotal_amount("0.01");
+        // 设置支付标题
+        alipayVo.setSubject("hbq-test-title");
+        // 设置订单有效时长(30分钟)
+        alipayVo.setTimeout_express("30m");
+        // 商品码(必须是QUICK_WAP_WAY),可以看文档 see: https://docs.open.alipay.com/203/107090/
+        alipayVo.setProduct_code("FAST_INSTANT_TRADE_PAY");
+        //备注
+        alipayVo.setBody("Iphone6 16G");
 
+        alipayVo.setPassback_params("merchantBizType%3d3C%26merchantBizNo%3d2016010101111");
+        // 对象转为json字符串
+        String json = JSONObject.toJSONString(alipayVo);
+
+        alipayRequest.setBizContent(json); //填充业务参数*/
+        String form= "" ;
+        try  {
+            form = client.pageExecute(alipayRequest).getBody();  //调用SDK生成表单
+        }  catch  (AlipayApiException e) {
+            e.printStackTrace();
+        }
+        httpResponse.setContentType( "text/html;charset="  + AlipayConfig.CHARSET);
+        httpResponse.getWriter().write(form); //直接将完整的表单html输出到页面
+        httpResponse.getWriter().flush();
+        httpResponse.getWriter().close();
+    }
 
 }
 
