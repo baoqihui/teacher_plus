@@ -73,6 +73,15 @@
             <optional>true</optional>
         </dependency>
 
+
+        <!--导入阿里支付相关依赖-->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>3.7.4.ALL</version>
+        </dependency>
+
+
         <!-- mysql  -->
         <dependency>
             <groupId>mysql</groupId>
