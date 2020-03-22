@@ -1,4 +1,4 @@
-package com.hbq.teacher_plus.controller;
+package com.hbq.teacher_plus.common.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
