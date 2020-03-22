@@ -3,8 +3,6 @@ $(function () {
     var cuId=$.cookie("cuId");
     $("#cuId").val(cuId);
     $("#cuId2").val(cuId);
-    //退出
-    $('#backid').click(function(){window.location.href="index.html";});
     //导入
     $("#leadIn").click(function () {
         var r = confirm("* 导入excel应确保格式正确	\n"+

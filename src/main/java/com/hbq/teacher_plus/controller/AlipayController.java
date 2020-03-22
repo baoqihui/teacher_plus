@@ -10,11 +10,8 @@ import com.alipay.api.request.AlipayTradeWapPayRequest;
 import com.hbq.teacher_plus.common.model.AlipayVo;
 import com.hbq.teacher_plus.config.AlipayConfig;
 import com.hbq.teacher_plus.util.AlipayUtil;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,19 +23,9 @@ import java.util.Map;
  * @author hbq
  * @createTime 2020/3/19 23:29
  */
-@Controller
-@RequestMapping("/alipay")
+@Slf4j
+@RestController("/alipay")
 public class AlipayController {
-
-    /**
-     * 测试代码是否跑通
-     * @return
-     */
-    @RequestMapping("/hello")
-    @ResponseBody
-    public String hello() {
-        return "hello";
-    }
 
     /**
      * 支付宝完成回调页面(不可信回调)
@@ -90,9 +77,7 @@ public class AlipayController {
         }
         return rsaCheck ? "success" : "failure";
     }
-
-    @RequestMapping("/pay")
-    @ResponseBody
+    @RequestMapping("/pay/phone")
     public String pay() {
 
         AlipayVo alipayVo = new AlipayVo();

@@ -56,7 +56,7 @@
             </ul>
         </li>
         <li class=""><a title="" href="#"><i class="fa fa-cog"></i> <span class="text">&nbsp;设置</span></a></li>
-        <li class=""><a title="" href="../login.html"><i class="fa fa-power-off"></i> <span class="text">&nbsp;退出系统</span></a></li>
+        <li class=""><a id="tuichu" title="" href="#" ><i class="fa fa-power-off"></i> <span class="text">&nbsp;退出系统</span></a></li>
     </ul>
 </div>
 <!--close-top-Header-menu-->
@@ -189,6 +189,18 @@
         }if (type=="1"){
             $("#admin").hide();
         }
+        console.log(1+sessionStorage.getItem("user"))
+        $("#tuichu").click(function () {
+            var r = confirm("确认退出？")
+            if (r == true) {
+                $.post("/userLogout",{},function (result) {
+                    if (result.resp_code == "0") {
+                        alert(result.resp_msg);
+                        window.location.href="/login.html";
+                    }
+                })
+            }
+        })
     })
 </script>
 

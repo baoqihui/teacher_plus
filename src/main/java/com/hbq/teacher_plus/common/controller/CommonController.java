@@ -11,9 +11,7 @@ import com.hbq.teacher_plus.util.ToolNote;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -132,5 +130,11 @@ public class CommonController {
         OutputStream os = res.getOutputStream();
         ImageIO.write(img, "png", os);
         os.close();
+    }
+    @PostMapping(value="/userLogout")
+    @ResponseBody
+    public Result userLogout(HttpSession session){
+        session.removeAttribute("user");
+        return Result.succeed("退出成功");
     }
 }
