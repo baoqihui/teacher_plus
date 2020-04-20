@@ -121,7 +121,8 @@
             var r = confirm("\t\t确定保存？");
             if (r == true) {
                 var type=$("#type").val();
-                $.get("/users/editUsersInfo",{tel:$("#tel").val(),type:type},function (result) {
+                alert(type)
+                $.post("/users/editUsersInfo",{tel:$("#tel").val(),type:type},function (result) {
                     if (result.resp_code == "0") {
                         alert(result.resp_msg);
                         window.location.href="users.html";

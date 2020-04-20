@@ -110,8 +110,8 @@ public class UsersController {
      * */
     @ApiOperation(value = "修改用户权限")
     @PostMapping(value="/users/editUsersInfo")
-    @ResponseBody
     public Result editUserByTel(String tel,String type) {
+        System.out.println(type);
         Users model = usersService.getOne(new QueryWrapper<Users>().eq("tel",tel));
         model.setType(type);
         usersService.updateById(model);
