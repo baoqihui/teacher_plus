@@ -108,6 +108,22 @@ $(function () {
 			}
 		},"json")
 	})
+	$("#verify").bind("keydown",function(event){
+		var login_tel=$("#login_tel").val();
+		var login_password=$("#login_password").val();
+		var code=$("#verify").val();
+		$.post("userLogin",{tel:login_tel,password:login_password,code:code},function(result){
+			if(result.resp_code=="0"){
+				$.cookie('cuId',result.datas.id,{expires:1});
+				$.cookie('type',result.datas.type,{expires:1});
+				$.cookie('username',result.datas.username,{expires:1});
+				location.href="/index/index.html";
+			}else{
+				$("#span1").text(result.resp_msg);
+			}
+		},"json")
+	})
+
 })
 
 
