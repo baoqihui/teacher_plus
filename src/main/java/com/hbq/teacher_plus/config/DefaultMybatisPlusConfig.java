@@ -32,7 +32,7 @@ public class DefaultMybatisPlusConfig {
      * 打印 sql，性能分析拦截器，不建议生产使用
      * 设置 dev test 环境开启
      */
-    /*@Bean
+   /* @Bean
     public PerformanceInterceptor performanceInterceptor() {
         PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
         //格式化sql语句format改为true
