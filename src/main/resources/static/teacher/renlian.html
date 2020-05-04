@@ -155,13 +155,7 @@
             contentType: "application/json",
             data:JSON.stringify($('#form1').serializeJson()),
             success: function (result) {
-                console.log("data is :" + result)
-                if (result.resp_code == "0") {
-                    alert(result.resp_msg);
-                    window.location.href=""+CLASS_NAME+".html";
-                }else {
-                    $("#span1").val(result.resp_msg);
-                }
+                alert(result.msg);
             }
         });
     }
