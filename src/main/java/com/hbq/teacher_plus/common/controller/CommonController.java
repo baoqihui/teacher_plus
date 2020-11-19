@@ -5,7 +5,6 @@ import com.hbq.teacher_plus.common.model.Result;
 import com.hbq.teacher_plus.model.Users;
 import com.hbq.teacher_plus.service.IUsersService;
 import com.hbq.teacher_plus.util.BufferImage;
-import com.hbq.teacher_plus.util.FastDFSUploadImg;
 import com.hbq.teacher_plus.util.OssUploadImage;
 import com.hbq.teacher_plus.util.ToolNote;
 import io.swagger.annotations.Api;
@@ -28,8 +27,6 @@ public class CommonController {
     @Autowired
     private OssUploadImage ossUploadImage;
     @Autowired
-    private FastDFSUploadImg fastDFSUploadImg;
-    @Autowired
     private IUsersService usersService;
 
     /**
@@ -43,17 +40,6 @@ public class CommonController {
         return ossUploadImage.uploadImg(imgFile);
     }
 
-    /**
-     * 上传图片到 fastDFS
-     * @param imgFile
-     * @return
-     * @throws Exception
-     */
-    @ApiOperation(value = "上传图片到fastDFS")
-    @PostMapping(value="/uploadImgTofastDFS")
-    public String uploadImgTofastDFS(MultipartFile imgFile) throws Exception{
-        return fastDFSUploadImg.imgUpload(imgFile);
-    }
 
     /**
      * 发送短信
